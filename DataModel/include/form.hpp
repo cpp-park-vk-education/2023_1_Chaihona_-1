@@ -1,3 +1,4 @@
+#pragma once
 #include <ctype.h>
 #include <vector>
 
@@ -17,4 +18,11 @@ private:
     time_t birthDate;
 public:
     Form();    
+    Profile getProfile();
+    std::vector<Interest> getInterests();
+    std::vector<Lifestyle> getLifestyl();
+    std::string getDescription() {return std::string("Sample description");};
+    std::string getUniversity() {return std::string("BMSTU");};
+    std::string getCareer() {return std::string("Senior HTML Developer at VK");};
+    std::string getLocation() {return std::string("Russia, Saint-Petersburg, Krestovsky island");};
 };

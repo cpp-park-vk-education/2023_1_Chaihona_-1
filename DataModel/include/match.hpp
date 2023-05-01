@@ -1,6 +1,7 @@
+#pragma once
 #include "user.hpp"
 
-enum MATCHTYPE (LIKE, DISLIKE)
+enum MATCHTYPE {LIKE, DISLIKE};
 
 class Match {
 private:
@@ -8,5 +9,8 @@ private:
     User user2;
     MATCHTYPE type;
 public:
-    Match();    
+    Match(); 
+    User getUser1();
+    User getUser2();
+    MATCHTYPE getType() {return MATCHTYPE::LIKE;};   
 };
