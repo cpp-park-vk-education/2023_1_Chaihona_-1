@@ -11,13 +11,15 @@ run:
 
 test:
 	@echo "TESTING"
-	@cd build && cmake .. -DTEST=ON > ../log/cmakelog_sample.txt && make > ../log/makelog_sample.txt && ./test/sample_test > ../log/test_log_sample.txt 	
+	@cd build && cmake .. -DTEST=ON > ../log/cmakelog_dbtest.txt && make > ../log/makelog_dbtest.txt && ./test/dbTest/db_test > ../log/test_log_db.txt 	
 	@rm -r build
 
 coverage:
 	@echo "COVERAGE"
-	@cd build && cmake .. -DTEST=ON > ../log/cmakelog_static.txt && make > ../log/makelog_static.txt && ./test/sample_test
-	@cd build && lcov -t "test/sample_test" -o coverage.info -c -d sample/ && genhtml -o report coverage.info > ../log/static_cov.txt
+	@cd build && cmake .. -DTEST=ON > ../log/cmakelog_dbtest.txt && make > ../log/makelog_dbtest.txt && ./test/dbTest/db_test > ../log/test_log_db.txt 	
+	@cd build && lcov -t "test/dbTest/db_test" -o coverage.info -c -d .
+	@cd build && lcov --remove coverage.info '*/usr/local/include/pqxx*' '*/nlohmann/*' '*/13.1.0/*' '*/usr/include/gtest*' -o mycoverage.info
+	@cd build && genhtml -o report mycoverage.info > ../log/dbtest_cov.txt
 
 linter:
 	@cpplint main.cpp

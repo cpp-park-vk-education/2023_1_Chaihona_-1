@@ -33,7 +33,17 @@ void DBConnection::enter(bool transact) {
 }
 
 void DBConnection::exit() {
+    if (connection) {
+        if (transaction)
+            cursor->commit();
+        connection->close();    
+    }
+}
+
+DBConnection::~DBConnection() {
+    delete connection;
     if (transaction)
-        cursor->commit();
-    connection->close();    
+        delete cursor;
+    else
+        delete nontxn;    
 }

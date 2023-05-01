@@ -1,3 +1,8 @@
+#pragma once
+
+#ifndef _DBCONN_HPP_
+#define _DBCONN_HPP_
+
 #include <map>
 #include <pqxx/pqxx>
 #include <string>
@@ -19,4 +24,7 @@ public:
     DBConnection();
     void enter(bool transact);
     void exit();
+    ~DBConnection();
 };
+
+#endif
