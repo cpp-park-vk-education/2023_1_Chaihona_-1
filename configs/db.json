@@ -2,6 +2,6 @@
     "host": "postgres",
     "user": "dnonakolesax",
     "password": "228",
-    "database": "chaihona",
+    "database": "postgres",
     "port": "5432"
 }
