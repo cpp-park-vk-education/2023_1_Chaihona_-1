@@ -1,5 +1,5 @@
 {
-    "host": "172.20.0.3",
+    "host": "postgres",
     "user": "dnonakolesax",
     "password": "228",
     "database": "chaihona",
