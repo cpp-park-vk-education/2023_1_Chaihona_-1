@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-w -lm -g -O0 -Wall -W -fprofile-arcs -f
 # unknown warning at nlohmann =(
 
 set(DATAMODEL_LIBRARIES)
-set(DATAMODELr_INCLUDE_DIRS)
+set(DATAMODEL_INCLUDE_DIRS)
 
 file(GLOB SOURCES src/*.cpp)
 

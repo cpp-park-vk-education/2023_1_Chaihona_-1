@@ -3,12 +3,15 @@
 #include "DBConnection.hpp"
 #include "DBWork.hpp"
 #include "SQLProvider.hpp"
+#include "contact.hpp"
+
 
 TEST (db_test, conn_test) {
     auto dbcm = new DBConnection ();
     dbcm->enter(true);
     dbcm->exit();
 }
+
 
 TEST (db_test, operations_test) {
     auto dbcm = new DBConnection ();
@@ -27,6 +30,7 @@ TEST(db_test, sqlprovider_test) {
     auto args = std::make_format_args("b","c");
     EXPECT_EQ(provider->getRequest(a,args), expected);
 }
+
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);

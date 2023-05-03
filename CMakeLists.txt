@@ -14,7 +14,7 @@ add_subdirectory(DataModel)
 
 add_executable(${PROJECT_NAME} dbMain.cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB} DBConnection DBWork SQLProvider DATAMODEL)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB} DBConnection DBWork SQLProvider DATAMODEL DBManager Geocoder)
 
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-w -lm -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -Llibs -lpq -lpqxx")

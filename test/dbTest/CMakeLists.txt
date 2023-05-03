@@ -14,4 +14,4 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${DBCONNECTION_INCLUDE_DIRS} ${DBWORK_INCLUDE_DIRS})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE DBConnection DBWork SQLProvider ${DBCONNECTION_INCLUDE_DIRS} GTest::GTest GTest::Main)
+target_link_libraries(${PROJECT_NAME} PRIVATE DBConnection DBWork SQLProvider DATAMODEL DBManager Geocoder ${DBCONNECTION_INCLUDE_DIRS} GTest::GTest GTest::Main)

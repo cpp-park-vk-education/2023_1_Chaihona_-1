@@ -12,7 +12,6 @@ run:
 test:
 	@echo "TESTING"
 	@cd build && cmake .. -DTEST=ON > ../log/cmakelog_dbtest.txt && make > ../log/makelog_dbtest.txt && ./test/dbTest/db_test > ../log/test_log_db.txt 	
-	@rm -r build
 
 coverage:
 	@echo "COVERAGE"
