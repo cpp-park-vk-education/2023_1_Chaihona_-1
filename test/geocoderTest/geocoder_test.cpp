@@ -36,7 +36,7 @@ TEST (geocoder_test, city_by_ip_test) {
 */
 TEST (geocoder_test, city_by_coords_test) {
     Geocoder geocoder;
-    EXPECT_EQ(geocoder.getCityByCoords("55.7522N, 37.6156E"),"Moscow");
+    EXPECT_EQ(geocoder.getCityByCoords("55.7522N, 37.6156E"), "Moscow");
     //EXPECT_THROW(Geocoder->getCityByCoords("777.7522A, 666.6156B"), std::exception);
     //EXPECT_THROW(Geocoder->getCityByCoords("55.560397N, 37.529192E"), std::exception);
 }

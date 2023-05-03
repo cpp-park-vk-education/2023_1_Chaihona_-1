@@ -12,6 +12,8 @@ run:
 test:
 	@echo "TESTING"
 	@cd build && cmake .. -DTEST=ON > ../log/cmakelog_dbtest.txt && make > ../log/makelog_dbtest.txt && ./test/dbTest/db_test > ../log/test_log_db.txt 	
+	@cd build && ./test/dbRequestsTest/db_requests_test
+	@cd build && ./test/geocoderTest/geocoder_test
 
 coverage:
 	@echo "COVERAGE"
