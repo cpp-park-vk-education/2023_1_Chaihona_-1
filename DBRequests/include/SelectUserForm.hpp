@@ -3,7 +3,7 @@
 
 class SelectUserForm {
 private:
-    int userId;
+    unsigned userId;
 public:
     Form() {};
     Form exec() {};    

@@ -11,6 +11,8 @@ add_subdirectory(DBWork)
 add_subdirectory(DBConnection)
 add_subdirectory(SQLProvider)
 add_subdirectory(DataModel)
+add_subdirectory(Geocoder)
+add_subdirectory(DBManager)
 
 add_executable(${PROJECT_NAME} dbMain.cpp)
 

@@ -5,5 +5,5 @@ private:
     std::string password;
 public:
     InsertUser() {};
-    bool exec() {};     
+    unsigned exec() {};     
 };

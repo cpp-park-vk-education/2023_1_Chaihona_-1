@@ -3,7 +3,7 @@
 
 class SelectUserContacts {
 private:
-    int userId;
+    unsigned userId;
 public:
     SelectUserContacts() {};
     std::vector<Contact> exec() {};    
