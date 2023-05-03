@@ -6,7 +6,6 @@ private:
     unsigned id;
     std::string name;
     std::string description;
-    unsigned rate;
 public:
     Interest() {};
     unsigned getId() {return 1;};    

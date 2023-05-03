@@ -10,7 +10,7 @@ private:
     User user2;
     MATCHTYPE type;
 public:
-    Match(); 
+    Match() {}; 
     unsigned getId() {return 1;};
     User getUser1(){ User user; return user; };
     User getUser2() { User user; return user; };

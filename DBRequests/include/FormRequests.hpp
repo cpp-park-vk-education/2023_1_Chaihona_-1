@@ -6,7 +6,7 @@
 #include "lifestyle.hpp"
 #include "contact.hpp"
 
-class InsertForm{
+class FormRequests{
 private:
     Profile profile;
     std::vector<Interest> interests;
@@ -18,6 +18,10 @@ private:
     std::string location;
     time_t birthDate;
 public:
-    InsertForm() {};    
-    bool exec() {};
+    FormRequests() {};    
+    unsigned insert() {};
+    bool update() {};
+    Form getUserForm() {};
+    std::vector<Form> selectRecForms() {};
 };
+

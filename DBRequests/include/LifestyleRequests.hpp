@@ -1,6 +1,7 @@
 #include "lifestyle.hpp"
 
-class GetPossibleLifestyles {
+
+class LifestyleRequests {
 public:   
     std::vector<Lifestyle> exec() {};
 };

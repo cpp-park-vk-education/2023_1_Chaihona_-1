@@ -1,12 +1,14 @@
 #include "interest.hpp"
 
 
-class InsertInterest {
+class InterestRequests {
 private:
     unsigned userId;
     unsigned interestId;
     unsigned rate;
 public:
     InsertInterest() {};
-    unsigned exec() {};
+    unsigned insert() {};
+    bool update() {};
+    std::vector<Interest> getPossibleInterests () {};
 }

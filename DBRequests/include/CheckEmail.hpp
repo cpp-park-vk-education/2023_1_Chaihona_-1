@@ -1,7 +1,7 @@
-class CheckUser {
+class CheckEmail {
 private:
     std::string email;
 public:
-    CheckUser() {};
+    CheckEmail() {};
     bool exec() {};        
 }

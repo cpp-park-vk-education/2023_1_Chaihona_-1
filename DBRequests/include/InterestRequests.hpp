@@ -1,7 +1,7 @@
 #include "interest.hpp"
 
 
-class GetPossibleInterests {
+class InterestRequests {
 public:    
     std::vector<Interest> exec() {};
 };

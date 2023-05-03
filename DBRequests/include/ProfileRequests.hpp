@@ -1,12 +1,12 @@
 #pragma once
 
-class InsertProfile{
+class ProfileRequests{
 private:
     std::string email;
     std::string firstName;
     std::string lastName;
     unsigned userId;
 public:
-    InsertProfile() {};  
-    unsigned exec() {};
+    ProfileRequests() {};  
+    unsigned insert() {};
 };
