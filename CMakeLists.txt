@@ -13,6 +13,7 @@ add_subdirectory(SQLProvider)
 add_subdirectory(DataModel)
 add_subdirectory(Geocoder)
 add_subdirectory(DBManager)
+add_subdirectory(DBRequests)
 
 add_executable(${PROJECT_NAME} dbMain.cpp)
 
@@ -28,4 +29,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE ${DBCONNECTION_LIBRARIES} ${DBWork
 
 if (${TEST})
     add_subdirectory(test/dbTest)
+    add_subdirectory(test/dbRequestsTest)
+    add_subdirectory(test/geocoderTest)
 endif ()

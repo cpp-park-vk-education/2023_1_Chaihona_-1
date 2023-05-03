@@ -5,13 +5,15 @@
 #include <vector>
 
 class DBManager{
-    void addUser(User user) {};
-    bool checkIfEmailBusy (std::string email) {};
-    bool authorise (User user) {};
-    bool addProfile (User user) {};
-    bool addForm (Profile profile) {};
-    void editForm (Form form) {};
+    unsigned addUser(User user) {};
+    bool checkIfEmailBusy(std::string email) {};
+    Profile authorise(User user) {};
+    unsigned addProfile(User user, Profile profile) {};
+    unsigned addForm(Profile profile, Form form) {};
+    bool editForm(Form form) {};
     std::vector<Form> getRecommendForms(Form form) {};
-    Form getUserForm (Form form) {};
-    std::vector<Contact> getUserContacts (Form form) {};
+    Form getUserForm(Profile profile) {};
+    std::vector<Contact> getUserContacts(Form form) {};
+    unsigned insertMatch(Profile profile1, Profile profile2) {};
+    bool checkMatchResukt(Profile profile1, Profile profile2) {};
 };

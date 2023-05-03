@@ -1,6 +1,7 @@
 #pragma once
 #include "user.hpp"
-
+#include <string>
+#include <vector>
 
 class UserRequests{
 private:
@@ -8,6 +9,6 @@ private:
     std::string password;
 public:
     UserRequests() {};
-    unsigned insert() {};
-    unsigned authorise() {};     
+    unsigned insert(User user) {};
+    unsigned authorise(User user) {};     
 };

@@ -1,4 +1,7 @@
+#pragma once
 #include "contact.hpp"
+#include <string>
+#include <vector>
 
 class ContactRequests{
 private: 

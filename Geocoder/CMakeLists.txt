@@ -12,5 +12,6 @@ file(GLOB SOURCES src/*.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
+target_include_directories(${PROJECT_NAME} PUBLIC include)
 set(Geocoder_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
 set(Geocoder_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)

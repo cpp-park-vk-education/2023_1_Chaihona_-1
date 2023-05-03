@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+#include <vector>
+
 class Lifestyle {
 private:
     unsigned id;

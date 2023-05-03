@@ -1,4 +1,8 @@
 #pragma once
+#include <string>
+#include <vector>
+
+
 enum class CONTACTTYPES {PHONE, TELEGRAM, WHATSAPP, VK, STEAM, TWITTER, FACEBOOK, SPOTIFY};
 
 class Contact {

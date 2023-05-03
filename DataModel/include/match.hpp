@@ -1,5 +1,7 @@
 #pragma once
 #include "user.hpp"
+#include <string>
+#include <vector>
 
 enum MATCHTYPE {LIKE, DISLIKE};
 

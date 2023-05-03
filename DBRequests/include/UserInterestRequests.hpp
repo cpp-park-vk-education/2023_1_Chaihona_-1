@@ -1,14 +1,17 @@
+#pragma once
 #include "interest.hpp"
+#include <string>
+#include <vector>
+#include "profile.hpp"
 
-
-class InterestRequests {
+class UserInterestRequests {
 private:
     unsigned userId;
     unsigned interestId;
     unsigned rate;
 public:
-    InsertInterest() {};
+    UserInterestRequests() {};
     unsigned insert() {};
+    std::vector<Interest> getUserInterests (Profile profile) {}; 
     bool update() {};
-    std::vector<Interest> getPossibleInterests () {};
-}
+};

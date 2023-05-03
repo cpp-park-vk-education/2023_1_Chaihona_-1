@@ -1,14 +1,18 @@
+#pragma once
 #include <ctype.h>
+#include <vector>
+#include <string>
 #include <vector>
 
 #include "profile.hpp"
 #include "interest.hpp"
 #include "lifestyle.hpp"
+#include "form.hpp"
 #include "contact.hpp"
 
 class FormRequests{
 private:
-    Profile profile;
+    unsigned profileId;
     std::vector<Interest> interests;
     std::vector<Lifestyle> lifestyle;
     std::vector<Contact> contact;

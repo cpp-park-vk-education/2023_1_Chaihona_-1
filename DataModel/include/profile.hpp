@@ -1,5 +1,7 @@
 #pragma once
 #include "user.hpp"
+#include <string>
+#include <vector>
 
 class Profile{
 private:

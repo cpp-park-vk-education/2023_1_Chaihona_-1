@@ -1,4 +1,7 @@
 #pragma once
+#include <string>
+#include <vector>
+
 class User{
 private:
     unsigned id;

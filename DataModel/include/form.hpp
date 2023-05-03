@@ -1,7 +1,7 @@
 #pragma once
 #include <ctype.h>
 #include <vector>
-
+#include <string>
 #include "profile.hpp"
 #include "interest.hpp"
 #include "lifestyle.hpp"

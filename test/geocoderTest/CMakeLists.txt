@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(db_test)
+project(geocoder_test)
 
 set (CMAKE_CXX_STANDARD 20)
 
@@ -14,4 +14,4 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${DBCONNECTION_INCLUDE_DIRS} ${DBWORK_INCLUDE_DIRS})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE DBConnection DBWork SQLProvider DATAMODEL DBManager DBRequests ${DBCONNECTION_INCLUDE_DIRS} GTest::GTest GTest::Main)
+target_link_libraries(${PROJECT_NAME} PRIVATE Geocoder ${DBCONNECTION_INCLUDE_DIRS} GTest::GTest GTest::Main)

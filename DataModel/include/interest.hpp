@@ -1,5 +1,6 @@
 #pragma once
-#include "form.hpp"
+#include <string>
+#include <vector>
 
 class Interest {
 private:
@@ -23,4 +24,4 @@ public:
     UserInterest() {};
     Interest getInterest () {Interest interest; return interest;}
     unsigned getRate () {return 10;}
-}
+};
