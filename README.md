@@ -1,2 +1,1 @@
-# 2023_1_Chaihona_-1
-Сервис для знакомств по интересам с умной системой рекомендаций
+![text](https://github.com/Vazhid/vk_edu_cpp_projects/blob/hw3_5/hw3_5/image/uml.png?raw=true)
