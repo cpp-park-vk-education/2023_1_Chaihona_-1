@@ -6,11 +6,17 @@
 
 class IRequestMaker {
 public:
-  virtual void MakeRequest(std::string json_path) = 0;
+  virtual void MakeRequest(std::string json) = 0;
 };
 
 class RequestMaker: public IRequestMaker {
 public:
-  RequestMaker(std::unique_ptr<IClient> client);
-  virtual void MakeRequest(std::string json_path) override;
+
+  RequestMaker(std::unique_ptr<IClient> cp);
+  virtual void MakeRequest(std::string json) override;
+
+private:
+
+  std::unique_ptr<IClient> client_ptr_;
+
 };

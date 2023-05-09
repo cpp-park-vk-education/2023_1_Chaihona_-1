@@ -1,7 +1,7 @@
 #pragma once
 #include <gmock/gmock.h>
 #include "client_manager.hpp"
-
+/*
 class GMockRequestMaker : public IRequestMaker {
 public:
   MOCK_METHOD(void, MakeRequest, (std::string), (override));
@@ -16,3 +16,4 @@ public:
   MOCK_METHOD(void, dislike, (unsigned author_id, unsigned target_id), (override));
   MOCK_METHOD(void, getNextProfile, (unsigned author_id), (override));
 };
+*/

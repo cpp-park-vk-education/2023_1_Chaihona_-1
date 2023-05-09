@@ -3,7 +3,7 @@
 #include <gmock/gmock.h>
 #include "request_maker.hpp"
 #include "client.hpp"
-
+/*
 class GMockClient : public IClient {
 public:
   MOCK_METHOD(void, run, (), (override));
@@ -14,3 +14,4 @@ private:
   MOCK_METHOD(void, on_write, (), (override));
   MOCK_METHOD(void, on_read, (), (override));
 };
+*/

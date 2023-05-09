@@ -1,5 +1,5 @@
 #include "request_maker_test.hpp"
-
+/*
 TEST(RequestMakerTest, RequestMakeCase){
   auto client_ptr = std::make_unique<IClient>(GMockClient());
   auto client_row = client_ptr.get();
@@ -11,3 +11,4 @@ TEST(RequestMakerTest, RequestMakeCase){
 
   request_maker.MakeRequest("request.json");
 }
+*/

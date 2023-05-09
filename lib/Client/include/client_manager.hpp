@@ -1,7 +1,13 @@
 #pragma once
-#include <string>
+#include <iostream>
 #include <memory>
+#include <boost/json.hpp>
 #include "request_maker.hpp"
+#include "user.hpp"
+
+namespace json = boost::json;
+
+
 
 class IClientManager { 
 public:
@@ -16,12 +22,18 @@ public:
 
 class ClientManager : public IClientManager { 
 public:
-  ClientManager(std::unique_ptr<IRequestMaker>);
+  virtual ~ClientManager() {} 
+  ClientManager(std::unique_ptr<IRequestMaker> rmp) : request_maker_ptr_(std::move(rmp)) {}
+  
   virtual void log_in(std::string email, std::string password) override;
   virtual void log_out(unsigned id) override;
   virtual void registration(std::string email, std::string password) override;
   virtual void like(unsigned author_id, unsigned target_id) override;
   virtual void dislike(unsigned author_id, unsigned target_id) override;
   virtual void getNextProfile(unsigned author_id) override;
+
+private:
+
+  std::unique_ptr<IRequestMaker> request_maker_ptr_;
 };
 
