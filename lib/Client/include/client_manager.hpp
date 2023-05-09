@@ -18,6 +18,7 @@ public:
   virtual void like(unsigned author_id, unsigned target_id) = 0;
   virtual void dislike(unsigned author_id, unsigned target_id) = 0;
   virtual void getNextProfile(unsigned author_id) = 0;
+  virtual void close() = 0;
 };
 
 class ClientManager : public IClientManager { 
@@ -31,6 +32,7 @@ public:
   virtual void like(unsigned author_id, unsigned target_id) override;
   virtual void dislike(unsigned author_id, unsigned target_id) override;
   virtual void getNextProfile(unsigned author_id) override;
+  virtual void close() override;
 
 private:
 

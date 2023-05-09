@@ -56,3 +56,7 @@ void ClientManager::getNextProfile(unsigned author_id) {
   request["context"].emplace_object()["author_id"] = author_id;
   request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request))));
 }
+
+void ClientManager::close() {
+  request_maker_ptr_->Close();
+}

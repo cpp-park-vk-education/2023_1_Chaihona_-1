@@ -43,6 +43,7 @@ void Client::on_connect(beast::error_code ec, tcp::resolver::results_type::endpo
 
     // Turn off the timeout on the tcp_stream, because
     // the websocket stream has its own timeout system.
+    std::cout << "on_connect\n";
     beast::get_lowest_layer(ws_).expires_never();
 
     // Set suggested timeout settings for the websocket
@@ -62,7 +63,6 @@ void Client::on_connect(beast::error_code ec, tcp::resolver::results_type::endpo
     // Host HTTP header during the WebSocket handshake.
     // See https://tools.ietf.org/html/rfc7230#section-5.4
     host_ += ':' + std::to_string(ep.port());
-
     // Perform the websocket handshake
     ws_.async_handshake(host_, "/",
       beast::bind_front_handler(
@@ -71,6 +71,7 @@ void Client::on_connect(beast::error_code ec, tcp::resolver::results_type::endpo
 }
 
 void Client::set_request(std::string json) {
+  std::cout << "set_request" << std::endl;
   text_ = json;
   new_request_flag = true;
 }
@@ -81,7 +82,7 @@ void Client::wait_request(AccpetHandler handler) {
     //std::cout << "waiting" << std::endl;
   }
   new_request_flag = false;
-  //std::cout << "wait_request" << std::endl;
+  std::cout << "wait_request" << std::endl;
   net::asio_handler_invoke(handler);
 }
 
