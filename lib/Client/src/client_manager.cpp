@@ -24,7 +24,7 @@ void ClientManager::registration(std::string email, std::string password) {
   json::object request;
   request["request"] = "email check";
   request["context"].emplace_object()["email"] = email;
-  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request))));
+  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request)))); //GET request
   
   /*Somehow process response*/
 

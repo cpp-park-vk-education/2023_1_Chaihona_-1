@@ -8,7 +8,9 @@
 
 int main(int argc, char** argv) {
   auto const host = "127.0.0.1";
-  auto const port = "1242";
+  auto const port = "1251";
+  //auto const host = "8.8.8.8";
+  //auto const port = "80";
   auto const text = "lol";
 
   // The io_context is required for all I/O
@@ -48,18 +50,18 @@ int main(int argc, char** argv) {
 
   ClientManager client_manager(std::move(request_maker_ptr));
   client_manager.registration("lol@yandex.ru", "12345");
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  client_manager.log_in("lol@yandex.ru", "12345");
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  client_manager.dislike(54321, 12345);
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  client_manager.getNextProfile(12345);
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  client_manager.like(54321, 12345);
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  client_manager.log_out(12345);
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
-  client_manager.close();
-  std::this_thread::sleep_for(std::chrono::milliseconds(10));
+  std::this_thread::sleep_for(std::chrono::seconds(1));
+  // client_manager.log_in("lol@yandex.ru", "12345");
+  // std::this_thread::sleep_for(std::chrono::seconds(1));
+  // client_manager.dislike(54321, 12345);
+  // std::this_thread::sleep_for(std::chrono::seconds(1));
+  // client_manager.getNextProfile(12345);
+  // std::this_thread::sleep_for(std::chrono::seconds(1));
+  // client_manager.like(54321, 12345);
+  // std::this_thread::sleep_for(std::chrono::seconds(1));
+  // client_manager.log_out(12345);
+  // std::this_thread::sleep_for(std::chrono::seconds(1));
+  // client_manager.close();
+  // std::this_thread::sleep_for(std::chrono::seconds(1));
   return EXIT_SUCCESS;
 }

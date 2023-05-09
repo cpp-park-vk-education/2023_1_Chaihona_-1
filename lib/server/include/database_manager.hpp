@@ -3,27 +3,27 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "user.hpp"
+// struct Profile
+// {
+//   std::string name;
+//   std::string email;
+//   /*...*/
+// };
 
-struct Profile
-{
-  std::string name;
-  std::string email;
-  /*...*/
-};
-
-struct User{
-  User(std::string login_, std::string password_){
-    login = login_;
-    password = password_;
-  }
-  std::string login;
-  std::string password;
+// struct User{
+//   User(std::string login_, std::string password_){
+//     login = login_;
+//     password = password_;
+//   }
+//   std::string login;
+//   std::string password;
   
-  bool operator==(const User& user) const {
-    if (user.login == login && user.password == password) return true;
-    return false; 
-  }
-};
+//   bool operator==(const User& user) const {
+//     if (user.login == login && user.password == password) return true;
+//     return false; 
+//   }
+// };
 
 struct Form{
   unsigned id;
@@ -47,16 +47,37 @@ public:
   virtual void editRecommendations(unsigned, std::vector<Profile>&) = 0;
   virtual void editUser(User user) = 0;
   virtual void editForm(Form Form) = 0;
+  virtual bool CheckIfEmailBusy(std::string) = 0;
+  virtual Form getRecommendForm(unsigned) = 0;
+  virtual bool getMatchResult(unsigned, unsigned) = 0;
+};
+
+class DatabaseManager : public IDatabaseManager {
+public:
+  virtual Profile authorise(User user) override {return Profile();}
+  virtual std::vector<Profile> getRecomendations(Profile profile) override {return std::vector<Profile>();}
+  virtual unsigned addUser(User user) override {return 0;}
+  virtual bool makeMatch(unsigned author_id, unsigned target_id) override {return true;}
+  virtual bool breakMatch(unsigned author_id, unsigned target_id) override {return false;}
+  virtual Form getUserForm(unsigned) override {return Form{};}
+  virtual std::vector<Form> getRecommendForms(Form) override {return std::vector<Form>();}
+  virtual Form getRecommendForm(unsigned) override {return Form();}
+  virtual void editRecommendations(unsigned, std::vector<Profile>&) override {}
+  virtual void editUser(User user) override {}
+  virtual void editForm(Form Form) override {}
+  virtual bool CheckIfEmailBusy(std::string) override {return true;}
+  virtual bool getMatchResult(unsigned, unsigned) override {return true;}
 };
 
 class IRecommendation {
 public:
+  virtual ~IRecommendation() {}
   virtual void recommend() = 0;
   virtual void VectorizeProfileText() = 0;
 };
 
-// class DatabaseManager : public IDatabaseManager {
-// public:
-//   virtual Profile authorise(User user) override;
-//   virtual std::vector<Profile> getRecomendations(Profile profile) override;
-// };
+class Recommendation : public IRecommendation {
+public:
+  virtual void recommend() override {}
+  virtual void VectorizeProfileText() override {}
+};

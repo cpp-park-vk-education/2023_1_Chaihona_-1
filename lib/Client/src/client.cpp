@@ -95,9 +95,21 @@ void Client::on_handshake(beast::error_code ec) {
 
 void Client::on_wait() {
   std::cout << "on wait" << std::endl;
-  ws_.async_write(
-    net::buffer(text_),
-    beast::bind_front_handler(&Client::on_write, shared_from_this()));
+  ws_.async_write(net::buffer(text_), beast::bind_front_handler(&Client::on_write, shared_from_this()));
+  
+  // auto buf = net::buffer("");
+  // net::buffer_copy(&buf, &req);
+  // ws_.async_write(buf, beast::bind_front_handler(&Client::on_write, shared_from_this()));
+
+  // http::request<http::string_body> req;
+  // req.body() = text_;
+  // req.version(11);
+  // req.method(http::verb::post);
+  // req.target("/");
+  // req.set(http::field::host, "localhost");
+  // http::async_write(beast::get_lowest_layer(ws_), req, beast::bind_front_handler(&Client::on_write, shared_from_this()));
+
+  //ws_.async_write(req, beast::bind_front_handler(&Client::on_write, shared_from_this()));
 }
 
 void Client::on_write(beast::error_code ec, std::size_t bytes_transferred) {

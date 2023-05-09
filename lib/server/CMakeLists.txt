@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(server VERSION 0.1.0)
 
-file(GLOB CPPS "src/*.cpp")
+file(GLOB CPPS "src/*.cpp" main.cpp "../structures/src/*.cpp")
 add_executable(server ${CPPS})
 
 target_include_directories(server PUBLIC include)
 target_include_directories(server PUBLIC ~/park/boost_1_82_0)
+target_include_directories(server PUBLIC ../structures/include)
 
 # add_subdirectory(tests)
