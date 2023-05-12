@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <cmath>
 
 #include "text_processing.hpp"
 #include "tfidf_vectorization.hpp"
@@ -13,6 +14,7 @@ class Profile {};
 class SimilarityCalculator {
  private:
  public:
+  virtual void set_vectors(std::vector<double>& first, std::vector<double>& second) = 0;
   virtual void calculate() = 0;
   virtual double get_similarity() = 0;
 };
@@ -25,11 +27,11 @@ class CosSimilarityCalculator : public SimilarityCalculator {
 
  public:
   CosSimilarityCalculator() = default;
-  CosSimilarityCalculator(std::vector<double> first, std::vector<double> second) 
-     : first_(first),
-       second_(second) {}
+  CosSimilarityCalculator(std::vector<double>& first, std::vector<double>& second) :
+    first_(first),
+    second_(second) {}
 
-  void set_vectors(std::vector<double> first, std::vector<double> second);
+  void set_vectors(std::vector<double>& first, std::vector<double>& second);
   void calculate();
   double get_similarity();
 };
@@ -37,10 +39,12 @@ class CosSimilarityCalculator : public SimilarityCalculator {
 struct User {
  public:
   User() = default;
-  explicit User(const Profile& profile);
+  explicit User(const Profile& profile); // реализуй
   size_t id_;
   std::vector<double> text_vect_;
   std::vector<double> interest_vect_;
+  double interest_similarity_;
+  double text_similarity_;
   double similarity_;
   bool operator< (const User& p) const {
     return this->similarity_ < p.similarity_;
