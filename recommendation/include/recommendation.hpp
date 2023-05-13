@@ -14,9 +14,9 @@ class Form {};
 class Recommendation {  
  private:
   Form form_;
-  User user_;
+  UserForm user_;
   std::vector<Form> recommended_forms_;
-  std::vector<User> recommended_users_;
+  std::vector<UserForm> recommended_users_;
   void forms_to_users();
   void users_to_forms();
 

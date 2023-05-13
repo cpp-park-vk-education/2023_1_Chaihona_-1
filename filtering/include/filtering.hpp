@@ -34,31 +34,31 @@ class CosSimilarityCalculator : public SimilarityCalculator {
   double get_similarity();
 };
 
-struct User {
+struct UserForm {
  public:
-  User() = default;
-  explicit User(const User& profile); // реализуй
+  UserForm() = default;
+  explicit UserForm(const UserForm& profile); // реализуй
   size_t id_;
   std::vector<double> text_vect_;
   std::vector<double> interest_vect_;
   double interest_similarity_;
   double text_similarity_;
   double similarity_;
-  bool operator< (const User& p) const {
+  bool operator< (const UserForm& p) const {
     return this->similarity_ < p.similarity_;
   }
 };
 
 class Filter {
  private:
-  User user_;
-  std::vector<User> recommended_users_;
+  UserForm user_;
+  std::vector<UserForm> recommended_users_;
 
  public:
   Filter() = delete;
-  Filter(User& user, std::vector<User>& recommended_users)
+  Filter(UserForm& user, std::vector<UserForm>& recommended_users)
     : user_(user), 
       recommended_users_(recommended_users) {}
   void calculate_users_similiarity(SimilarityCalculator& sim_calculator);
-  std::vector<User> get_recommended_users();
+  std::vector<UserForm> get_recommended_users();
 };

@@ -27,7 +27,7 @@ void CosSimilarityCalculator::calculate() {
 }
 
 void Filter::calculate_users_similiarity(SimilarityCalculator& sim_calculator) {
-    for (User& cur_user : recommended_users_) {
+    for (UserForm& cur_user : recommended_users_) {
         sim_calculator.set_vectors(user_.interest_vect_, cur_user.interest_vect_);
         sim_calculator.calculate();
         cur_user.interest_similarity_ = sim_calculator.get_similarity();
@@ -40,6 +40,6 @@ void Filter::calculate_users_similiarity(SimilarityCalculator& sim_calculator) {
     }    
 }
 
-std::vector<User> Filter::get_recommended_users() {
+std::vector<UserForm> Filter::get_recommended_users() {
     return recommended_users_;   
 }
