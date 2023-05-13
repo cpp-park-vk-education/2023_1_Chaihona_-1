@@ -12,7 +12,7 @@ add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_include_directories(${PROJECT_NAME} PUBLIC ~/boost_1_82_0)
-target_link_libraries(${PROJECT_NAME} PUBLIC DATAMODEL DBManager)
+target_link_libraries(${PROJECT_NAME} PUBLIC DATAMODEL DBManager Recommendation)
 
 
 set(server_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)

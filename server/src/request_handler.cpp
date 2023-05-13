@@ -59,21 +59,18 @@ http::response<http::string_body> RequestHandler::ReadRequest(std::string json) 
   //   return DislikeResponse();
   // }
 
-  // if (request_type == kGetNextProfileRequest) {
-  //   unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
-  //   Form form = database_manager_ptr_->getRecommendForm(author_id);
-  //   /*
-  //   if (recommended_forms_.empty()) {
-  //     Form author_form = database_maanger_ptr_->getUserForm(author_id); 
-  //     auto recommended_forms = database_manager_ptr_->getRecommedForms(form);
-  //     Recommendation recommendation(author_form, recommended_forms);
-  //     recommendation.recommend();
-  //     SaveRecommedation(recommeded_forms);
-  //   }
-  //   return GetNextProfileResponse();
-  //   */
-  //   return GetNextProfileResponse();
-  // }
+  if (request_type == kGetNextProfileRequest) {
+    unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
+    Form form = database_manager_ptr_->getUserForm(author_id);
+    if (recommended_forms_.empty()) {
+      Form author_form = database_manager_ptr_->getUserForm(author_id); 
+      auto recommended_forms = database_manager_ptr_->getRecommendForms(form);
+      Recommendation recommendation(author_form, recommended_forms);
+      recommendation.recommend();
+      SaveRecommendation(recommended_forms);
+    }
+    return GetNextProfileResponse();
+  }
 
   // if (request_type == kEditFormRequest) {
   //   Profile/*Form*/ profile/*author_form*/ = json::value_to</*Form*/Profile>(request.as_object()[kContextField]/*.as_object()[kFormField]*/);
@@ -159,24 +156,23 @@ http::response<http::string_body> RequestHandler::RegistrationResponse(unsigned 
 //   return response;
 // }
 
-// http::response<http::string_body> RequestHandler::GetNextProfileResponse() {
-//   // auto response = recommended_forms_.back();
-//   // recommended_forms_.pop();
-//   // return response;
-//   return http::response<http::string_body>();
-// }
+http::response<http::string_body> RequestHandler::GetNextProfileResponse() {
+  auto response = recommended_forms_.back();
+  recommended_forms_.pop();
+  return response;
+}
 
-// void RequestHandler::SaveRecommedntaion (std::vector<Form>& recommended_forms) {
-//   for (auto form: recommended_forms) {
-//     json::object response_body;
-//     response_body[kResponseField] = kGetNextProfileRequest;
-//     //response_body[kcontextField].emplace_object() = json::value_from(form).as_object();
-//     http::response<http::string_body> response{http::status::ok, 11};
-//     response.body() = json::serialize(json::value(std::move(response_body)));
-//     response.prepare_payload();
-//     recommended_forms_.push(response);
-//   }
-// }
+void RequestHandler::SaveRecommendation (std::vector<Form>& recommended_forms) {
+  for (auto form: recommended_forms) {
+    json::object response_body;
+    response_body[kResponseField] = kGetNextProfileRequest;
+    //response_body[kcontextField].emplace_object() = json::value_from(form).as_object();
+    http::response<http::string_body> response{http::status::ok, 11};
+    response.body() = json::serialize(json::value(std::move(response_body)));
+    response.prepare_payload();
+    recommended_forms_.push(response);
+  }
+}
 
 // http::response<http::string_body> RequestHandler::EditFormResponse() {
 //   json::object response_body;

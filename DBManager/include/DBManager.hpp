@@ -17,7 +17,7 @@ public:
     virtual unsigned addForm(Profile profile, Form form) = 0;
     //bool editForm(Form form) {};
     virtual std::vector<Form> getRecommendForms(Form form) = 0;
-    virtual Form getUserForm(Profile profile) = 0;
+    virtual Form getUserForm(unsigned id) = 0;
     virtual std::vector<Contact> getUserContacts(Form form) = 0;
     virtual unsigned insertMatch(Match match) = 0;
     virtual bool checkMatchResult(Form form1, Form form2) = 0;
@@ -31,8 +31,8 @@ class DBManager : public IDatabaseManager{
     unsigned addProfile(User user, Profile profile);
     unsigned addForm(Profile profile, Form form) {return 1;};
     //bool editForm(Form form) {};
-    std::vector<Form> getRecommendForms(Form form) {return std::vector<Form>();};
-    Form getUserForm(Profile profile) {return Form();};
+    std::vector<Form> getRecommendForms(Form form) { std::vector<Form> formVector; Form form1; Form form2; formVector.push_back(form1); formVector.push_back(form2); return formVector; };
+    Form getUserForm(unsigned id) {return Form();};
     std::vector<Contact> getUserContacts(Form form) {return std::vector<Contact>();};
     unsigned insertMatch(Match match);
     bool checkMatchResult(Form form1, Form form2);

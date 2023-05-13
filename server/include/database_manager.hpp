@@ -26,14 +26,6 @@
 //   }
 // };
 
-struct Form{
-  unsigned id;
-
-  bool operator==(const Form& form) const {
-    return form.id == id;
-  }
-  /*some parametres*/
-};
 
 // class IDatabaseManager {
 // public:
@@ -70,15 +62,3 @@ struct Form{
 //   virtual bool getMatchResult(unsigned, unsigned) override {return true;}
 // };
 
-class IRecommendation {
-public:
-  virtual ~IRecommendation() {}
-  virtual void recommend() = 0;
-  virtual void VectorizeProfileText() = 0;
-};
-
-class Recommendation : public IRecommendation {
-public:
-  virtual void recommend() override {}
-  virtual void VectorizeProfileText() override {}
-};

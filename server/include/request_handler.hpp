@@ -7,6 +7,7 @@
 #include <queue>
 #include "DBManager.hpp"
 #include "user.hpp"
+#include "recommendation.hpp"
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -44,7 +45,7 @@ private:
   // virtual http::response<http::string_body> LikeResponse(bool) = 0;
   // virtual http::response<http::string_body> DislikeResponse() = 0;
   // virtual http::response<http::string_body> EditFormResponse() = 0;
-  // virtual http::response<http::string_body> GetNextProfileResponse() = 0;
+  virtual http::response<http::string_body> GetNextProfileResponse() = 0;
 
   //virtual void JsonParser(std::string json) = 0;
   //virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) = 0;
@@ -67,10 +68,10 @@ private:
   // virtual http::response<http::string_body> LikeResponse(bool) override;
   // virtual http::response<http::string_body> DislikeResponse() override;
   // virtual http::response<http::string_body> EditFormResponse() override;
-  // virtual http::response<http::string_body> GetNextProfileResponse() override;
-  // void SaveRecommedntaion (std::vector<Form>& recommended_forms);
+  virtual http::response<http::string_body> GetNextProfileResponse() override;
+  void SaveRecommendation(std::vector<Form>& recommended_forms);
   
   // virtual void JsonParser(std::string json) override;
-  // virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) override;
+  //virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) override;
   /*Request Parametres*/
 };

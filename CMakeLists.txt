@@ -16,10 +16,11 @@ add_subdirectory(Geocoder)
 add_subdirectory(DBManager)
 add_subdirectory(DBRequests)
 add_subdirectory(server)
+add_subdirectory(recommendation)
 
 add_executable(${PROJECT_NAME} dbMain.cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB} server DBConnection DBWork SQLProvider DATAMODEL DBManager Geocoder DBRequests)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB} Recommendation server DBConnection DBWork SQLProvider DATAMODEL DBManager Geocoder DBRequests)
 
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-w -lm -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -Llibs -lpq -lpqxx")
