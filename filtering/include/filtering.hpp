@@ -9,8 +9,6 @@
 #include "text_processing.hpp"
 #include "tfidf_vectorization.hpp"
 
-class Profile {};
-
 class SimilarityCalculator {
  private:
  public:
@@ -39,7 +37,7 @@ class CosSimilarityCalculator : public SimilarityCalculator {
 struct User {
  public:
   User() = default;
-  explicit User(const Profile& profile); // реализуй
+  explicit User(const User& profile); // реализуй
   size_t id_;
   std::vector<double> text_vect_;
   std::vector<double> interest_vect_;

@@ -7,18 +7,24 @@
 #include "text_processing.hpp"
 #include "tfidf_vectorization.hpp"
 #include "filtering.hpp"
+// #include "" // <- файлик с Form
 
-class Profile;
+class Form {};
 
 class Recommendation {  
  private:
-  Profile profile_;
-  std::vector<Profile> recommended_profiles_;
+  Form form_;
+  User user_;
+  std::vector<Form> recommended_forms_;
+  std::vector<User> recommended_users_;
+  void forms_to_users();
+  void users_to_forms();
+
  public:
   Recommendation() = delete;
-  Recommendation(Profile& profile, const std::vector<Profile>& recommended_profiles) 
-    : profile_(profile),
-      recommended_profiles_(recommended_profiles) {}
+  Recommendation(Form& form, const std::vector<Form>& recommended_forms) 
+    : form_(form),
+      recommended_forms_(recommended_forms) {}
   void vectorize_profile();
   void recommend();
 };
