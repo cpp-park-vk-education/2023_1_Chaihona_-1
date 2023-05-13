@@ -6,7 +6,7 @@ build:
 	
 run:
 	@echo "RUN"
-	@cd build && cmake .. > cmakelog.txt && make > makelog.txt && ./chaihona 127.0.0.1 7777 1
+	@cd build && cmake .. > cmakelog.txt && make > makelog.txt && ./chaihona 127.0.0.1 7778 1
 	@rm -r build
 
 test:
