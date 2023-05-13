@@ -16,8 +16,8 @@ file(GLOB SOURCES src/*.cpp)
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
-target_include_directories(${PROJECT_NAME} PUBLIC include ${NLOHMANN_INCLUDE_DIRS} ${DBConnection_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB}  ${NLOHMANN_LIBRARIES} ${DBConnection_LIBRARIES} DATAMODEL)
+target_include_directories(${PROJECT_NAME} PUBLIC include ${NLOHMANN_INCLUDE_DIRS} ${DBConnection_INCLUDE_DIRS} )
+target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB}  ${NLOHMANN_LIBRARIES} ${DBConnection_LIBRARIES} DATAMODEL DBConnection DBWork SQLProvider)
 
 set(DBRequests_LIBRARIES ${PROJECT_NAME} PARENT_SCOPE)
 set(DBRequests_INCLUDE_DIRS ${INCLUDE_DIRS} PARENT_SCOPE)

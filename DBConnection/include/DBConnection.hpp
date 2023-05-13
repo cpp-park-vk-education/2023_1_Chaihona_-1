@@ -17,10 +17,10 @@ class DBConnection {
 private:
     std::map<std::string, std::string> config;
     pqxx::connection* connection;
-    pqxx::work* cursor;
-    pqxx::nontransaction* nontxn;
     bool transaction;
 public:
+    pqxx::work* cursor;
+    pqxx::nontransaction* nontxn;
     DBConnection();
     void enter(bool transact);
     void exit();

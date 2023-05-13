@@ -2,17 +2,16 @@
 #include <string>
 #include <vector>
 
-
-enum class CONTACTTYPES {PHONE, TELEGRAM, WHATSAPP, VK, STEAM, TWITTER, FACEBOOK, SPOTIFY};
-
 class Contact {
 private: 
+    unsigned user_id;
     unsigned id;
-    CONTACTTYPES contactType;
+    std::string contactType;
     std::string value;
 public:
-    Contact() {}; 
+    Contact(unsigned _uid, std::string _ct, std::string _val) : user_id(_uid), contactType(_ct), value(_val) {}; 
     unsigned getId() {return 1;};
-    CONTACTTYPES getContactType() {return CONTACTTYPES::PHONE;};
-    std::string getContactValue() {return std::string("+7(999)999-99-99");};   
+    std::string getContactType() {return contactType;};
+    std::string getContactValue() {return value;};   
+    unsigned getUserId() {return user_id;}
 };

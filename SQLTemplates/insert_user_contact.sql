@@ -1,0 +1,1 @@
+INSERT INTO chaihona."UserContacts" (form_id, contact_id) VALUES ({}, {}) returning user_contacts_id;

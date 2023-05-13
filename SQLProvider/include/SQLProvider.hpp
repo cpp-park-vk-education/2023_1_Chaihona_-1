@@ -2,12 +2,13 @@
 #include <string>
 #include <vector>
 #include <format>
+#include <fstream>
 #include <iostream>
 
 class SQLProvider {
 private:    
     std::map<std::string, std::string> scripts;
 public:
-    SQLProvider() {}
+    SQLProvider(std::string path);
     std::string getRequest(std::string fileName, std::format_args args);
 };

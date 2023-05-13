@@ -6,12 +6,14 @@
 
 class UserInterestRequests {
 private:
+    unsigned userInterestId;
     unsigned userId;
     unsigned interestId;
     unsigned rate;
 public:
-    UserInterestRequests() {};
-    unsigned insert() {};
-    std::vector<Interest> getUserInterests (Profile profile) {}; 
-    bool update() {};
+    UserInterestRequests(unsigned _uid) : userId(_uid) {}
+    UserInterestRequests(unsigned _uid, unsigned _iid, unsigned _rate) : userId(_uid), interestId(_iid), rate(_rate) {}
+    unsigned insert();
+    std::vector<UserInterest> getUserInterests (); 
+    bool updateUserRate();
 };

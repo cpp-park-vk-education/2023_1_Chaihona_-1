@@ -10,19 +10,23 @@ private:
     std::vector<std::string> variants;
 public:
     Lifestyle() {};
-    std::string getName() {return std::string("Zodiac sign");};
-    std::string getDescription() {return std::string("What is your zodiac sign");};
-    std::vector<std::string> getVariants() {std::vector<std::string>variants; variants.push_back("Aquarius"); return variants; };   
+    Lifestyle (unsigned _id, std::string _name, std::string _descr, std::vector<std::string> _vars) : id(_id), name(_name), description(_descr), variants(_vars) {}
+    std::string getName() {return name;};
+    std::string getDescription() {return description;};
+    std::vector<std::string> getVariants() {return variants; };   
+    unsigned getId() {return id;}
 };
 
 class UserLifestyle {
 private:
     unsigned id;
+    unsigned userId;
     Lifestyle lifestyle;
     std::string userChoice;
 public:
     UserLifestyle() {};
-    unsigned getId() {return 1;};
-    Lifestyle getLifestyle() {Lifestyle lifestyle; return lifestyle;}
-    std::string getUserChoice() {return std::string{"Aquarius"};};         
+    UserLifestyle(unsigned _uid, Lifestyle _lst, std::string _uchoice) : userId(_uid), lifestyle(_lst), userChoice(_uchoice) {}
+    unsigned getUserId() {return userId;};
+    Lifestyle getLifestyle() {return lifestyle;}
+    std::string getUserChoice() {return userChoice;};         
 };

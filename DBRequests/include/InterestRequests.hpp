@@ -5,5 +5,6 @@
 
 class InterestRequests {
 public:    
-    std::vector<Interest> getPossibleInterests() {};
+    InterestRequests() {}
+    std::vector<Interest> getPossibleInterests();
 };

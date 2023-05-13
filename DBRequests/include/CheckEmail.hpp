@@ -6,6 +6,6 @@ class CheckEmail {
 private:
     std::string email;
 public:
-    CheckEmail() {};
-    bool exec() {};        
+    CheckEmail(std::string _email) : email(_email) {};
+    bool exec();        
 };

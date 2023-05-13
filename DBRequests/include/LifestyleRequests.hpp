@@ -5,5 +5,6 @@
 
 class LifestyleRequests {
 public:   
-    std::vector<Lifestyle> getPossibleLifestyles() {};
+    LifestyleRequests() {}
+    std::vector<Lifestyle> getPossibleLifestyles();
 };

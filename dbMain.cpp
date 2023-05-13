@@ -2,8 +2,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "MatchRequests.hpp"
 
-
-int main() {          
-    return 0;
+int main() {
+    MatchRequests mReq(3, 1, 1);
+    std::cout << mReq.insert();
 }

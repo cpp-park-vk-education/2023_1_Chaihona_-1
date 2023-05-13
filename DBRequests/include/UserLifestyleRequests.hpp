@@ -10,8 +10,9 @@ private:
     unsigned lifestyleId;
     std::string userChoice;
 public:
-    UserLifestyleRequests() {};
-    unsigned insert() {}; 
-    std::vector<Lifestyle> getUserLifestyles(Profile profile) {};
-    bool update() {}; 
+    UserLifestyleRequests(unsigned _uid) : userId(_uid) {}
+    UserLifestyleRequests(unsigned _uid, unsigned _lid, std::string _ch) : userId(_uid), lifestyleId(_lid), userChoice(_ch) {}
+    unsigned insert(); 
+    std::vector<UserLifestyle> getUserLifestyles();
+    bool updateUserChoice(); 
 };

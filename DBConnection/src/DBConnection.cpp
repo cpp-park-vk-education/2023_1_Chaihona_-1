@@ -24,7 +24,6 @@ void DBConnection::enter(bool transact) {
             nontxn = new pqxx::nontransaction(*connection);
             transaction = false;
         }
-        std::cout << "Connection established" << std::endl;
     }
     catch (std::exception const &e)
     {

@@ -1,0 +1,1 @@
+SELECT contact_id, contact_type, contact_value FROM chaihona."Contact" JOIN chaihona."UserContacts" using (contact_id) WHERE form_id = {}

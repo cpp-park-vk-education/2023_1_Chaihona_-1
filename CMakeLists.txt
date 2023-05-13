@@ -5,6 +5,7 @@ set (CMAKE_CXX_STANDARD 20)
 
 find_library(PQXX_LIB pqxx REQUIRED)
 find_library(PQ_LIB pq REQUIRED)
+find_package(CURL REQUIRED)
 
 add_subdirectory(nlohmann)
 add_subdirectory(DBWork)
@@ -17,7 +18,7 @@ add_subdirectory(DBRequests)
 
 add_executable(${PROJECT_NAME} dbMain.cpp)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB} DBConnection DBWork SQLProvider DATAMODEL DBManager Geocoder)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${PQXX_LIB} ${PQ_LIB} DBConnection DBWork SQLProvider DATAMODEL DBManager Geocoder DBRequests)
 
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-w -lm -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -Llibs -lpq -lpqxx")
