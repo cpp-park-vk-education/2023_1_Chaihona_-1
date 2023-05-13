@@ -1,0 +1,1 @@
+SELECT COUNT(*) from chaihona."Profile" where email = '{}'

@@ -1,0 +1,1 @@
+INSERT INTO chaihona."User" (login, password) VALUES ('{}', '{}') returning user_id;

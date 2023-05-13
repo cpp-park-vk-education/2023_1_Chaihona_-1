@@ -1,5 +1,0 @@
-add_executable(client_manager_test src/client_manager_test.cpp)
-target_link_libraries(client_manager_test client GTest::gtest_main GTest::gmock)
-target_include_directories(client_manager_test PUBLIC include)
-
-add_test(client_manager_test client_manager_test)

@@ -1,0 +1,1 @@
+INSERT INTO chaihona."Contact" (contact_type, contact_value) VALUES ('{}', '{}') returning contact_id;
