@@ -8,7 +8,7 @@
 #include "tfidf_vectorization.hpp"
 #include "filtering.hpp"
 
-class Profile {};
+class Profile;
 
 class Recommendation {  
  private:

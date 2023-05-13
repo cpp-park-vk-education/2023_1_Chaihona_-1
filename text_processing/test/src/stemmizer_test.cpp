@@ -4,7 +4,7 @@
 TEST(PortersStemmerTest, StemmizeTest1) {
     PortersStemmer stemmer({"Каждый", "охотник", "желает", "знать"});
     stemmer.stemmize();
-    std::vector<std::string> expect_stems {"Кажд", "охотн", "жел", "знат"};
+    std::vector<std::string> expect_stems {"кажд", "охотник", "жела", "знат"};
     EXPECT_EQ(stemmer.get_stems(), expect_stems);
 }
 

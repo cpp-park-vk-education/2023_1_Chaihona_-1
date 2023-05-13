@@ -10,9 +10,6 @@ double CosSimilarityCalculator::get_similarity() {
 }
 
 void CosSimilarityCalculator::calculate() {
-    // if (first_.size() != second_.size()) {
-    //     return;
-    // }
     double dot_product = 0.0;
     double first_length = 0.0;
     double second_length = 0.0;

@@ -1,1 +1,0 @@
-![text](https://github.com/Vazhid/vk_edu_cpp_projects/blob/hw3_5/hw3_5/image/uml.png?raw=true)
