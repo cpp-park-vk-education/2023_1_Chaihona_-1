@@ -4,6 +4,7 @@
 #include <memory>
 #include <boost/beast.hpp>
 #include <boost/json.hpp>
+#include <queue>
 #include "database_manager.hpp"
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -41,7 +42,7 @@ private:
   virtual http::response<http::string_body> LikeResponse(bool) = 0;
   virtual http::response<http::string_body> DislikeResponse() = 0;
   virtual http::response<http::string_body> EditFormResponse() = 0;
-  virtual http::response<http::string_body> GetNextProfileResponse(Form) = 0;
+  virtual http::response<http::string_body> GetNextProfileResponse() = 0;
 
   virtual void JsonParser(std::string json) = 0;
   virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) = 0;
@@ -49,12 +50,13 @@ private:
 
 class RequestHandler : public IRequestHandler {
 public:
-  RequestHandler(std::shared_ptr<IDatabaseManager> dmp, std::shared_ptr<IRecommendation> rp);
+  RequestHandler(std::shared_ptr<IDatabaseManager> dmp/*, std::unique_ptr<IRecommendation> rp*/);
   virtual http::response<http::string_body> ReadRequest(std::string json) override;
 
 private:
   std::shared_ptr<IDatabaseManager> database_manager_ptr_;
-  std::shared_ptr<IRecommendation> recommendation_ptr_;
+  //std::shared_ptr<IRecommendation> recommendation_ptr_;
+  std::queue<http::response<http::string_body>> recommended_forms_;
 
   virtual http::response<http::string_body> RegistrationResponse(unsigned new_id) override;
   virtual http::response<http::string_body> EmailCheckResponse(bool) override;
@@ -63,7 +65,8 @@ private:
   virtual http::response<http::string_body> LikeResponse(bool) override;
   virtual http::response<http::string_body> DislikeResponse() override;
   virtual http::response<http::string_body> EditFormResponse() override;
-  virtual http::response<http::string_body> GetNextProfileResponse(Form) override;
+  virtual http::response<http::string_body> GetNextProfileResponse() override;
+  void SaveRecommedntaion (std::vector<Form>& recommended_forms);
   
   virtual void JsonParser(std::string json) override;
   virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) override;

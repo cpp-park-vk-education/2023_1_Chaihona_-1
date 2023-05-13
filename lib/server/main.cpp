@@ -26,11 +26,12 @@ int main(int argc, char* argv[])
     net::io_context ioc{threads};
 
     std::shared_ptr<IDatabaseManager> database_manager_ptr(new DatabaseManager());
-    std::shared_ptr<Recommendation> recommendation_ptr(new Recommendation());
+    //std::shared_ptr<Recommendation> recommendation_ptr(new Recommendation());
 
-    std::shared_ptr<IRequestHandler> request_handler_ptr(new RequestHandler(database_manager_ptr, recommendation_ptr));
+    //std::shared_ptr<IRequestHandler> request_handler_ptr(new RequestHandler(database_manager_ptr, recommendation_ptr));
     // Create and launch a listening port
-    std::make_shared<Server>(ioc, tcp::endpoint{address, port}, request_handler_ptr)->run();
+    //std::make_shared<Server>(ioc, tcp::endpoint{address, port}, request_handler_ptr)->run();
+    std::make_shared<Server>(ioc, tcp::endpoint{address, port}, database_manager_ptr)->run();
 
     // Run the I/O service on the requested number of threads
     std::vector<std::thread> v;

@@ -10,7 +10,7 @@ void fail(beast::error_code ec, char const* what) {
   std::cerr << what << ": " << ec.message() << "\n";
 }
 
-Session::Session(tcp::socket&& socket, std::shared_ptr<IRequestHandler> rhp): ws_(std::move(socket)), request_handler_ptr_(rhp) {}
+Session::Session(tcp::socket&& socket, std::shared_ptr<IDatabaseManager> dmp): ws_(std::move(socket)), request_handler_ptr_(new RequestHandler(dmp/*, std::make_unique<IRecommendation>(new Recommendation())*/)) {}
 
 void Session::run() {
   net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Session::on_run, shared_from_this()));
@@ -35,14 +35,13 @@ void Session::on_accept(beast::error_code ec) {
 }
 
 void Session::do_read() {
-  ws_.async_read(buffer_, beast::bind_front_handler(&Session::on_read, shared_from_this()));
+  ws_.async_read(buffer_, beast::bind_front_handler(&Session::on_read, shared_from_this())); 
 
-  // req_ = {};
   // http::async_read(beast::get_lowest_layer(ws_), buffer_, req_, beast::bind_front_handler(&Session::on_read, shared_from_this()));
 }
 
 void Session::on_read(beast::error_code ec, std::size_t bytes_transferred) {
-  //std::cout << req_.body() << std::endl;
+  std::cout << req_.body() << std::endl;
   boost::ignore_unused(bytes_transferred);
 
   if(ec == websocket::error::closed)
@@ -57,14 +56,16 @@ void Session::on_read(beast::error_code ec, std::size_t bytes_transferred) {
 }
 
 void Session::handle_request() {
-  request_handler_ptr_->ReadRequest(beast::buffers_to_string(buffer_.data()));
-
+  res_ = request_handler_ptr_->ReadRequest(beast::buffers_to_string(buffer_.data()));
+  // res_ = request_handler_ptr_->ReadRequest(req_.body());
   net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Session::send_response, shared_from_this()));
 }
 
 void Session::send_response() {
 
-  ws_.async_write(buffer_.data(), beast::bind_front_handler(&Session::on_write, shared_from_this()));
+  std::cout << beast::buffers_to_string(buffer_.data()) << std::endl; 
+  ws_.async_write(buffer_.data(), beast::bind_front_handler(&Session::on_write, shared_from_this())); 
+  // http::async_write(beast::get_lowest_layer(ws_), res_, beast::bind_front_handler(&Session::on_write, shared_from_this()));
 }
 
 void Session::on_write(beast::error_code ec, std::size_t bytes_transferred) {
@@ -73,7 +74,6 @@ void Session::on_write(beast::error_code ec, std::size_t bytes_transferred) {
   if(ec)
     return fail(ec, "write");
 
-  std::cout << beast::buffers_to_string(buffer_.data()) << std::endl;
 
   buffer_.consume(buffer_.size());
 

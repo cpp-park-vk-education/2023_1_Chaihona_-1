@@ -6,7 +6,7 @@ namespace websocket = beast::websocket;
 namespace net = boost::asio; 
 using tcp = boost::asio::ip::tcp;
 
-Server::Server(net::io_context& ioc, tcp::endpoint endpoint, std::shared_ptr<IRequestHandler> rhp): ioc_(ioc), acceptor_(ioc), request_handler_ptr_(rhp) {
+Server::Server(net::io_context& ioc, tcp::endpoint endpoint, std::shared_ptr<IDatabaseManager> dmp): ioc_(ioc), acceptor_(ioc), database_manager_ptr_(dmp) {
     beast::error_code ec;
 
     acceptor_.open(endpoint.protocol(), ec);
@@ -48,7 +48,7 @@ void Server::on_accept(beast::error_code ec, tcp::socket socket) {
         fail(ec, "accept");
     }
     else {
-        std::make_shared<Session>(std::move(socket), request_handler_ptr_)->run();
+        std::make_shared<Session>(std::move(socket), database_manager_ptr_)->run();
     }
 
     do_accept();

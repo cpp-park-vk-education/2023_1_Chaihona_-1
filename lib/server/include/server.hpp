@@ -21,9 +21,9 @@ private:
 class Server : public std::enable_shared_from_this<Server>, public IServer {
     net::io_context& ioc_;
     tcp::acceptor acceptor_;
-    std::shared_ptr<IRequestHandler> request_handler_ptr_;
+    std::shared_ptr<IDatabaseManager> database_manager_ptr_;
 public:
-    Server(net::io_context& ioc, tcp::endpoint endpoint, std::shared_ptr<IRequestHandler> rhp);
+    Server(net::io_context& ioc, tcp::endpoint endpoint, std::shared_ptr<IDatabaseManager> dmp);
     virtual void run() override;
 
 private:

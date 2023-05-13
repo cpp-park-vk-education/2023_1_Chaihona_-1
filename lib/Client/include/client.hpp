@@ -42,6 +42,8 @@ class Client : public std::enable_shared_from_this<Client>, public IClient {
   std::string host_;
   std::string text_;
   bool new_request_flag;
+  
+  http::response<http::string_body> res_;
 public:
 
   explicit Client(net::io_context& ioc);
@@ -51,8 +53,8 @@ public:
   virtual void on_connect(beast::error_code ec, tcp::resolver::results_type::endpoint_type ep) override;
   virtual void set_request(std::string json) override;
 
-  template <typename AccpetHandler>
-  void wait_request(AccpetHandler);
+  //template <typename AccpetHandler>
+  void wait_request();
 
   virtual void on_handshake(beast::error_code ec) override;
   virtual void on_wait() override;

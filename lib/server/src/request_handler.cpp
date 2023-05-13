@@ -7,8 +7,8 @@ namespace net = boost::asio;            // from <boost/asio.hpp>
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 namespace json = boost::json;
 
-RequestHandler::RequestHandler(std::shared_ptr<IDatabaseManager> dmp, std::shared_ptr<IRecommendation> rp)
-  : database_manager_ptr_(dmp), recommendation_ptr_(rp) {}
+RequestHandler::RequestHandler(std::shared_ptr<IDatabaseManager> dmp/*, std::unique_ptr<IRecommendation> rp*/)
+  : database_manager_ptr_(dmp), /*recommendation_ptr_(std::move(rp)),*/ recommended_forms_() {}
 
 http::response<http::string_body> RequestHandler::ReadRequest(std::string json) {
   json::error_code ec;
@@ -44,13 +44,14 @@ http::response<http::string_body> RequestHandler::ReadRequest(std::string json) 
   if (request_type == kLikeRequest) {
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
     unsigned target_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kTargetIdField]);
-    database_manager_ptr_->makeMatch(author_id, target_id);
+    database_manager_ptr_->makeMatch(author_id, target_id/*, LIKE*/);
     return LikeResponse(database_manager_ptr_->getMatchResult(author_id, target_id));
   }
   
   if (request_type == kDislikeRequest) {
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
     unsigned target_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kTargetIdField]);
+    /*database_manager_ptr->makeMatch(author_id, target_id, DISLIKE);*/
     database_manager_ptr_->breakMatch(author_id, target_id);
 
     return DislikeResponse();
@@ -60,16 +61,16 @@ http::response<http::string_body> RequestHandler::ReadRequest(std::string json) 
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
     Form form = database_manager_ptr_->getRecommendForm(author_id);
     /*
-    if (form.is_blank()){
-      Form author_form = database_manager_ptr_->getFormById(author_id);
-      auto reocmmended_forms = database_manager_ptr_->getRecommendForms(author_id);
+    if (recommended_forms_.empty()) {
+      Form author_form = database_maanger_ptr_->getUserForm(author_id); 
+      auto recommended_forms = database_manager_ptr_->getRecommedForms(form);
       Recommendation recommendation(author_form, recommended_forms);
       recommendation.recommend();
-      database_manager_ptr_->editRecommendation(author_form, forms);
-      form = database_manager_ptr_->getRecommendForm(author_id);
+      SaveRecommedation(recommeded_forms);
     }
+    return GetNextProfileResponse();
     */
-    return GetNextProfileResponse(form);
+    return GetNextProfileResponse();
   }
 
   if (request_type == kEditFormRequest) {
@@ -79,10 +80,8 @@ http::response<http::string_body> RequestHandler::ReadRequest(std::string json) 
     auto recommended_forms = database_manager_ptr_->getRecommendForms(form);
     if (IsTextChanged) {
       recommendation.vectorize_profile_text();
+      database_manager_ptr_->editText(id, text);
     }
-    Recommendation recommendation(author_form, recommended_forms);
-    recommendation.recommend();
-    database_manager_ptr_->editRecommendation(author_form, forms);
     */
     database_manager_ptr_->editForm(Form()/*author_form*/);
     return EditFormResponse();
@@ -158,15 +157,23 @@ http::response<http::string_body> RequestHandler::DislikeResponse() {
   return response;
 }
 
-http::response<http::string_body> RequestHandler::GetNextProfileResponse(Form form) {
-  json::object response_body;
-  response_body[kResponseField] = kGetNextProfileRequest;
-  //response_body[kContextField].emplace_object() = json::value_from(form).as_object();
-  
-  http::response<http::string_body> response{http::status::ok, 11};
-  response.body() = json::serialize(json::value(std::move(response_body)));
-  response.prepare_payload();
-  return response;
+http::response<http::string_body> RequestHandler::GetNextProfileResponse() {
+  // auto response = recommended_forms_.back();
+  // recommended_forms_.pop();
+  // return response;
+  return http::response<http::string_body>();
+}
+
+void RequestHandler::SaveRecommedntaion (std::vector<Form>& recommended_forms) {
+  for (auto form: recommended_forms) {
+    json::object response_body;
+    response_body[kResponseField] = kGetNextProfileRequest;
+    //response_body[kcontextField].emplace_object() = json::value_from(form).as_object();
+    http::response<http::string_body> response{http::status::ok, 11};
+    response.body() = json::serialize(json::value(std::move(response_body)));
+    response.prepare_payload();
+    recommended_forms_.push(response);
+  }
 }
 
 http::response<http::string_body> RequestHandler::EditFormResponse() {

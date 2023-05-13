@@ -76,25 +76,28 @@ void Client::set_request(std::string json) {
   new_request_flag = true;
 }
 
-template <typename AccpetHandler>
-void Client::wait_request(AccpetHandler handler) {
+//template <typename AccpetHandler>
+void Client::wait_request() {
   while (!new_request_flag) {
     //std::cout << "waiting" << std::endl;
   }
   new_request_flag = false;
   std::cout << "wait_request" << std::endl;
-  net::asio_handler_invoke(handler);
+  //net::asio_handler_invoke(handler);
+  net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Client::on_wait, shared_from_this()));
 }
 
 void Client::on_handshake(beast::error_code ec) {
     if(ec)
         return fail(ec, "handshake");
     std::cout << "handshake\n";
-    wait_request(beast::bind_front_handler(&Client::on_wait, shared_from_this()));
+    //wait_request(beast::bind_front_handler(&Client::on_wait, shared_from_this()));
+    net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Client::wait_request, shared_from_this()));
 }
 
 void Client::on_wait() {
   std::cout << "on wait" << std::endl;
+  std::cout << text_ << std::endl;
   ws_.async_write(net::buffer(text_), beast::bind_front_handler(&Client::on_write, shared_from_this()));
   
   // auto buf = net::buffer("");
@@ -106,7 +109,7 @@ void Client::on_wait() {
   // req.version(11);
   // req.method(http::verb::post);
   // req.target("/");
-  // req.set(http::field::host, "localhost");
+  // req.set(http::field::host, "127.0.0.1");
   // http::async_write(beast::get_lowest_layer(ws_), req, beast::bind_front_handler(&Client::on_write, shared_from_this()));
 
   //ws_.async_write(req, beast::bind_front_handler(&Client::on_write, shared_from_this()));
@@ -119,17 +122,18 @@ void Client::on_write(beast::error_code ec, std::size_t bytes_transferred) {
         return fail(ec, "write");
     
     // Read a message into our buffer
-    ws_.async_read(
-      buffer_,
-      beast::bind_front_handler(&Client::on_read, shared_from_this()));
+    ws_.async_read(buffer_, beast::bind_front_handler(&Client::on_read, shared_from_this())); 
+
+    // http::async_read(beast::get_lowest_layer(ws_), buffer_, res_, beast::bind_front_handler(&Client::on_read, shared_from_this()));
 }
 
 void Client::on_read(beast::error_code ec, std::size_t bytes_transferred) {
     boost::ignore_unused(bytes_transferred);
-
+    //std::cout << beast::buffers_to_string(buffer_.data()) << std::endl;
     if(ec)
         return fail(ec, "read");
-    wait_request(beast::bind_front_handler(&Client::on_wait, shared_from_this()));
+    //wait_request(beast::bind_front_handler(&Client::on_wait, shared_from_this()));
+    net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Client::wait_request, shared_from_this()));
 }
 
 void Client::close() {
