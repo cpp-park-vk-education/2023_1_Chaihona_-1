@@ -1,0 +1,1 @@
+INSERT INTO chaihona."Match" (match_type, form1_id, form2_id) VALUES ('{}', {}, {}) returning match_id;

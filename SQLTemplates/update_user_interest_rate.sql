@@ -1,0 +1,1 @@
+UPDATE chaihona."UserInterest" SET "UserRate" = {} WHERE form_id = {} and interest_id = {};

@@ -1,0 +1,1 @@
+UPDATE chaihona."Contact" SET contact_value = '{}' WHERE contact_id = {};
