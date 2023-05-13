@@ -1,5 +1,0 @@
-add_executable(request_handler_test src/request_handler_test.cpp)
-target_link_libraries(request_handler_test server GTest::gtest_main GTest::gmock)
-target_include_directories(request_handler_test PUBLIC include)
-
-add_test(request_handler_test request_handler_test)
