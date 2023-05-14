@@ -19,10 +19,14 @@ inline constexpr std::string_view kAuthorIdField = "author_id";
 inline constexpr std::string_view kTargetIdField = "target_id";
 inline constexpr std::string_view kEmailField = "email";
 inline constexpr std::string_view kResponseField = "response";
+inline constexpr std::string_view kNoResponse = "no response";
+inline constexpr std::string_view kIsBusyField = "is_busy";
+inline constexpr std::string_view kReactionField = "reaction";
 
 class IRequestMaker {
 public:
   virtual void MakeRequest(std::string json) = 0;
+  virtual std::string getResponse(std::string request_type) = 0;
   virtual void Close() = 0;
 };
 
@@ -31,6 +35,7 @@ public:
 
   RequestMaker(std::shared_ptr<IClient> cp);
   virtual void MakeRequest(std::string json) override;
+  virtual std::string getResponse(std::string) override;
   virtual void Close() override;
 private:
   std::shared_ptr<IClient> client_ptr_;

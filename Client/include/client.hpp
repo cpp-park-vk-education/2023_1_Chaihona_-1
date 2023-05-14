@@ -8,6 +8,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
+#include <queue>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>
@@ -33,6 +34,8 @@ public:
   virtual void on_read(beast::error_code ec, std::size_t bytes_transferred) = 0;
   virtual void close() = 0;
   virtual void on_close(beast::error_code ec) = 0;
+
+  virtual std::queue<std::string>& getResponses() = 0;
 };
 
 class Client : public std::enable_shared_from_this<Client>, public IClient {
@@ -42,8 +45,8 @@ class Client : public std::enable_shared_from_this<Client>, public IClient {
   std::string host_;
   std::string text_;
   bool new_request_flag;
+  std::queue<std::string> res_;
   
-  http::response<http::string_body> res_;
 public:
 
   explicit Client(net::io_context& ioc);
@@ -62,4 +65,6 @@ public:
   virtual void on_read(beast::error_code ec, std::size_t bytes_transferred) override;
   virtual void close() override;
   virtual void on_close(beast::error_code ec) override;
+
+  virtual std::queue<std::string>& getResponses() override;
 };

@@ -10,7 +10,7 @@ void fail(beast::error_code ec, char const* what) {
     std::cerr << what << ": " << ec.message() << "\n";
 }
 
-Client::Client(net::io_context& ioc): resolver_(net::make_strand(ioc)), ws_(net::make_strand(ioc)), new_request_flag(false) {}
+Client::Client(net::io_context& ioc): resolver_(net::make_strand(ioc)), ws_(net::make_strand(ioc)), new_request_flag(false), res_() {}
 
 void Client::run(char const* host, char const* port, char const* text) {
     host_ = host;
@@ -122,17 +122,17 @@ void Client::on_write(beast::error_code ec, std::size_t bytes_transferred) {
         return fail(ec, "write");
     
     // Read a message into our buffer
-    ws_.async_read(buffer_, beast::bind_front_handler(&Client::on_read, shared_from_this())); 
+    ws_.async_read(buffer_, beast::bind_front_handler(&Client::on_read, shared_from_this()));
 
     // http::async_read(beast::get_lowest_layer(ws_), buffer_, res_, beast::bind_front_handler(&Client::on_read, shared_from_this()));
 }
 
 void Client::on_read(beast::error_code ec, std::size_t bytes_transferred) {
     boost::ignore_unused(bytes_transferred);
-    //std::cout << beast::buffers_to_string(buffer_.data()) << std::endl;
     if(ec)
         return fail(ec, "read");
-    //wait_request(beast::bind_front_handler(&Client::on_wait, shared_from_this()));
+    res_.push(beast::buffers_to_string(buffer_.data()));
+    std::cout << beast::buffers_to_string(buffer_.data()) << std::endl;
     net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Client::wait_request, shared_from_this()));
 }
 
@@ -149,4 +149,8 @@ void Client::on_close(beast::error_code ec) {
 
     // The make_printable() function helps print a ConstBufferSequence
     std::cout << beast::make_printable(buffer_.data()) << std::endl;
+}
+
+std::queue<std::string>& Client::getResponses() { 
+  return this->res_;
 }
