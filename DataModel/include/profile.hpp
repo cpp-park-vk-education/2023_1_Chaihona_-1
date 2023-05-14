@@ -16,7 +16,10 @@ public:
     unsigned getId() {return id;};
     User getUser() {return user;}
     void setUser(User usr) {user=usr;}
-    std::string getEmail() {return email;};
-    std::string getFirstName() {return firstName;};
-    std::string getLastName() {return lastName;};      
+    std::string getEmail() const {return email;};
+    std::string getFirstName() const {return firstName;};
+    std::string getLastName() const {return lastName;};      
 };
+
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Profile const& profile);
+Profile tag_invoke(boost::json::value_to_tag<Profile>, boost::json::value const& jv);

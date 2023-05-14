@@ -8,3 +8,5 @@ public:
     LifestyleRequests() {}
     std::vector<Lifestyle> getPossibleLifestyles();
 };
+
+std::vector<std::string> splitDbArray (std::string dbArray);

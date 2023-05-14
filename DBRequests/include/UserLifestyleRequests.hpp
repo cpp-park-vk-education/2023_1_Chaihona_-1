@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "profile.hpp"
+#include "LifestyleRequests.hpp"
 
 class UserLifestyleRequests {
 private:

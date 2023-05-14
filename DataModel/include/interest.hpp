@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <boost/json.hpp>
+
 
 class Interest {
 private:
@@ -10,9 +12,9 @@ private:
 public:
     Interest() {}
     Interest(unsigned _id, std::string _name, std::string _descr) : id(_id), name(_name), description(_descr) {};
-    unsigned getId() {return id;};    
-    std::string getName() {return name;};
-    std::string getDescription() {return description;};
+    unsigned getId() const {return id;};    
+    std::string getName() const {return name;};
+    std::string getDescription() const {return description;};
 };
 
 class UserInterest {
@@ -26,6 +28,12 @@ public:
     unsigned getUserId() {return user_id;}
     UserInterest() {};
     UserInterest (unsigned _uid, Interest _int, unsigned _rate, unsigned _uiid) : user_id(_uid), interest(_int), rate(_rate), uinterestId(_uiid) {};
-    Interest getInterest () {return interest;}
-    unsigned getRate () {return rate;}
+    Interest getInterest () const {return interest;}
+    unsigned getRate () const {return rate;}
 };
+
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Interest const& profile);
+Interest tag_invoke(boost::json::value_to_tag<Interest>, boost::json::value const& jv);
+
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, UserInterest const& profile);
+UserInterest tag_invoke(boost::json::value_to_tag<UserInterest>, boost::json::value const& jv);

@@ -7,6 +7,9 @@
 #include <queue>
 #include "DBManager.hpp"
 #include "user.hpp"
+#include "match.hpp"
+#include "lifestyle.hpp"
+#include "interest.hpp"
 #include "recommendation.hpp"
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
@@ -23,6 +26,9 @@ inline constexpr std::string_view kEmailCheckRequest = "email check";
 inline constexpr std::string_view kLikeRequest = "like";
 inline constexpr std::string_view kDislikeRequest = "dislike";
 inline constexpr std::string_view kGetNextProfileRequest = "get next profile";
+inline constexpr std::string_view kGetPossibleInterestRequest = "get possible interest";
+inline constexpr std::string_view kGetPossibleLifestyleRequest = "get possible lifestyle";
+inline constexpr std::string_view kGetUserFormRequest = "get user form";
 inline constexpr std::string_view kEditFormRequest = "edit form";
 inline constexpr std::string_view kContextField = "context";
 inline constexpr std::string_view kRequestField = "request";
@@ -39,14 +45,16 @@ public:
 
 private:
   virtual http::response<http::string_body> RegistrationResponse(unsigned new_id) = 0;
-  // virtual http::response<http::string_body> EmailCheckResponse(bool) = 0;
-  // virtual http::response<http::string_body> LogInResponse(Profile) = 0;
+  virtual http::response<http::string_body> EmailCheckResponse(bool) = 0;
+  virtual http::response<http::string_body> LogInResponse(std::shared_ptr<Profile>) = 0;
   // virtual http::response<http::string_body> LogOutResponse() = 0;
-  // virtual http::response<http::string_body> LikeResponse(bool) = 0;
+  virtual http::response<http::string_body> LikeResponse() = 0;
   // virtual http::response<http::string_body> DislikeResponse() = 0;
   // virtual http::response<http::string_body> EditFormResponse() = 0;
   virtual http::response<http::string_body> GetNextProfileResponse() = 0;
-
+  virtual http::response<http::string_body> GetPossibleLifestyleResponse(std::vector<Lifestyle>) = 0;
+  virtual http::response<http::string_body> GetPossibleInterestResponse(std::vector<Interest>) = 0;
+  virtual http::response<http::string_body> GetUserFormResponce(Form) = 0;
   //virtual void JsonParser(std::string json) = 0;
   //virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) = 0;
 };
@@ -62,13 +70,16 @@ private:
   std::queue<http::response<http::string_body>> recommended_forms_;
 
   virtual http::response<http::string_body> RegistrationResponse(unsigned new_id) override;
-  // virtual http::response<http::string_body> EmailCheckResponse(bool) override;
-  // virtual http::response<http::string_body> LogInResponse(Profile) override;
+  virtual http::response<http::string_body> EmailCheckResponse(bool) override;
+  virtual http::response<http::string_body> LogInResponse(std::shared_ptr<Profile>) override;
   // virtual http::response<http::string_body> LogOutResponse() override;
-  // virtual http::response<http::string_body> LikeResponse(bool) override;
+  virtual http::response<http::string_body> LikeResponse() override;
   // virtual http::response<http::string_body> DislikeResponse() override;
   // virtual http::response<http::string_body> EditFormResponse() override;
   virtual http::response<http::string_body> GetNextProfileResponse() override;
+  virtual http::response<http::string_body> GetPossibleLifestyleResponse(std::vector<Lifestyle>) override;
+  virtual http::response<http::string_body> GetPossibleInterestResponse(std::vector<Interest>) override;
+  virtual http::response<http::string_body> GetUserFormResponce(Form) override;
   void SaveRecommendation(std::vector<Form>& recommended_forms);
   
   // virtual void JsonParser(std::string json) override;

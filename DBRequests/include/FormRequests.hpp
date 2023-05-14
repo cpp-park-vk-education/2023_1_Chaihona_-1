@@ -26,9 +26,10 @@ private:
     unsigned preferedRadius; //0 if in city
 public:
     FormRequests() {};    
+    FormRequests (unsigned _profileId) : profileId(_profileId) {};
     unsigned insert() {};
     //bool update() {};
-    Form getUserForm() {};
+    Form getUserForm();
     std::vector<Form> selectRecForms();
     std::vector<Form> selectMatchForms();
 };

@@ -5,17 +5,6 @@
 #include <format>
 
 
-std::vector<std::string> splitDbArray (std::string dbArray) {
-    std::vector<std::string> arrayValues;
-    dbArray = dbArray.substr(1, dbArray.size()-2);
-    std::stringstream ss(dbArray);
-    std::string curr;
-    while (std::getline(ss, curr, ',')) {
-        arrayValues.push_back(curr.substr(1, curr.size()-2));
-    }
-    return arrayValues;
-}
-
 unsigned UserLifestyleRequests::insert() {
     auto dbConn = new DBConnection;
     DBWork dbWork (dbConn);

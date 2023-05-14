@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <memory>
 #include <vector>
 #include "profile.hpp"
 
@@ -13,5 +14,5 @@ public:
     ProfileRequests (unsigned _uid) : userId(_uid) {}
     ProfileRequests (std::string _mail, std::string _fn, std::string _ln, unsigned _uid) : email(_mail), firstName(_fn), lastName(_ln), userId(_uid) {}
     unsigned insert();
-    Profile selectUserProfile();
+    std::shared_ptr<Profile> selectUserProfile();
 };
