@@ -1,4 +1,5 @@
 #include "DBConnection.hpp"
+#include <format>
 
 DBConnection::DBConnection() {
     std::ifstream f("../configs/db.json");
@@ -35,7 +36,8 @@ void DBConnection::exit() {
     if (connection) {
         if (transaction)
             cursor->commit();
-        connection->close();    
+        connection->disconnect();
+        //connection->close();    
     }
 }
 

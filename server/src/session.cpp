@@ -41,7 +41,6 @@ void Session::do_read() {
 }
 
 void Session::on_read(beast::error_code ec, std::size_t bytes_transferred) {
-  std::cout << req_.body() << std::endl;
   boost::ignore_unused(bytes_transferred);
 
   if(ec == websocket::error::closed)
@@ -63,8 +62,9 @@ void Session::handle_request() {
 
 void Session::send_response() {
 
-  std::cout << beast::buffers_to_string(buffer_.data()) << std::endl; 
-  ws_.async_write(buffer_.data(), beast::bind_front_handler(&Session::on_write, shared_from_this())); 
+  std::cout << beast::buffers_to_string(buffer_.data()) << std::endl;
+  std::cout << res_ << std::endl;
+  ws_.async_write(net::buffer(res_), beast::bind_front_handler(&Session::on_write, shared_from_this())); 
   // http::async_write(beast::get_lowest_layer(ws_), res_, beast::bind_front_handler(&Session::on_write, shared_from_this()));
 }
 

@@ -31,21 +31,20 @@ inline constexpr std::string_view kAuthorIdField = "author_id";
 inline constexpr std::string_view kTargetIdField = "target_id";
 inline constexpr std::string_view kEmailField = "email";
 inline constexpr std::string_view kResponseField = "response";
-
+inline constexpr std::string_view kIsBusyField = "is_busy";
+inline constexpr std::string_view kReactionField = "reaction";
 
 class IRequestHandler {
 public:
-  virtual http::response<http::string_body> ReadRequest(std::string json) = 0;
+  virtual std::string ReadRequest(std::string json) = 0;
 
 private:
-  virtual http::response<http::string_body> RegistrationResponse(unsigned new_id) = 0;
-  // virtual http::response<http::string_body> EmailCheckResponse(bool) = 0;
-  // virtual http::response<http::string_body> LogInResponse(Profile) = 0;
-  // virtual http::response<http::string_body> LogOutResponse() = 0;
-  // virtual http::response<http::string_body> LikeResponse(bool) = 0;
-  // virtual http::response<http::string_body> DislikeResponse() = 0;
-  // virtual http::response<http::string_body> EditFormResponse() = 0;
-  virtual http::response<http::string_body> GetNextProfileResponse() = 0;
+  virtual std::string RegistrationResponse(unsigned new_id) = 0;
+  virtual std::string EmailCheckResponse(bool) = 0;
+  virtual std::string LogInResponse(Profile) = 0;
+  virtual std::string LikeResponse() = 0;
+  virtual std::string EditFormResponse() = 0;
+  virtual std::string GetNextProfileResponse() = 0;
 
   //virtual void JsonParser(std::string json) = 0;
   //virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) = 0;
@@ -54,24 +53,18 @@ private:
 class RequestHandler : public IRequestHandler {
 public:
   RequestHandler(std::shared_ptr<IDatabaseManager> dmp/*, std::unique_ptr<IRecommendation> rp*/);
-  virtual http::response<http::string_body> ReadRequest(std::string json) override;
+  virtual std::string ReadRequest(std::string json) override;
 
 private:
   std::shared_ptr<IDatabaseManager> database_manager_ptr_;
   //std::shared_ptr<IRecommendation> recommendation_ptr_;
-  std::queue<http::response<http::string_body>> recommended_forms_;
+  std::queue<std::string> recommended_forms_;
 
-  virtual http::response<http::string_body> RegistrationResponse(unsigned new_id) override;
-  // virtual http::response<http::string_body> EmailCheckResponse(bool) override;
-  // virtual http::response<http::string_body> LogInResponse(Profile) override;
-  // virtual http::response<http::string_body> LogOutResponse() override;
-  // virtual http::response<http::string_body> LikeResponse(bool) override;
-  // virtual http::response<http::string_body> DislikeResponse() override;
-  // virtual http::response<http::string_body> EditFormResponse() override;
-  virtual http::response<http::string_body> GetNextProfileResponse() override;
+  virtual std::string RegistrationResponse(unsigned new_id) override;
+  virtual std::string EmailCheckResponse(bool) override;
+  virtual std::string LogInResponse(Profile) override;
+  virtual std::string LikeResponse() override;
+  virtual std::string EditFormResponse() override;
+  virtual std::string GetNextProfileResponse() override;
   void SaveRecommendation(std::vector<Form>& recommended_forms);
-  
-  // virtual void JsonParser(std::string json) override;
-  //virtual void CalculateRecommendations(Profile& profile, std::vector<Profile>& recommended_profiles) override;
-  /*Request Parametres*/
 };

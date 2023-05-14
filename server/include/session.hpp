@@ -39,9 +39,9 @@ class Session : public std::enable_shared_from_this<Session>, public ISession {
   websocket::stream<beast::tcp_stream> ws_;
   beast::flat_buffer buffer_;
   std::unique_ptr<IRequestHandler> request_handler_ptr_;
-  std::string response_;
+  std::string res_;
   http::request<http::string_body> req_;
-  http::response<http::string_body> res_;
+  //http::response<http::string_body> res_;
 
 public:
   explicit Session(tcp::socket&& socket, std::shared_ptr<IDatabaseManager> dmp);
