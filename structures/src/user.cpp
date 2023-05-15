@@ -128,3 +128,27 @@ Form tag_invoke(json::value_to_tag<Form>, json::value const& jv){
     boost::json::value_to<std::string>(obj.at("location"))
   };
 }
+
+void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, UserInterest const &interest) {
+    jv = {
+    {"name", interest.getInterest().getName()},
+    {"description", interest.getInterest().getDescription()},
+    {"user rate", interest.getRate()}
+  };
+}
+
+UserInterest tag_invoke(boost::json::value_to_tag<UserInterest>, boost::json::value const& jv) {
+  return UserInterest{};
+}
+
+void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, UserLifestyle const &lifestyle) {
+    jv = {
+    {"name", lifestyle.getLifestyle().getName()},
+    {"description", lifestyle.getLifestyle().getDescription()},
+    {"user choice", lifestyle.getUserChoice()}
+  };
+}
+
+UserLifestyle tag_invoke(boost::json::value_to_tag<UserLifestyle>, boost::json::value const& jv) {
+    return UserLifestyle();
+}

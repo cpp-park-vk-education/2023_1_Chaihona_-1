@@ -8,6 +8,7 @@ inline constexpr std::string_view kRegistrationRequest = "registration";
 inline constexpr std::string_view kLogInRequest = "log in";
 inline constexpr std::string_view kLogOutRequest = "log out";
 inline constexpr std::string_view kEmailCheckRequest = "email check";
+inline constexpr std::string_view kLoginCheckRequest = "login check";
 inline constexpr std::string_view kLikeRequest = "like";
 inline constexpr std::string_view kDislikeRequest = "dislike";
 inline constexpr std::string_view kGetNextProfileRequest = "get next profile";
@@ -16,6 +17,8 @@ inline constexpr std::string_view kGetPossibleLifestyleRequest = "get possible l
 inline constexpr std::string_view kAddFormReqeust = "add form";
 inline constexpr std::string_view kGetUserFormRequest = "get user form";
 inline constexpr std::string_view kEditFormRequest = "edit form";
+inline constexpr std::string_view kAddInterestRequest = "add interest";
+inline constexpr std::string_view kAddLifestyleRequest = "add lifestyle";
 inline constexpr std::string_view kGetMatchTable = "get match table";
 inline constexpr std::string_view kContextField = "context";
 inline constexpr std::string_view kRequestField = "request";
@@ -29,7 +32,10 @@ inline constexpr std::string_view kIsBusyField = "is_busy";
 inline constexpr std::string_view kReactionField = "reaction";
 inline constexpr std::string_view kIsLikeField = "is_like";
 inline constexpr std::string_view kFormField = "form";
-inline constexpr std::string_view  kIsTextChangedField = "is_text_changed";
+inline constexpr std::string_view kIsTextChangedField = "is_text_changed";
+inline constexpr std::string_view kInterestField = "interest";
+inline constexpr std::string_view kLifestyleField = "lifestyle";
+
 
 class IRequestMaker {
 public:

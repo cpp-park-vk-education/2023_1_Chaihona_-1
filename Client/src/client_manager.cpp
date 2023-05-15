@@ -18,7 +18,9 @@ Profile ClientManager::log_in_response(std::string json) {
   json::value response = json::parse(json, ec);
   if (ec) return Profile();
 
-  return json::value_to<Profile>(response.as_object()[kContextField]);
+  Profile profile = json::value_to<Profile>(response.as_object()[kContextField]);
+  profile_ = profile;
+  return profile;
 }
 
 std::vector<Interest> ClientManager::GetPossibleInterest() {
@@ -70,19 +72,38 @@ Form ClientManager::get_user_form_response(std::string json) {
   json::value response = json::parse(json, ec);
   if (ec) return Form();
 
-  return json::value_to<Form>(response.as_object()[kContextField]); //??
+  Form form = json::value_to<Form>(response.as_object()[kContextField]);
+  form_ = form;
+  return form;
 }
 
 bool ClientManager::email_check(std::string email) { 
   json::object request;
   request[kRequestField] = kEmailCheckRequest;
   request[kContextField].emplace_object()[kEmailField] = email;
-  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request)))); //GET request
+  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request))));
   std::string response = request_maker_ptr_->getResponse(std::string(kEmailCheckRequest));
   return email_check_response(response);
 }
 
 bool ClientManager::email_check_response(std::string json) {
+  if (json == kNoResponse) return false;
+  json::error_code ec;
+  json::value response = json::parse(json, ec);
+  if (ec) return false;
+  return json::value_to<bool>(response.as_object()[kContextField].as_object()[kIsBusyField]);
+}
+
+bool ClientManager::login_check(std::string login) {
+  json::object request;
+  request[kRequestField] = kLoginCheckRequest;
+  request[kContextField].emplace_object()[kEmailField] = login;
+  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request)))); 
+  std::string response = request_maker_ptr_->getResponse(std::string(kLoginCheckRequest));
+  return email_check_response(response);
+}
+
+bool ClientManager::login_check_response(std::string json) {
   if (json == kNoResponse) return false;
   json::error_code ec;
   json::value response = json::parse(json, ec);
@@ -171,6 +192,24 @@ std::vector<Form> ClientManager::get_match_table_response(std::string json) {
   if (ec) return std::vector<Form>();
 
   return json::value_to<std::vector<Form>>(response.as_object()[kContextField]);
+}
+
+void ClientManager::AddInterest(unsigned author_id, UserInterest interest) {
+  json::object request;
+  request[kRequestField] = kAddInterestRequest;
+  request[kContextField].emplace_object()[kInterestField] = json::value_from(interest).as_object();
+  request[kContextField].emplace_object()[kAuthorIdField] = author_id;
+  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request))));
+  request_maker_ptr_->getResponse(std::string(kAddInterestRequest));
+}
+
+void ClientManager::AddLifestyle(unsigned author_id, UserLifestyle lifestyle) {
+  json::object request;
+  request[kRequestField] = kAddLifestyleRequest;
+  request[kContextField].emplace_object()[kLifestyleField] = json::value_from(lifestyle).as_object();
+  request[kContextField].as_object()[kAuthorIdField] = author_id;
+  request_maker_ptr_->MakeRequest(json::serialize(json::value(std::move(request))));
+  request_maker_ptr_->getResponse(std::string(kAddLifestyleRequest));
 }
 
 void ClientManager::close() {

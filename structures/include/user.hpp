@@ -76,10 +76,12 @@ public:
     unsigned getUserId() {return user_id;}
     UserInterest() {};
     UserInterest (unsigned _uid, Interest _int, unsigned _rate, unsigned _uiid) : user_id(_uid), interest(_int), rate(_rate), uinterestId(_uiid) {};
-    Interest getInterest () {return interest;}
-    unsigned getRate () {return rate;}
+    Interest getInterest () const {return interest;}
+    unsigned getRate () const {return rate;}
 };
 
+void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, UserInterest const &interest);
+UserInterest tag_invoke(boost::json::value_to_tag<UserInterest>, boost::json::value const& jv);
 
 class Lifestyle {
 private:
@@ -109,9 +111,9 @@ private:
 public:
     UserLifestyle() {};
     UserLifestyle(unsigned _uid, Lifestyle _lst, std::string _uchoice) : userId(_uid), lifestyle(_lst), userChoice(_uchoice) {}
-    unsigned getUserId() {return userId;};
-    Lifestyle getLifestyle() {return lifestyle;}
-    std::string getUserChoice() {return userChoice;};         
+    unsigned getUserId() const {return userId;};
+    Lifestyle getLifestyle() const {return lifestyle;}
+    std::string getUserChoice() const {return userChoice;};         
 };
 
 
@@ -168,3 +170,6 @@ public:
 void tag_invoke(const json::value_from_tag&, json::value& jv, Form const& profile);
 
 Form tag_invoke(json::value_to_tag<Form>, json::value const& jv);
+
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, UserLifestyle const& lifestyle);
+UserLifestyle tag_invoke(boost::json::value_to_tag<UserLifestyle>, boost::json::value const& jv);
