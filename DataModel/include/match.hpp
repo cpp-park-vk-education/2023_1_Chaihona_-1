@@ -7,14 +7,14 @@
 class Match {
 private:
     unsigned id;
-    Form form1;
-    Form form2;
+    unsigned form1_id;
+    unsigned form2_id;
     bool type;
 public:
-    Match (Form _f1, Form _f2, bool _type) : form1(_f1), form2(_f2), type(_type) {}; 
+    Match (unsigned _f1, unsigned _f2, bool _type) : form1_id(_f1), form2_id(_f2), type(_type) {}; 
     Match () {}
     unsigned getId(){return id;};
-    Form getForm1 (){return form1;}
-    Form getForm2() {return form2;}
+    unsigned getForm1Id(){return form1_id;}
+    unsigned getForm2Id() {return form2_id;}
     bool getType() {return type;};   
 };

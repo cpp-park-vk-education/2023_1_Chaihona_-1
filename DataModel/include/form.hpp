@@ -11,23 +11,27 @@ class Form{
 private:
     Profile profile;
     unsigned id;
-    std::vector<Interest> interests;
-    std::vector<Lifestyle> lifestyle;
+    std::vector<UserInterest> interests;
+    std::vector<UserLifestyle> lifestyle;
     std::vector<Contact> contact;
     std::string description;
     std::string university;
     std::string career;
     std::string location;
-    time_t birthDate;
+    unsigned age;
 public:
-    Form() {};    
-    unsigned getId() {return 1;};
+    Form() {};
+    Form(unsigned _id, std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, unsigned _age) : id(_id), lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), age(_age) {}    
+    unsigned getId() const {return id;};
     Profile getProfile() {Profile profile; return profile;};
-    std::vector<Interest> getInterests() {std::vector<Interest> result; Interest interest; result.push_back(interest); return result;};
-    std::vector<Lifestyle> getLifestyle() {std::vector<Lifestyle> result; Lifestyle lifestyle; result.push_back(lifestyle); return result;};
-  //  std::vector<Contact> getContacts() {std::vector<Contact> result; Contact contact; result.push_back(contact); return result;}
-    std::string getDescription() {return std::string("Sample description");};
-    std::string getUniversity() {return std::string("BMSTU");};
-    std::string getCareer() {return std::string("Senior HTML Developer at VK");};
-    std::string getLocation() {return std::string("Russia, Saint-Petersburg, Krestovsky island");};
+    std::vector<UserInterest> getInterests() const {return interests;};
+    std::vector<UserLifestyle> getLifestyle() const {return lifestyle;};
+    std::string getDescription() const {return description;};
+    std::string getUniversity() const {return university;};
+    std::string getCareer() const {return career;};
+    std::string getLocation() const {return location;};
+    unsigned getAge() const {return age;}
 };
+
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Form const& form);
+Form tag_invoke(boost::json::value_to_tag<Form>, boost::json::value const& jv);

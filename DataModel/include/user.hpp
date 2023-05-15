@@ -11,8 +11,8 @@ private:
     std::string password;
 public:
     User() {};
-    User (unsigned _id, std::string _lg, std::string _pass) : login(_lg), password(_pass), id(_id) {}
-    unsigned getId() const {return 1;};
+    User (std::string _lg, std::string _pass) : login(_lg), password(_pass) {}
+    unsigned getId() {return id;};
     const std::string getLogin() const {return login;}
     const std::string getPassword() const {return password;};       
 };
