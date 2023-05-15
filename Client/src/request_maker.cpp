@@ -22,6 +22,7 @@ std::string RequestMaker::getResponse(std::string request_type) {
       }
     }
   }
+  std::cout << kNoResponse << std::endl;
   return std::string(kNoResponse);
 }
 
