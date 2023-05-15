@@ -22,14 +22,6 @@ class ITokenizer {
     virtual std::vector<std::string> get_tokens() = 0;
 };
 
-class IStemmer {
- private:
- public:
-    virtual void set_tokens(const std::vector<std::string>& tokens_vect) = 0;
-    virtual void stemmize() = 0;
-    virtual std::vector<std::string> get_stems() = 0;
-};
-
 class CleanTokenizer : public ITokenizer {
  private:
     std::string text_;
@@ -51,8 +43,15 @@ class CleanTokenizer : public ITokenizer {
 
     void set_text(const std::string& text);
     void tokenize();
-    std::string get_text();
     std::vector<std::string> get_tokens();
+};
+
+class IStemmer {
+ private:
+ public:
+    virtual void set_tokens(const std::vector<std::string>& tokens_vect) = 0;
+    virtual void stemmize() = 0;
+    virtual std::vector<std::string> get_stems() = 0;
 };
 
 class PortersStemmer : public IStemmer {
@@ -81,7 +80,7 @@ class PortersStemmer : public IStemmer {
  public:
    PortersStemmer() {
       setlocale(LC_CTYPE, "ru_RU.UTF-8");
-   };
+   }
    explicit PortersStemmer(const std::vector<std::string>& tokens) : tokens_(tokens) {
       setlocale(LC_CTYPE, "ru_RU.UTF-8");
    }

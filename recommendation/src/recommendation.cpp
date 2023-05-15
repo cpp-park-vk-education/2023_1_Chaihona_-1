@@ -33,8 +33,6 @@ void Recommendation::vectorize_profiles() {
         vectorizer.vectorize();
         user.text_vect_ = vectorizer.get_vect();
     }
-
-    VectorizerTFIDF& vectorizer;
 }
 
 void Recommendation::recommend() {
