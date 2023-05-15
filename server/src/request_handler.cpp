@@ -28,6 +28,11 @@ std::string RequestHandler::ReadRequest(std::string json) {
     return EmailCheckResponse(database_manager_ptr_->checkIfEmailBusy(email)); 
   }
 
+  if (request_type == kLoginCheckRequest) {
+    std::string login = json::value_to<std::string>(request.as_object()[kContextField].as_object()[kEmailField]);
+    //return LoginCheckResponse(database_manager_ptr_->checkIfLoginBusy(login)); 
+  }
+
   if (request_type == kRegistrationRequest) {
     User user = json::value_to<User>(request.as_object()[kContextField]);
     unsigned new_id = database_manager_ptr_->addUser(user);
@@ -86,6 +91,7 @@ std::string RequestHandler::ReadRequest(std::string json) {
     /*
     auto recommended_forms = database_manager_ptr_->getRecommendForms(form);
     if (IsTextChanged) {
+      Recommendation recommendation(author_form, recommended_forms);
       recommendation.vectorize_profile_text();
       database_manager_ptr_->editText(id, text);
     }
@@ -97,16 +103,31 @@ std::string RequestHandler::ReadRequest(std::string json) {
   if (request_type == kAddFormReqeust) {
     Form form = json::value_to<Form>(request.as_object()[kContextField].as_object()[kFormField]);
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
-    //database_manager_ptr_->addForm(author_id, form);
+    // Recommendation recommendation(form, std::vector<Form>());
+    // recommendation.vectorize_profile_text();
+    // database_manager_ptr_->addForm(author_id, form);
     return AddFormResponse();
   }
 
   if (request_type == kGetMatchTable) {
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
-    //std::vector<Form> forms = database_maanger_ptr_->getMatchTable(author_id);
+    //std::vector<Form> forms = database_manager_ptr_->getMatchTable(author_id);
     //return GetMatchTableResponse(forms);
   }
 
+  if (request_type == kAddInterestRequest) {
+    UserInterest interest = json::value_to<UserInterest>(request.as_object()[kContextField].as_object()[kInterestField]);
+    unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
+    //database_manager_ptr_->addInterest(author_id, interest);
+    return AddInterestResponse();
+  }
+
+  if (request_type == kAddLifestyleRequest) {
+    UserLifestyle lifestyle = json::value_to<UserLifestyle>(request.as_object()[kContextField].as_object()[kLifestyleField]);
+    unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
+    //database_manager_ptr_->addLifestyle(author_id, lifestyle);
+    return AddLifestyleResponse();
+  }
 
   // http::response<http::string_body> response{http::status::bad_request, 11};
   // response.body() = "unknown request";
@@ -129,6 +150,14 @@ std::string RequestHandler::RegistrationResponse(unsigned new_id) {
 std::string RequestHandler::EmailCheckResponse(bool is_busy) {
   json::object response_body;
   response_body[kResponseField] = kEmailCheckRequest;
+  response_body[kContextField].emplace_object()[kIsBusyField] = is_busy;
+  
+  return json::serialize(json::value(std::move(response_body)));
+}
+
+std::string RequestHandler::LoginCheckResponse(bool is_busy) {
+  json::object response_body;
+  response_body[kResponseField] = kLoginCheckRequest;
   response_body[kContextField].emplace_object()[kIsBusyField] = is_busy;
   
   return json::serialize(json::value(std::move(response_body)));
@@ -213,6 +242,20 @@ std::string RequestHandler::EditFormResponse() {
 std::string RequestHandler::AddFormResponse() {
   json::object response_body;
   response_body[kResponseField] = kAddFormReqeust;
+
+  return json::serialize(json::value(std::move(response_body)));
+}
+
+std::string RequestHandler::AddInterestResponse() {
+  json::object response_body;
+  response_body[kResponseField] = kAddInterestRequest;
+  
+  return json::serialize(json::value(std::move(response_body)));
+}
+
+std::string RequestHandler::AddLifestyleResponse() {
+  json::object response_body;
+  response_body[kResponseField] = kAddLifestyleRequest;
 
   return json::serialize(json::value(std::move(response_body)));
 }
