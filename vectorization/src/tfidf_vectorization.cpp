@@ -46,15 +46,15 @@ double VectorizerTFIDF::calculate_IDF(std::string word) {
     return count / documents_.size();
 }
 
-void VectorizerTFIDF::set_documents(std::istream& docs) {
-    std::string str_input;
-    char sep = '\n';
-    while (docs) {
-        getline(docs, str_input, sep);
-        str_split(str_input, ' ', documents_);
-    }
+// void VectorizerTFIDF::set_documents(std::istream& docs) {
+//     std::string str_input;
+//     char sep = '\n';
+//     while (docs) {
+//         getline(docs, str_input, sep);
+//         str_split(str_input, ' ', documents_);
+//     }
     
-}
+// }
 
 void VectorizerTFIDF::vectorize(ITokenizer& tokenizer, IStemmer& stemmer) {
     processing_text(tokenizer,stemmer);

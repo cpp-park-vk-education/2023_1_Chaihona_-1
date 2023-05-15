@@ -20,13 +20,14 @@ class VectorizerTFIDF {
   void processing_text(ITokenizer& tokenizer, IStemmer& stemmer);
 
  public:
-    VectorizerTFIDF(const std::string& text, std::istream& docs) 
+    VectorizerTFIDF() = delete;
+    explicit VectorizerTFIDF(std::istream& docs) 
     : text_(text) {
         set_documents(docs);
       }
 
   void vectorize(ITokenizer& tokenizer, IStemmer& stemmer);
   void set_text(const std::string& text);
-  void set_documents(std::istream& docs);
+  // void set_documents(std::istream& docs);
   std::vector<double> get_vect();
 };

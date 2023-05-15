@@ -39,6 +39,7 @@ struct UserForm {
   UserForm() = default;
   explicit UserForm(const UserForm& profile); // реализуй
   size_t id_;
+  std::string text_;
   std::vector<double> text_vect_;
   std::vector<double> interest_vect_;
   double interest_similarity_;
