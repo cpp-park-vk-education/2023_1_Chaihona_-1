@@ -15,6 +15,8 @@ private:
     std::vector<UserLifestyle> lifestyle;
     std::vector<Contact> contact;
     std::string description;
+    std::string preworkedText;
+    std::vector<double> vectorisedText;
     std::string university;
     std::string career;
     std::string location;

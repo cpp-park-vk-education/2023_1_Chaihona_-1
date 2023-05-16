@@ -5,6 +5,7 @@
 #include "MatchRequests.hpp"
 #include "InterestRequests.hpp"
 #include "LifestyleRequests.hpp"
+#include "PreferencesRequests.hpp"
 #include "FormRequests.hpp"
 
 unsigned DBManager::addUser(User user) {
@@ -48,8 +49,14 @@ std::vector<Interest> DBManager::getPossibleInterest() {
     return ireq.getPossibleInterests();
 }
 
+
 std::vector<Lifestyle> DBManager::getPossibleLifestyles() {
     LifestyleRequests lsreq;
     return lsreq.getPossibleLifestyles();
 }
- 
+
+
+Preference DBManager::getUserPreferences(unsigned formId) {
+    PreferencesRequests preq (formId);
+    return preq.getUserPreferences();
+}

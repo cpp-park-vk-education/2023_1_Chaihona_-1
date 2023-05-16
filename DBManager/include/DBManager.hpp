@@ -7,6 +7,7 @@
 #include "match.hpp"
 #include <memory>
 #include <vector>
+#include "preference.hpp"
 
 
 class IDatabaseManager {
@@ -23,6 +24,7 @@ public:
     virtual unsigned insertMatch(Match match) = 0;
     virtual std::vector<Interest> getPossibleInterest() = 0;
     virtual std::vector<Lifestyle> getPossibleLifestyles() = 0;
+    virtual Preference getUserPreferences(unsigned formId) = 0;
     //virtual bool checkMatchResult(Form form1, Form form2) = 0;
 };
 
@@ -40,5 +42,6 @@ class DBManager : public IDatabaseManager{
     unsigned insertMatch(Match match);
     virtual std::vector<Interest> getPossibleInterest() override;
     virtual std::vector<Lifestyle> getPossibleLifestyles() override;
+    virtual Preference getUserPreferences(unsigned formId) override;
    // bool checkMatchResult(Form form1, Form form2);
 };

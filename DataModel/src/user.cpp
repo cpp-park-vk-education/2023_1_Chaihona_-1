@@ -9,7 +9,6 @@ void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, User
 }
 
 User tag_invoke(boost::json::value_to_tag<User>, boost::json::value const& jv) {
-  User user;
  boost:: json::object const& obj = jv.as_object();
   return User{
     boost::json::value_to<std::string>(obj.at("login")),
