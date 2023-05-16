@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDialog>
 #include <QLabel>
+
 #include <QLineEdit>
 QT_BEGIN_NAMESPACE
 namespace Ui { class GreetingPage; }
@@ -33,8 +34,6 @@ private slots:
     void on_password_editingFinished();
 
     void on_BtnForgottenPass_clicked();
-
-    void on_PUSH_clicked();
 
 private:
     Ui::GreetingPage *ui;

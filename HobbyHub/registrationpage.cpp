@@ -1,6 +1,11 @@
 #include "registrationpage.h"
 #include "ui_registrationpage.h"
 #include "myaccount.h"
+#include "fillingdatapage.h"
+#include <QDebug>
+#include <iostream>
+//#include "client_manager.hpp"
+
 
 RegistrationPage::RegistrationPage(QWidget *parent) :
     QDialog(parent),
@@ -14,38 +19,21 @@ RegistrationPage::~RegistrationPage()
     delete ui;
 }
 
-
-
-void RegistrationPage::on_BtnConfirm_clicked()
+void RegistrationPage::on_BtnRegister_clicked()
 {
     hide();
-    MyAccount window;
+    //clientManager.registration(ui->login->text().toStdString(), ui->password->text().toStdString());
+    FillingDataPage window;
     window.setModal(true);
     window.exec();
 }
 
-void RegistrationPage::on_name_editingFinished()
-{
-
-}
-
-void RegistrationPage::on_age_editingFinished()
-{
-
-}
-
-void RegistrationPage::on_city_editingFinished()
-{
-
-}
-
 void RegistrationPage::on_email_editingFinished()
 {
-
+        qDebug() << ui->email->text();
 }
 
-void RegistrationPage::on_interests_itemClicked(QListWidgetItem *item)
+void RegistrationPage::on_password_editingFinished()
 {
-
+        qDebug() << ui->password->text();
 }
-

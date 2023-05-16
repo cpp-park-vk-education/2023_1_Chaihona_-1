@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++11
+CONFIG += c++20
 CONFIG+=qtestlib
 QT += network
 # The following define makes your compiler emit warnings if you use
@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     editmydata.cpp \
+    fillingdatapage.cpp \
     forgotpassword.cpp \
     listofmathes.cpp \
     main.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
 
 HEADERS += \
     editmydata.h \
+    fillingdatapage.h \
     forgotpassword.h \
     greetingpage.h \
     listofmathes.h \
@@ -41,6 +43,7 @@ HEADERS += \
 
 FORMS += \
     editmydata.ui \
+    fillingdatapage.ui \
     forgotpassword.ui \
     greetingpage.ui \
     listofmathes.ui \

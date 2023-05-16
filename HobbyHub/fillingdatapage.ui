@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FillingDataPage</class>
+ <widget class="QDialog" name="FillingDataPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>607</width>
+    <height>664</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="RegPageLabel">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>20</y>
+     <width>141</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>RegistrationPage</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="BtnConfirm">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>570</y>
+     <width>80</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Confirm</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>250</y>
+     <width>251</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_4">
+    <item>
+     <widget class="QLabel" name="Interests">
+      <property name="text">
+       <string>Your interests</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QListWidget" name="interests">
+      <item>
+       <property name="text">
+        <string>Music</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sport</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Traveling</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Theatre</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Books</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_7">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>150</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_8">
+    <item>
+     <widget class="QLabel" name="City">
+      <property name="text">
+       <string>City</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="city"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>50</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QLabel" name="Name">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="name"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_6">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>200</y>
+     <width>171</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_7">
+    <item>
+     <widget class="QLabel" name="Email">
+      <property name="text">
+       <string>Email</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="email"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>50</y>
+     <width>258</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_5">
+    <item>
+     <widget class="QLabel" name="LoadThePhoto">
+      <property name="text">
+       <string>Load the photo</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGraphicsView" name="photo"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>400</y>
+     <width>251</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_6">
+    <item>
+     <widget class="QLabel" name="AboutMe">
+      <property name="text">
+       <string>AboutMe</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTextEdit" name="aboutme"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="BtnToLoadThePhoto">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>460</y>
+     <width>80</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>100</y>
+     <width>211</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="DateOfBirth">
+      <property name="text">
+       <string>Date of birth</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QDateEdit" name="dateofbirth"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,10 +1,13 @@
 #include "greetingpage.h"
 #include "ui_greetingpage.h"
-#include "registrationpage.h"
+#include "fillingdatapage.h"
 #include "myaccount.h"
 #include "qDebug"
-
+#include "registrationpage.h"
+#include <QDialog>
 #include "meetingpage.h"
+#include "forgotpassword.h"
+
 #include "ui_meetingpage.h"
 
 
@@ -23,7 +26,8 @@ GreetingPage::~GreetingPage()
 
 void GreetingPage::on_BtnLogIn_clicked()
 {
-    hide();
+    //clientManager.log_in(ui->login->text().toStdString(), ui->password->text().toStdString());
+
     MyAccount window;
     window.setModal(true);
     window.exec();
@@ -52,7 +56,7 @@ void GreetingPage::on_password_editingFinished()
 void GreetingPage::on_BtnForgottenPass_clicked()
 {
     hide();
-    RegistrationPage window;
+    ForgotPassword window;
     window.setModal(true);
     window.exec();
 }
@@ -80,7 +84,3 @@ QLabel *GreetingPage::GetLabel(){
     return ui->RegLabel;
 }
 
-void GreetingPage::on_PUSH_clicked()
-{
-
-}
