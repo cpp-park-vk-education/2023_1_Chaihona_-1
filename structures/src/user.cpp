@@ -44,7 +44,7 @@ Profile tag_invoke(boost::json::value_to_tag<Profile>, boost::json::value const&
 
 void tag_invoke(const json::value_from_tag&, json::value& jv, Interest const& interest) {
   jv = {
-    {"interest_id", interest.getId()},
+    {"id", interest.getId()},
     {"name", interest.getName()},
     {"description", interest.getDescription()}
   };
@@ -54,101 +54,144 @@ Interest tag_invoke(json::value_to_tag<Interest>, json::value const& jv) {
   Interest interest;
   boost::json::object const& obj = jv.as_object();
   return Interest{
-    boost::json::value_to<unsigned>(obj.at("interest_id")),
+    boost::json::value_to<unsigned>(obj.at("id")),
     boost::json::value_to<std::string>(obj.at("name")),
     boost::json::value_to<std::string>(obj.at("description"))
   };
 }
 
 
-void tag_invoke(const json::value_from_tag&, json::value& jv, Lifestyle const& lifestyle) {
-  jv = {
-    {"lifestyle_id", lifestyle.getId()},
+void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, Lifestyle const &lifestyle) {
+    boost::json::array choicesArr;
+    for (auto &choice: lifestyle.getVariants()) {
+        choicesArr.emplace_back(choice);
+    }
+    jv = {
+    {"id", lifestyle.getId()},
     {"name", lifestyle.getName()},
-    {"description", lifestyle.getDescription()}//,
-    //{"variants", lifestyle.getVariants()}
+    {"description", lifestyle.getDescription()},
+    {"possible choices", choicesArr}
   };
 }
 
-Lifestyle tag_invoke(json::value_to_tag<Lifestyle>, json::value const& jv) {
+Lifestyle tag_invoke(boost::json::value_to_tag<Lifestyle>, boost::json::value const& jv) {
   boost::json::object const& obj = jv.as_object();
   return Lifestyle{
-    boost::json::value_to<unsigned>(obj.at("lifestyle_id")),
+    boost::json::value_to<unsigned>(obj.at("id")),
     boost::json::value_to<std::string>(obj.at("name")),
     boost::json::value_to<std::string>(obj.at("description")),
-    boost::json::value_to<std::vector<std::string>>(obj.at("variants"))
+    boost::json::value_to<std::vector<std::string>>(obj.at("possible choices"))
   };
 }
 
 
-void tag_invoke(const json::value_from_tag&, json::value& jv, Contact const& contact) {
-  jv = {
-    {"contact_id", contact.getId()},
-    {"user_id", contact.getUserId()},
-    {"contactType", contact.getContactType()},
-    {"value", contact.getContactValue()}
+
+void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, Contact const &contact) {
+    jv = {
+        {"contact type", contact.getContactType()},
+        {"value", contact.getContactValue()}
+    };
+}
+
+Contact tag_invoke(boost::json::value_to_tag<Contact>, boost::json::value const& jv) {
+    boost::json::object const &obj = jv.as_object();
+    return Contact{
+        boost::json::value_to<std::string>(obj.at("contact type")),
+        boost::json::value_to<std::string>(obj.at("value"))
+    };
+}
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Preference const& preference) {
+    jv = {
+    {"min_age", preference.getMinAge()},
+    {"max_age", preference.getMaxAge()},
+    {"radius", preference.getRadius()},
+    {"gender", preference.getGender()}
   };
 }
 
-Contact tag_invoke(json::value_to_tag<Contact>, json::value const& jv) {
-  boost::json::object const& obj = jv.as_object();
-  return Contact{
-    boost::json::value_to<unsigned>(obj.at("contact_id")),
-    boost::json::value_to<unsigned>(obj.at("user_id")),
-    boost::json::value_to<std::string>(obj.at("contactType")),
-    boost::json::value_to<std::string>(obj.at("value"))
+
+Preference tag_invoke(boost::json::value_to_tag<Preference>, boost::json::value const& jv) {
+  boost:: json::object const& obj = jv.as_object();
+  return Preference{
+    boost::json::value_to<unsigned>(obj.at("min_age")),
+    boost::json::value_to<unsigned>(obj.at("max_age")),
+    boost::json::value_to<unsigned>(obj.at("radius")),
+    boost::json::value_to<char>(obj.at("gender")),
   };
 }
 
 
-void tag_invoke(const json::value_from_tag&, json::value& jv, Form const& form) {
-  jv = {
-    {"form_id", form.getId()},
-    {"interests",  boost::json::value_from(form.getInterests())},
-    {"lifestyle",  boost::json::value_from(form.getLifestyle())},
-    {"contact",  boost::json::value_from(form.getContacts())},
-    {"description", form.getDescription()},
-    {"university", form.getUniversity()},
-    {"career", form.getCareer()},
-    {"location", form.getLocation()}
-  };
+void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, Form const &form) {
+    boost::json::array userLifestylesArr;
+    boost::json::array userInterestsArr;
+    for (auto &userLifestyle : form.getLifestyle()) {
+        userLifestylesArr.emplace_back(boost::json::value_from(userLifestyle).as_object());
+    }
+    for (auto &userInterest : form.getInterests()) {
+        userInterestsArr.emplace_back(boost::json::value_from(userInterest).as_object());
+    }
+    jv = {
+        {"form_id", form.getId()},
+        {"interests", userInterestsArr},
+        {"lifestyle", userLifestylesArr},
+        {"description", form.getDescription()},
+        {"university", form.getUniversity()},
+        {"career", form.getCareer()},
+        {"location", form.getLocation()},
+        {"age", form.getAge()},
+        {"gender", form.getGender()},
+        {"bday", form.getBdate()},
+        {"preferences",(boost::json::value_from(form.getPreference()))},
+    };
 }
 
-Form tag_invoke(json::value_to_tag<Form>, json::value const& jv){
-  Form form;
-  boost::json::object const& obj = jv.as_object();
-  return Form{
-    boost::json::value_to<unsigned>(obj.at("form_id")),
-    boost::json::value_to<std::vector<Interest>>(obj.at("interests")),
-    boost::json::value_to<std::vector<Lifestyle>>(obj.at("lifestyle")),
-    boost::json::value_to<std::vector<Contact>>(obj.at("contact")),
-    boost::json::value_to<std::string>(obj.at("description")),
-    boost::json::value_to<std::string>(obj.at("university")),
-    boost::json::value_to<std::string>(obj.at("career")),
-    boost::json::value_to<std::string>(obj.at("location"))
-  };
+
+Form tag_invoke(boost::json::value_to_tag<Form>, boost::json::value const &jv) {
+    boost::json::object const &obj = jv.as_object();
+    return Form{
+        boost::json::value_to<unsigned>(obj.at("form_id")),
+        boost::json::value_to<std::vector<UserInterest>>(obj.at("interests")),
+        boost::json::value_to<std::vector<UserLifestyle>>(obj.at("lifestyle")),
+        boost::json::value_to<std::string>(obj.at("description")),
+        boost::json::value_to<std::string>(obj.at("university")),
+        boost::json::value_to<std::string>(obj.at("career")),
+        boost::json::value_to<std::string>(obj.at("location")),
+        boost::json::value_to<unsigned>(obj.at("age")),
+        boost::json::value_to<char>(obj.at("gender")),
+        boost::json::value_to<std::string>(obj.at("bday")),
+        boost::json::value_to<Preference>(obj.at("preferences")),
+        };
 }
+
 
 void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, UserInterest const &interest) {
     jv = {
-    {"name", interest.getInterest().getName()},
-    {"description", interest.getInterest().getDescription()},
+    {"interest", boost::json::value_from(interest.getInterest())},
     {"user rate", interest.getRate()}
   };
 }
 
 UserInterest tag_invoke(boost::json::value_to_tag<UserInterest>, boost::json::value const& jv) {
-  return UserInterest{};
+    boost:: json::object const& obj = jv.as_object();
+    return UserInterest {
+        boost::json::value_to<Interest>(obj.at("interest")),
+        boost::json::value_to<unsigned>(obj.at("user rate"))
+    };
 }
+
 
 void tag_invoke(const boost::json::value_from_tag &, boost::json::value &jv, UserLifestyle const &lifestyle) {
     jv = {
-    {"name", lifestyle.getLifestyle().getName()},
-    {"description", lifestyle.getLifestyle().getDescription()},
+    {"lifestyle", boost::json::value_from(lifestyle.getLifestyle())},
     {"user choice", lifestyle.getUserChoice()}
   };
 }
 
 UserLifestyle tag_invoke(boost::json::value_to_tag<UserLifestyle>, boost::json::value const& jv) {
-    return UserLifestyle();
+    boost:: json::object const& obj = jv.as_object();
+    return UserLifestyle {
+        0,
+        boost::json::value_to<Lifestyle>(obj.at("lifestyle")),
+        boost::json::value_to<std::string>(obj.at("user choice"))
+    };
 }

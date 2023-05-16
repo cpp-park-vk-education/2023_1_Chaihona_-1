@@ -75,6 +75,7 @@ public:
     unsigned getId() {return uinterestId;};
     unsigned getUserId() {return user_id;}
     UserInterest() {};
+    UserInterest (Interest _int, unsigned _rate) :  interest(_int), rate(_rate) {}
     UserInterest (unsigned _uid, Interest _int, unsigned _rate, unsigned _uiid) : user_id(_uid), interest(_int), rate(_rate), uinterestId(_uiid) {};
     Interest getInterest () const {return interest;}
     unsigned getRate () const {return rate;}
@@ -126,7 +127,8 @@ private:
 public:
     Contact() = default;
     Contact(unsigned _id, unsigned _uid, std::string _ct, std::string _val) : id(_id), user_id(_uid), contactType(_ct), value(_val) {}; 
-    Contact(unsigned _uid, std::string _ct, std::string _val) : user_id(_uid), contactType(_ct), value(_val) {}; 
+    Contact(unsigned _uid, std::string _ct, std::string _val) : user_id(_uid), contactType(_ct), value(_val) {};
+    Contact( std::string _ct, std::string _val) :  contactType(_ct), value(_val) {}; 
     unsigned getId() const {return 1;};
     std::string getContactType() const {return contactType;};
     std::string getContactValue() const {return value;};   
@@ -138,38 +140,62 @@ void tag_invoke(const json::value_from_tag&, json::value& jv, Contact const& con
 Contact tag_invoke(json::value_to_tag<Contact>, json::value const& jv);
 
 
+class Preference {
+private:
+    unsigned minAge;
+    unsigned maxAge;
+    unsigned radius;
+    char gender; //F for female, M for male
+public:
+    Preference() {}
+    Preference(unsigned _mina, unsigned _maxa, unsigned _rad, char _gender) : minAge(_mina), maxAge(_maxa), radius(_rad), gender(_gender) {}
+    unsigned getMinAge() const {return minAge;}
+    unsigned getMaxAge() const {return maxAge;}
+    unsigned getRadius() const {return radius;}
+    char getGender() const {return gender;}
+};
+
+
 class Form{
 private:
     Profile profile;
     unsigned id;
-    std::vector<Interest> interests;
-    std::vector<Lifestyle> lifestyle;
+    Preference preference;
+    std::vector<UserInterest> interests;
+    std::vector<UserLifestyle> lifestyle;
     std::vector<Contact> contact;
     std::string description;
+    std::string preworkedText;
+    std::vector<double> vectorisedText;
     std::string university;
     std::string career;
     std::string location;
-    time_t birthDate;
+    std::string bdate;
+    char gender;
+    unsigned age;
 public:
-    Form() {};    
-    Form(unsigned _id, std::vector<Interest> _interests, std::vector<Lifestyle> _lifestyle, std::vector<Contact> _contact, 
-        std::string _description, std::string _university, std::string _career, std::string _location) 
-        : id(_id), interests(_interests), lifestyle(_lifestyle), contact(_contact), description(_description), 
-        university(_university), career(_career), location(_location) {} 
-    unsigned getId() const {return 1;};
-    Profile getProfile() const {Profile profile; return profile;};
-    std::vector<Interest> getInterests() const {std::vector<Interest> result; Interest interest; result.push_back(interest); return result;};
-    std::vector<Lifestyle> getLifestyle() const {std::vector<Lifestyle> result; Lifestyle lifestyle; result.push_back(lifestyle); return result;};
-    std::vector<Contact> getContacts() const {std::vector<Contact> result; Contact contact; result.push_back(contact); return result;}
-    std::string getDescription() const {return std::string("Sample description");};
-    std::string getUniversity() const {return std::string("BMSTU");};
-    std::string getCareer() const {return std::string("Senior HTML Developer at VK");};
-    std::string getLocation() const {return std::string("Russia, Saint-Petersburg, Krestovsky island");};
+    Form() {};
+    Form(unsigned _id, std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, unsigned _age) : id(_id), lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), age(_age) {}     
+    Form(unsigned _id, std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, unsigned _age, char _gend, std::string _bday, Preference _pref) : age(_age), id(_id), lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), gender(_gend), bdate(_bday), preference(_pref) {}   
+    unsigned getId() const {return id;};
+    Profile getProfile() {Profile profile; return profile;};
+    std::vector<UserInterest> getInterests() const {return interests;};
+    std::vector<UserLifestyle> getLifestyle() const {return lifestyle;};
+    std::string getDescription() const {return description;};
+    std::string getUniversity() const {return university;};
+    std::string getCareer() const {return career;};
+    std::string getLocation() const {return location;};
+    unsigned getAge() const {return age;}
+    std::string getBdate() const {return bdate;}
+    char getGender() const {return gender;}
+    Preference getPreference() const {return preference;}
 };
 
-void tag_invoke(const json::value_from_tag&, json::value& jv, Form const& profile);
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Form const& form);
+Form tag_invoke(boost::json::value_to_tag<Form>, boost::json::value const& jv);
 
-Form tag_invoke(json::value_to_tag<Form>, json::value const& jv);
+void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Preference const& user);
+Preference tag_invoke(boost::json::value_to_tag<Preference>, boost::json::value const& jv);
 
 void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, UserLifestyle const& lifestyle);
 UserLifestyle tag_invoke(boost::json::value_to_tag<UserLifestyle>, boost::json::value const& jv);
