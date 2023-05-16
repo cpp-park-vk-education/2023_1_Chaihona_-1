@@ -2,7 +2,7 @@
 #define REGISTRATIONPAGE_H
 
 #include <QDialog>
-#include <QListWidgetItem>
+
 namespace Ui {
 class RegistrationPage;
 }
@@ -16,20 +16,11 @@ public:
     ~RegistrationPage();
 
 private slots:
-
-    void on_BtnConfirm_clicked();
-
-    void on_name_editingFinished();
-
-    void on_age_editingFinished();
-
-    void on_city_editingFinished();
+    void on_BtnRegister_clicked();
 
     void on_email_editingFinished();
 
-    void on_interests_itemClicked(QListWidgetItem *item);
-
-    void on_interests_itemDoubleClicked(QListWidgetItem *item);
+    void on_password_editingFinished();
 
 private:
     Ui::RegistrationPage *ui;

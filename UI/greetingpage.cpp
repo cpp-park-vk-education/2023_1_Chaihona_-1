@@ -1,17 +1,19 @@
 #include "greetingpage.h"
 #include "ui_greetingpage.h"
-#include "registrationpage.h"
+#include "fillingdatapage.h"
 #include "myaccount.h"
+#include "qDebug"
+#include "registrationpage.h"
+#include <QDialog>
 #include "meetingpage.h"
+#include "forgotpassword.h"
+
 #include "ui_meetingpage.h"
-#include <iostream>
-#include "client_manager.hpp"
 
 
-GreetingPage::GreetingPage(QWidget *parent, ClientManager&& cm)
+GreetingPage::GreetingPage(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::GreetingPage),
-    clientManager(std::move(cm))
+    , ui(new Ui::GreetingPage)
 {
     ui->setupUi(this);
 }
@@ -24,12 +26,11 @@ GreetingPage::~GreetingPage()
 
 void GreetingPage::on_BtnLogIn_clicked()
 {
-    std::cout << "button is clicked" << std::endl;
-    clientManager.registration(ui->login->text().toStdString(), ui->password->text().toStdString());
-    // hide();
-    // MyAccount window;
-    // window.setModal(true);
-    // window.exec();
+    //clientManager.log_in(ui->login->text().toStdString(), ui->password->text().toStdString());
+
+    MyAccount window;
+    window.setModal(true);
+    window.exec();
 }
 
 void GreetingPage::on_BtnRegister_clicked()
@@ -55,7 +56,7 @@ void GreetingPage::on_password_editingFinished()
 void GreetingPage::on_BtnForgottenPass_clicked()
 {
     hide();
-    RegistrationPage window;
+    ForgotPassword window;
     window.setModal(true);
     window.exec();
 }
@@ -83,7 +84,3 @@ QLabel *GreetingPage::GetLabel(){
     return ui->RegLabel;
 }
 
-void GreetingPage::on_PUSH_clicked()
-{
-
-}

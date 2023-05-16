@@ -5,6 +5,7 @@
 #include "QDebug"
 #include "listofmathes.h"
 #include "editmydata.h"
+#include "fillingdatapage.h"
 
 
 
@@ -32,10 +33,9 @@ void MyAccount::on_BtnToMeetingPage_clicked()
 void MyAccount::on_LogOut_clicked()
 {
     hide();
-    qDebug() << "" ;
-  //  GreetingPage windowq;
- // windowq.setModal(true);
-//    wind.exec();
+    this->close();
+    GreetingPage window;
+
 }
 
 void MyAccount::on_BtnToMyMatches_clicked()
@@ -47,7 +47,7 @@ void MyAccount::on_BtnToMyMatches_clicked()
 
 void MyAccount::on_BtnEdit_clicked()
 {
-    EditMyData window;
+    FillingDataPage window;
     window.setModal(true);
     window.exec();
 }
