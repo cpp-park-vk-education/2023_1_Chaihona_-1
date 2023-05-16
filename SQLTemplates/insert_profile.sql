@@ -1,0 +1,1 @@
+INSERT INTO chaihona."Profile" (email, first_name, last_name, user_id) VALUES ('{}', '{}', '{}', {}) returning profile_id;

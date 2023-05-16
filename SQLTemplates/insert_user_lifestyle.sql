@@ -1,0 +1,1 @@
+INSERT INTO chaihona."UserLifestyle" ("User_choice", form_id, lifestyle_id) VALUES ('{}', {}, {}) returning user_lifestyle_id;

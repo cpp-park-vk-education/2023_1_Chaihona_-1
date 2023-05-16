@@ -1,0 +1,1 @@
+SELECT min_age, max_age, radius, gender FROM chaihona."Preferences" where form_id = {}

@@ -1,0 +1,1 @@
+INSERT INTO chaihona."UserInterest" ("UserRate", form_id, interest_id) VALUES ({}, {}, {}) returning user_interest_id;

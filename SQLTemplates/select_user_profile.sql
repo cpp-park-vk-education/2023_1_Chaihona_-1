@@ -1,0 +1,1 @@
+SELECT email, first_name, last_name from chaihona."Profile" where user_id = {}

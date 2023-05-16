@@ -1,0 +1,1 @@
+UPDATE chaihona."UserLifestyle" SET "User_choice" = '{}' WHERE form_id = {} and lifestyle_id = {};
