@@ -24,22 +24,8 @@ void Recommendation::vectorize_profile() {
     user_.text_vect_ = vectorizer.get_vect();
 }
 
-void Recommendation::vectorize_profiles() {
-    std::ifstream docs(DOCS_FILE);
-    if(!docs.is_open()) {
-        std::cerr << DOCS_FILE << " could not be opened for reading!" << std::endl;
-    }
-    CleanTokenizer tokenizer;
-    PortersStemmer stemmer;
-    VectorizerTFIDF vectorizer(docs);
-    for (UserForm& user : recommended_users_) {
-        vectorizer.set_text(user.text_);
-        vectorizer.vectorize(tokenizer, stemmer);
-        user.text_vect_ = vectorizer.get_vect();
-    }
-}
-
 void Recommendation::recommend() {
+    vectorize_profile();
     Filter filter(user_, recommended_users_);
     CosSimilarityCalculator calculator;
     filter.calculate_users_similiarity(calculator);
