@@ -11,7 +11,7 @@ void Recommendation::forms_to_users() {
 
 void Recommendation::users_to_forms() {}
 
-void Recommendation::vectorize_profile() {
+void Recommendation::vectorize_profile_text() {
     std::ifstream docs(DOCS_FILE);
     if(!docs.is_open()) {
         std::cerr << DOCS_FILE << " could not be opened for reading!" << std::endl;
@@ -25,14 +25,9 @@ void Recommendation::vectorize_profile() {
 }
 
 void Recommendation::recommend() {
-    vectorize_profile();
     Filter filter(user_, recommended_users_);
     CosSimilarityCalculator calculator;
     filter.calculate_users_similiarity(calculator);
     recommended_users_ = filter.get_recommended_users();
     std::sort(recommended_users_.begin(), recommended_users_.end(), std::greater<UserForm>());
-}
-
-int main() {
-
 }

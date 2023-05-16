@@ -29,16 +29,18 @@ public:
 
 class Form{
 private:
+    // Profile profile;
     unsigned id;
     std::vector<UserInterest> interests;
-    std::string description;
-    // Profile profile;
-    // std::vector<Lifestyle> lifestyle;
+    // std::vector<UserLifestyle> lifestyle;
     // std::vector<Contact> contact;
+    std::string description;
+    std::string preworkedText;
+    std::vector<double> vectorisedText;
     // std::string university;
     // std::string career;
     // std::string location;
-    // time_t birthDate;
+    // unsigned age;
 public:
     Form() {};    
     unsigned getId() {return 1;};
@@ -46,7 +48,10 @@ public:
       return interests;
     }
     std::string getDescription() {
-      return description;
+      return preworkedText;
+    }
+    std::vector<double> getVectorisedText() {
+      return vectorisedText;
     }
     // Profile getProfile() {Profile profile; return profile;};
     // std::vector<Lifestyle> getLifestyle() {std::vector<Lifestyle> result; Lifestyle lifestyle; result.push_back(lifestyle); return result;};
@@ -64,7 +69,7 @@ class Recommendation {
   std::vector<UserForm> recommended_users_;
   void forms_to_users();
   void users_to_forms();
-  void vectorize_profile();
+  void vectorize_profile_text();
 
  public:
   Recommendation() = delete;
