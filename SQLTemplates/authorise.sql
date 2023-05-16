@@ -1,0 +1,1 @@
+SELECT user_id from chaihona."User" where login = '{}' and password = '{}'

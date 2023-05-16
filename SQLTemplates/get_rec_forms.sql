@@ -1,0 +1,1 @@
+SELECT "form_id", "Description", "University", "Career", "City", date_part('year',age(birth_date)) FROM Chaihona."Form" join Chaihona."Preferences" using (form_id) where form_id!={} and min_age<={} and max_age>={} and "Preferences".gender = '{}' and "City" = '{}' and date_part('year',age(birth_date))>={} and date_part('year',age(birth_date))<={} and "Form".gender='{}' LIMIT 50;

@@ -1,0 +1,1 @@
+SELECT "form_id", "Description", "University", "Career", "City", date_part('year',age(birth_date)) from chaihona."Form" where profile_id={}

@@ -1,0 +1,1 @@
+INSERT INTO chaihona."Form"("Description", "University", "Career", "City", birth_date, profile_id, gender) VALUES ('{}', '{}', '{}','{}', '{}',{},'{}') returning form_id;

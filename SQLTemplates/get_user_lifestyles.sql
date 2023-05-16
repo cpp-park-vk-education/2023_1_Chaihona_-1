@@ -1,0 +1,1 @@
+SELECT "UserLifestyle"."User_choice", "UserLifestyle".user_lifestyle_id, "UserLifestyle".form_id, "UserLifestyle".lifestyle_id, "Lifestyle"."name", "Lifestyle"."description", "Lifestyle"."choices" FROM chaihona."UserLifestyle" JOIN chaihona."Lifestyle" using (lifestyle_id) WHERE form_id = {}

@@ -1,0 +1,1 @@
+SELECT match_type FROM chaihona."Match" WHERE form1_id = {} and form2_id = {}
