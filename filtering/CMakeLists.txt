@@ -1,32 +1,13 @@
-cmake_minimum_required(VERSION 3.13)
-project(Filtering)
-set (CMAKE_CXX_STANDARD 17)
+cmake_minimum_required(VERSION 3.0)
 
-find_package(GTest REQUIRED)
+project(filtering)
 
-include_directories(src
-                    ../vectorization/src
-                    ../text_processing/src)
+set(SOURCES src/filtering.cpp)
+set(HEADERS include/filtering.hpp)
+set(vect_HEADERS ../vectorization/include)
 
-add_library(${PROJECT_NAME} STATIC src/filtering.cpp
-                                   include/filtering.hpp)
+add_library(filtering ${SOURCES} ${HEADERS})
 
-target_include_directories(${PROJECT_NAME} PUBLIC include 
-                                   ../text_processing/include
-                                   ../vectorization/include)
+target_link_libraries(filtering vectorization)
 
-target_link_libraries(${PROJECT_NAME} PUBLIC TextProcessing Vectorization)
-
-add_executable(TEST test/filtering_test.cpp)
-
-include_directories(TEST src
-                    ../vectorization/src
-                    ../text_processing/src)
-
-target_include_directories(TEST PUBLIC include
-                                        ../text_processing/include
-                                        ../vectorization/include)
-
-target_link_libraries(TEST ${GTEST_LIBRARIES})
-
-enable_testing()
+include_directories(src include ${vect_HEADERS})

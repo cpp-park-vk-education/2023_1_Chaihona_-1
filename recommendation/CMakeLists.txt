@@ -1,16 +1,14 @@
-cmake_minimum_required(VERSION 3.13)
-project(Recommendation)
-set (CMAKE_CXX_STANDARD 17)
+cmake_minimum_required(VERSION 3.0)
 
-# enable_testing()
-# find_package(GTest REQUIRED)
+project(recommendation)
 
-file(GLOB SRC src/*.cpp)
-add_library(${PROJECT_NAME} STATIC ${SRC})
+set(SOURCES src/recommendation.cpp)
+set(HEADERS include/recommendation.hpp)
+set(vect_HEADERS ../vectorization/include)
+set(filt_HEADERS ../filtering/include)
 
-target_include_directories(${PROJECT_NAME} PUBLIC include 
-                                                  ../text_processing/include
-                                                  ../vectorization/include
-                                                  ../filtering/include)
+add_library(recommendation ${SOURCES} ${HEADERS})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC TextProcessing Vectorization Filtering)
+target_link_libraries(recommendation vectorization filtering)
+
+include_directories(src include ${vect_HEADERS} ${filt_HEADERS})

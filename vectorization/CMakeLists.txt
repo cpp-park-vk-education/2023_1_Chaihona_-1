@@ -1,14 +1,12 @@
-cmake_minimum_required(VERSION 3.13)
-project(Vectorization)
-set (CMAKE_CXX_STANDARD 17)
+cmake_minimum_required(VERSION 3.0)
 
-# enable_testing()
-# find_package(GTest REQUIRED)
+project(vectorization)
 
-file(GLOB SRC src/*.cpp)
-add_library(${PROJECT_NAME} STATIC ${SRC})
+set(vect_SOURCES src/text_processing.cpp src/tfidf_vectorization.cpp)
+set(vect_HEADERS include/text_processing.hpp include/tfidf_vectorization.hpp)
 
-target_include_directories(${PROJECT_NAME} PUBLIC include 
-                                                  ../text_processing/include)
-                                                  
-target_link_libraries(${PROJECT_NAME} PUBLIC TextProcessing)
+add_library(vectorization STATIC ${vect_SOURCES} ${vect_HEADERS})
+
+target_link_libraries(vectorization)
+
+include_directories(src include)

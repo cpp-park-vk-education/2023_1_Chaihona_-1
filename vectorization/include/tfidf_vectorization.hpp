@@ -19,7 +19,7 @@ class VectorizerTFIDF {
   double calculate_TF(const std::string& word);
   double calculate_IDF(std::string word);
   void set_documents(std::istream& docs);
-  void processing_text();
+  void processing_text(ITokenizer& tokenizer, IStemmer& stemmer);
 
  public:
     VectorizerTFIDF() = delete;
@@ -27,7 +27,7 @@ class VectorizerTFIDF {
         set_documents(docs);
     }
 
-  void vectorize();
+  void vectorize(ITokenizer& tokenizer, IStemmer& stemmer);
   void set_text(const std::string& text);
   std::vector<double> get_vect();
 };

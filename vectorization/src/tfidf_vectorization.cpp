@@ -1,11 +1,9 @@
 #include "tfidf_vectorization.hpp"
 
-void VectorizerTFIDF::processing_text() {
-    CleanTokenizer tokenizer;
+void VectorizerTFIDF::processing_text(ITokenizer& tokenizer, IStemmer& stemmer) {
     tokenizer.set_text(text_);
     tokenizer.tokenize();
 
-    PortersStemmer stemmer;
     stemmer.set_tokens(tokenizer.get_tokens());
     stemmer.stemmize();
     tokens_ = stemmer.get_stems();
@@ -60,15 +58,14 @@ void VectorizerTFIDF::set_documents(std::istream& docs) {
     char sep = '\n';
     while (docs) {
         getline(docs, str_input, sep);
-        std::cout << str_input << std::endl;
         documents_.push_back(str_input);
     }
     documents_.pop_back();
     
 }
 
-void VectorizerTFIDF::vectorize() {
-    processing_text();
+void VectorizerTFIDF::vectorize(ITokenizer& tokenizer, IStemmer& stemmer) {
+    processing_text(tokenizer, stemmer);
     double tf = 1, idf = 1;
     for (std::string str : tokens_) {
         tf = calculate_TF(str);
