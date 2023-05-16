@@ -14,6 +14,7 @@ class IDatabaseManager {
 public:
     virtual unsigned addUser(User user) = 0;
     virtual bool checkIfEmailBusy(std::string email) = 0;
+    virtual bool checkIfLoginBusy (std::string login) = 0;
     virtual std::shared_ptr<Profile> authorise(User user) = 0;
     virtual unsigned addProfile(User user, Profile profile) = 0;
     virtual unsigned addForm(Profile profile, Form form) = 0;
@@ -25,6 +26,7 @@ public:
     virtual std::vector<Interest> getPossibleInterest() = 0;
     virtual std::vector<Lifestyle> getPossibleLifestyles() = 0;
     virtual Preference getUserPreferences(unsigned formId) = 0;
+    virtual void insertVecText(unsigned formId, std::vector<double>, std::string) = 0;
     //virtual bool checkMatchResult(Form form1, Form form2) = 0;
 };
 
@@ -32,6 +34,7 @@ public:
 class DBManager : public IDatabaseManager{
     unsigned addUser(User user);
     bool checkIfEmailBusy(std::string email);
+    virtual bool checkIfLoginBusy (std::string login) override;
     std::shared_ptr<Profile> authorise(User user);
     unsigned addProfile(User user, Profile profile);
     unsigned addForm(Profile profile, Form form) {return 1;};
@@ -43,5 +46,6 @@ class DBManager : public IDatabaseManager{
     virtual std::vector<Interest> getPossibleInterest() override;
     virtual std::vector<Lifestyle> getPossibleLifestyles() override;
     virtual Preference getUserPreferences(unsigned formId) override;
+    virtual void insertVecText(unsigned formId, std::vector<double>, std::string) override;
    // bool checkMatchResult(Form form1, Form form2);
 };

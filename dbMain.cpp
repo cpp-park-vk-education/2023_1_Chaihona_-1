@@ -50,17 +50,10 @@
 // }
 
 #include <iostream>
-#include "FormRequests.hpp"
+#include "CheckLogin.hpp"
 
 int main() {
-    Preference preference (10, 20, 10, 'M');
-    Lifestyle lst(1, "a", "a", std::vector<std::string>());
-    Interest intr(1, "a", "a");
-    UserLifestyle ulst(0,lst, "aquarius");
-    UserInterest uintr(0, intr, 10, 0);
-    std::vector <UserLifestyle> ulvec; ulvec.push_back(ulst);
-    std::vector<UserInterest> uivec; uivec.push_back(uintr);
-    FormRequests freq(uivec, ulvec, "a", "b", "c", "d", "2000-02-02", preference, 4, 'M');
-    freq.insert();
+    CheckLogin chlog("dnk3");
+    std::cout << chlog.exec();
     return 0;
 }

@@ -1,0 +1,1 @@
+update chaihona."Form" set text_vector=('{}'), preworked_text=('{}') where form_id={}

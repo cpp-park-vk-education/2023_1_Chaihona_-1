@@ -1,4 +1,5 @@
 #include "DBManager.hpp"
+#include "CheckLogin.hpp"
 #include "UserRequests.hpp"
 #include "CheckEmail.hpp"
 #include "ProfileRequests.hpp"
@@ -16,6 +17,11 @@ unsigned DBManager::addUser(User user) {
 bool DBManager::checkIfEmailBusy(std::string email) {
     CheckEmail emailReq(email);
     return emailReq.exec();
+}
+
+bool DBManager::checkIfLoginBusy(std::string login) {
+    CheckLogin chLog(login);
+    return chLog.exec();
 }
 
 std::shared_ptr<Profile> DBManager::authorise(User user) {
@@ -59,4 +65,9 @@ std::vector<Lifestyle> DBManager::getPossibleLifestyles() {
 Preference DBManager::getUserPreferences(unsigned formId) {
     PreferencesRequests preq (formId);
     return preq.getUserPreferences();
+}
+
+void DBManager::insertVecText(unsigned formId, std::vector<double> vecText, std::string pwText) {
+    FormRequests freq(formId, pwText, vecText);
+    freq.insertVectorisedData();
 }

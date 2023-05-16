@@ -10,8 +10,19 @@
 #include "ContactRequests.hpp"
 
 
-Form FormRequests::getUserForm()
-{
+std::string arrayIntoString(std::vector<double> input) {
+    std::string result;
+    for (unsigned i = 0; i<input.size(); i++) {
+        if (i!=0)
+            result += ',';
+        result += std::to_string(input[i]);
+    }
+    result = '{' + result + '}';
+    return result;
+}
+
+
+Form FormRequests::getUserForm() {
     auto dbConn = new DBConnection;
     DBWork dbWork(dbConn);
     SQLProvider sqlprov("../SQLTemplates/");
@@ -76,7 +87,15 @@ std::vector<std::pair<Form, std::vector<Contact>>> FormRequests::selectMatchCont
     return matchContacts;
 }
 
-
+void FormRequests::insertVectorisedData() {
+    auto dbConn = new DBConnection;
+    DBWork dbWork(dbConn);
+    SQLProvider sqlprov("../SQLTemplates/");
+    auto vecArray = arrayIntoString(vectorisedText);
+    std::cout << vecArray << std::endl;
+    auto request = sqlprov.getRequest("insert_vec_text", std::make_format_args(vecArray, preworkedText, userId));
+    dbWork.update(request);
+}
 
 unsigned FormRequests::insert() {
     auto dbConn = new DBConnection;
