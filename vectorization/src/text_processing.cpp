@@ -51,14 +51,6 @@ void CleanTokenizer::to_lower() {
     }
 }
 
-void CleanTokenizer::delete_stopwords() {
-    for (std::string token : tokens_) {
-        if (is_stop_word(token)) {
-            tokens_.erase(std::find(tokens_.begin(), tokens_.end(), token));
-        }
-    }
-}
-
 bool CleanTokenizer::is_stop_word(std::string word) {
     for (auto stop_word : stop_words_) {
         if (word == stop_word) {
@@ -66,6 +58,14 @@ bool CleanTokenizer::is_stop_word(std::string word) {
         }
     }
     return false;
+}
+
+void CleanTokenizer::delete_stopwords() {
+    for (std::string token : tokens_) {
+        if (is_stop_word(token)) {
+            tokens_.erase(std::find(tokens_.begin(), tokens_.end(), token));
+        }
+    }
 }
 
 std::vector<std::string> CleanTokenizer::get_tokens() {

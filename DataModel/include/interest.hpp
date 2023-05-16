@@ -28,6 +28,7 @@ public:
     unsigned getUserId() {return user_id;}
     UserInterest() {};
     UserInterest (unsigned _uid, Interest _int, unsigned _rate, unsigned _uiid) : user_id(_uid), interest(_int), rate(_rate), uinterestId(_uiid) {};
+    UserInterest (Interest _int, unsigned _rate) :  interest(_int), rate(_rate) {}
     Interest getInterest () const {return interest;}
     unsigned getRate () const {return rate;}
 };

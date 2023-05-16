@@ -9,15 +9,20 @@ void VectorizerTFIDF::processing_text(ITokenizer& tokenizer, IStemmer& stemmer) 
     tokens_ = stemmer.get_stems();
 }
 
+
 double VectorizerTFIDF::calculate_TF(const std::string& word) {
     size_t count = 0;
     for (std::string w : tokens_) {
         if (word == w) {
             ++count;
+
         }   
     }
-    double tf = count / tokens_.size();
-    return tf;
+    if (tokens_.size() == 0) {
+        return 1;
+    }
+    
+    return static_cast<double>(count) / tokens_.size();
 }
 
 void str_split(std::string& str, char sep, std::vector <std::string>& str_vect) {
@@ -42,8 +47,10 @@ double VectorizerTFIDF::calculate_IDF(std::string word) {
         }
         vec.clear();
     }
-
-    return count / documents_.size();
+    if (documents_.size() == 0) {
+        return 1;
+    }
+    return static_cast<double>(count) / documents_.size();
 }
 
 void VectorizerTFIDF::set_documents(std::istream& docs) {
@@ -51,17 +58,19 @@ void VectorizerTFIDF::set_documents(std::istream& docs) {
     char sep = '\n';
     while (docs) {
         getline(docs, str_input, sep);
-        str_split(str_input, ' ', documents_);
+        documents_.push_back(str_input);
     }
+    documents_.pop_back();
     
 }
 
 void VectorizerTFIDF::vectorize(ITokenizer& tokenizer, IStemmer& stemmer) {
-    processing_text(tokenizer,stemmer);
-    double tf, idf;
+    processing_text(tokenizer, stemmer);
+    double tf = 1, idf = 1;
     for (std::string str : tokens_) {
         tf = calculate_TF(str);
         idf = calculate_IDF(str);
+
         vect_.push_back(tf * idf);
     }
 }
@@ -70,4 +79,8 @@ void VectorizerTFIDF::set_text(const std::string& text) {
     vect_.clear();
     tokens_.clear();
     text_ = text;
+}
+
+std::vector<double> VectorizerTFIDF::get_vect() {
+    return vect_;
 }

@@ -36,16 +36,15 @@ class CosSimilarityCalculator : public SimilarityCalculator {
 
 struct UserForm {
  public:
-  UserForm() = default;
-  explicit UserForm(const UserForm& profile); // реализуй
   size_t id_;
+  std::string text_;
   std::vector<double> text_vect_;
   std::vector<double> interest_vect_;
   double interest_similarity_;
   double text_similarity_;
   double similarity_;
-  bool operator< (const UserForm& p) const {
-    return this->similarity_ < p.similarity_;
+  bool operator> (const UserForm& p) const {
+    return this->similarity_ > p.similarity_;
   }
 };
 

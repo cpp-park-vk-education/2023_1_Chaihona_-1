@@ -7,6 +7,7 @@
 #include <string>
 
 #include "text_processing.hpp"
+// #include "../../text_processing/src/text_processing.cpp"
 
 class VectorizerTFIDF {
  private:
@@ -17,16 +18,16 @@ class VectorizerTFIDF {
 
   double calculate_TF(const std::string& word);
   double calculate_IDF(std::string word);
+  void set_documents(std::istream& docs);
   void processing_text(ITokenizer& tokenizer, IStemmer& stemmer);
 
  public:
-    VectorizerTFIDF(const std::string& text, std::istream& docs) 
-    : text_(text) {
+    VectorizerTFIDF() = delete;
+    explicit VectorizerTFIDF(std::istream& docs) {
         set_documents(docs);
-      }
+    }
 
   void vectorize(ITokenizer& tokenizer, IStemmer& stemmer);
   void set_text(const std::string& text);
-  void set_documents(std::istream& docs);
   std::vector<double> get_vect();
 };

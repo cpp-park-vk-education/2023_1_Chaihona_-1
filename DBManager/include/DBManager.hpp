@@ -17,7 +17,7 @@ public:
     virtual bool checkIfLoginBusy (std::string login) = 0;
     virtual std::shared_ptr<Profile> authorise(User user) = 0;
     virtual unsigned addProfile(User user, Profile profile) = 0;
-    virtual unsigned addForm(Profile profile, Form form) = 0;
+    virtual unsigned addForm(unsigned, Form form) = 0;
     //bool editForm(Form form) {};
     virtual std::vector<Form> getRecommendForms(Form form) = 0;
     virtual Form getUserForm(unsigned id) = 0;
@@ -27,6 +27,7 @@ public:
     virtual std::vector<Lifestyle> getPossibleLifestyles() = 0;
     virtual Preference getUserPreferences(unsigned formId) = 0;
     virtual void insertVecText(unsigned formId, std::vector<double>, std::string) = 0;
+    virtual std::vector<std::pair<Form, std::vector<Contact>>> getMatchTable (unsigned authorId) = 0;
     //virtual bool checkMatchResult(Form form1, Form form2) = 0;
 };
 
@@ -37,7 +38,7 @@ class DBManager : public IDatabaseManager{
     virtual bool checkIfLoginBusy (std::string login) override;
     std::shared_ptr<Profile> authorise(User user);
     unsigned addProfile(User user, Profile profile);
-    unsigned addForm(Profile profile, Form form) {return 1;};
+    unsigned addForm(unsigned profileId, Form form);
     //bool editForm(Form form) {};
     std::vector<Form> getRecommendForms(Form form) { std::vector<Form> formVector; Form form1; Form form2; formVector.push_back(form1); formVector.push_back(form2); return formVector; };
     virtual Form getUserForm(unsigned id) override;
@@ -47,5 +48,6 @@ class DBManager : public IDatabaseManager{
     virtual std::vector<Lifestyle> getPossibleLifestyles() override;
     virtual Preference getUserPreferences(unsigned formId) override;
     virtual void insertVecText(unsigned formId, std::vector<double>, std::string) override;
+    virtual std::vector<std::pair<Form, std::vector<Contact>>> getMatchTable (unsigned authorId) override;
    // bool checkMatchResult(Form form1, Form form2);
 };

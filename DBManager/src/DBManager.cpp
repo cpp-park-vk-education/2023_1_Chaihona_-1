@@ -39,6 +39,11 @@ unsigned DBManager::addProfile(User user, Profile profile) {
     return preq.insert();
 }
 
+unsigned DBManager::addForm(unsigned profileId, Form form) {
+    FormRequests freq(form.getInterests(), form.getLifestyle(), form.getDescription(), form.getUniversity(), form.getCareer(), form.getLocation(), form.getBdate(), form.getPreference(), profileId, form.getGender());
+    return freq.insert();
+}
+
 Form DBManager::getUserForm(unsigned id) {
     FormRequests freq(id);
     return freq.getUserForm();
@@ -70,4 +75,9 @@ Preference DBManager::getUserPreferences(unsigned formId) {
 void DBManager::insertVecText(unsigned formId, std::vector<double> vecText, std::string pwText) {
     FormRequests freq(formId, pwText, vecText);
     freq.insertVectorisedData();
+}
+
+std::vector<std::pair<Form, std::vector<Contact>>> DBManager::getMatchTable(unsigned authorId) {
+    FormRequests freq(authorId);
+    return freq.selectMatchContacts();
 }
