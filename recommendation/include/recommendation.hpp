@@ -69,7 +69,6 @@ class Recommendation {
   std::vector<UserForm> recommended_users_;
   void forms_to_users();
   void users_to_forms();
-  void vectorize_profile_text();
 
  public:
   Recommendation() = delete;
@@ -77,6 +76,7 @@ class Recommendation {
     : form_(form),
       recommended_forms_(recommended_forms) {}
   void recommend();
+  void vectorize_profile_text();
   Form get_form() {
     return form_;
   }
