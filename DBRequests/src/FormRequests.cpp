@@ -8,6 +8,7 @@
 #include "UserLifestyleRequests.hpp"
 #include "MatchRequests.hpp"
 #include "ContactRequests.hpp"
+#include "PreferencesRequests.hpp"
 
 
 std::string arrayIntoString(std::vector<double> input) {
@@ -31,9 +32,11 @@ Form FormRequests::getUserForm() {
     unsigned id = std::stoi(result[0][0]);
     UserInterestRequests uireq(id);
     UserLifestyleRequests ulreq(id);
+    PreferencesRequests prefreq (id);
+    auto preferences = prefreq.getUserPreferences();
     auto userInterests = uireq.getUserInterests();
     auto userLifestyles = ulreq.getUserLifestyles();
-    Form form(id, userInterests, userLifestyles, result[0][1], result[0][2], result[0][3], result[0][4], std::stoi(result[0][5]));
+    Form form(id, userInterests, userLifestyles, result[0][1], result[0][2], result[0][3], result[0][4], std::stoi(result[0][5]), result[0][6][0], preferences);
     return form;
 }
 
@@ -46,9 +49,11 @@ Form FormRequests::getFormById() {
     unsigned id = std::stoi(result[0][0]);
     UserInterestRequests uireq(id);
     UserLifestyleRequests ulreq(id);
+    PreferencesRequests prefreq (id);
+    auto preferences = prefreq.getUserPreferences();
     auto userInterests = uireq.getUserInterests();
     auto userLifestyles = ulreq.getUserLifestyles();
-    Form form(id, userInterests, userLifestyles, result[0][1], result[0][2], result[0][3], result[0][4], std::stoi(result[0][5]));
+    Form form(id, userInterests, userLifestyles, result[0][1], result[0][2], result[0][3], result[0][4], std::stoi(result[0][5]), result[0][6][0], preferences);
     return form;
 }
 
@@ -58,14 +63,18 @@ std::vector<Form> FormRequests::selectRecForms() {
     DBWork dbWork(dbConn);
     SQLProvider sqlprov("../SQLTemplates/");
     auto request = sqlprov.getRequest("get_rec_forms", std::make_format_args(userId, age, age, gender, location, preference.getMinAge(), preference.getMaxAge(), preference.getGender()));
+    std::cout << request << std::endl;
     auto result = dbWork.select(request);
     for (unsigned i = 0; i < result.size(); i++) {
+        std::cout << "making form with id " << result[i][0] << std::endl;
         unsigned id = std::stoi(result[i][0]);
         UserInterestRequests uireq(id);
         UserLifestyleRequests ulreq(id);
+        PreferencesRequests prefreq (id);
+        auto preferences = prefreq.getUserPreferences();
         auto userInterests = uireq.getUserInterests();
         auto userLifestyles = ulreq.getUserLifestyles();
-        Form form(id, userInterests, userLifestyles, result[i][1], result[i][2], result[i][3], result[i][4], std::stoi(result[i][5]));
+        Form form(id, userInterests, userLifestyles, result[i][1], result[i][2], result[i][3], result[i][4], std::stoi(result[i][5]), result[i][6][0], preferences);
         recForms.push_back(form);
     }
     return recForms;

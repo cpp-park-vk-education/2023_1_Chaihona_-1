@@ -44,7 +44,13 @@ unsigned DBManager::addForm(unsigned profileId, Form form) {
     return freq.insert();
 }
 
-Form DBManager::getUserForm(unsigned id) {
+std::vector<Form> DBManager::getRecommendForms(Form form) {
+    FormRequests freq(form.getPreference(), form.getAge(), form.getGender(), form.getLocation(), form.getId());
+    return freq.selectRecForms();
+}
+
+Form DBManager::getUserForm(unsigned id)
+{
     FormRequests freq(id);
     return freq.getUserForm();
 }

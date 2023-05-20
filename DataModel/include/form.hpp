@@ -29,7 +29,7 @@ public:
     Form() {};   
     Form(std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, char _gend, std::string _bday, Preference _pref) : lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), gender(_gend), bdate(_bday), preference(_pref) {}   
     Form(unsigned _id, std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, unsigned _age, char _gend, std::string _bday, Preference _pref) : age(_age), id(_id), lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), gender(_gend), bdate(_bday), preference(_pref) {}   
-    Form(unsigned _id, std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, unsigned _age) : id(_id), lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), age(_age) {}    
+    Form(unsigned _id, std::vector<UserInterest> _iv, std::vector<UserLifestyle> _lv, std::string _desc, std::string _un, std::string _carr, std::string _loc, unsigned _age, char _gend, Preference _pref) : id(_id), lifestyle(_lv), interests(_iv), description(_desc), university(_un), career(_carr), location(_loc), age(_age), gender(_gend), preference(_pref) {}    
     unsigned getId() const {return id;};
     Profile getProfile() {Profile profile; return profile;};
     std::vector<UserInterest> getInterests() const {return interests;};

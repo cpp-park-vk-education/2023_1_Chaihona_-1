@@ -30,7 +30,7 @@ std::string RequestHandler::ReadRequest(std::string json) {
 
   if (request_type == kLoginCheckRequest) {
     std::string login = json::value_to<std::string>(request.as_object()[kContextField].as_object()[kEmailField]);
-    //return LoginCheckResponse(database_manager_ptr_->checkIfLoginBusy(login)); 
+    return LoginCheckResponse(database_manager_ptr_->checkIfLoginBusy(login)); 
   }
 
   if (request_type == kRegistrationRequest) {
@@ -46,16 +46,17 @@ std::string RequestHandler::ReadRequest(std::string json) {
     return LogInResponse(profile);
   }
   
-  // if (request_type == kGetPossibleInterestRequest) {
-  //   auto possibleInterests = database_manager_ptr_->getPossibleInterest();
-  //   return GetPossibleInterestResponse(possibleInterests);
-  // }
+  if (request_type == kGetPossibleInterestRequest) {
+    auto possibleInterests = database_manager_ptr_->getPossibleInterest();
+    std::cout << "uzbek" << std::endl;
+    return GetPossibleInterestResponse(possibleInterests);
+  }
 
-  // if (request_type == kGetPossibleLifestyleRequest) {
-  //   auto possibleLifestyles = database_manager_ptr_->getPossibleLifestyles();
-  //   std::cout << "a" << std::endl;
-  //   return GetPossibleLifestyleResponse(possibleLifestyles);
-  // }
+  if (request_type == kGetPossibleLifestyleRequest) {
+    auto possibleLifestyles = database_manager_ptr_->getPossibleLifestyles();
+     std::cout << "tadjik" << std::endl;
+    return GetPossibleLifestyleResponse(possibleLifestyles);
+  }
 
   if (request_type == kLikeRequest) {
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
@@ -78,8 +79,8 @@ std::string RequestHandler::ReadRequest(std::string json) {
     if (recommended_forms_.empty()) {
       Form author_form = database_manager_ptr_->getUserForm(author_id); 
       auto recommended_forms = database_manager_ptr_->getRecommendForms(form);
-      Recommendation recommendation(author_form, recommended_forms);
-      recommendation.recommend();
+     //Recommendation recommendation(author_form, recommended_forms);
+     //recommendation.recommend();
       SaveRecommendation(recommended_forms);
     }
     return GetNextProfileResponse();
@@ -184,7 +185,7 @@ std::string RequestHandler::LikeResponse() {
 }
 
 std::string RequestHandler::GetNextProfileResponse() {
-  auto response = recommended_forms_.back();
+  auto response = recommended_forms_.front();
   recommended_forms_.pop();
   return response;
 }
@@ -227,7 +228,7 @@ void RequestHandler::SaveRecommendation (std::vector<Form>& recommended_forms) {
   for (auto form: recommended_forms) {
     json::object response_body;
     response_body[kResponseField] = kGetNextProfileRequest;
-    //response_body[kcontextField].emplace_object() = json::value_from(form).as_object();
+    response_body[kContextField].emplace_object() = json::value_from(form).as_object();
     std::string response = json::serialize(json::value(std::move(response_body)));
     recommended_forms_.push(response);
   }
@@ -264,7 +265,7 @@ std::string RequestHandler::AddLifestyleResponse() {
 std::string RequestHandler::GetMatchTableResponse(std::vector<std::pair<Form, std::vector<Contact>>> forms) {
   json::object response_body;
   response_body[kResponseField] = kGetMatchTable;
-  response_body[kContextField].emplace_object() = json::value_from(forms).as_object();
+  response_body[kContextField].emplace_array() = json::value_from(forms).as_array();
   std::string response = json::serialize(json::value(std::move(response_body)));
   return response;
 }

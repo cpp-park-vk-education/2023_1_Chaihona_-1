@@ -33,6 +33,7 @@ public:
 
 
 class DBManager : public IDatabaseManager{
+public:    
     unsigned addUser(User user);
     bool checkIfEmailBusy(std::string email);
     virtual bool checkIfLoginBusy (std::string login) override;
@@ -40,7 +41,7 @@ class DBManager : public IDatabaseManager{
     unsigned addProfile(User user, Profile profile);
     unsigned addForm(unsigned profileId, Form form);
     //bool editForm(Form form) {};
-    std::vector<Form> getRecommendForms(Form form) { std::vector<Form> formVector; Form form1; Form form2; formVector.push_back(form1); formVector.push_back(form2); return formVector; };
+    std::vector<Form> getRecommendForms(Form form);
     virtual Form getUserForm(unsigned id) override;
     std::vector<Contact> getUserContacts(Form form) {return std::vector<Contact>();};
     unsigned insertMatch(Match match);
