@@ -30,4 +30,5 @@ class VectorizerTFIDF {
   void vectorize(ITokenizer& tokenizer, IStemmer& stemmer);
   void set_text(const std::string& text);
   std::vector<double> get_vect();
+  std::vector<std::string> get_tokens();
 };

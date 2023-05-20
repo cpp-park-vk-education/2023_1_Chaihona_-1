@@ -84,3 +84,7 @@ void VectorizerTFIDF::set_text(const std::string& text) {
 std::vector<double> VectorizerTFIDF::get_vect() {
     return vect_;
 }
+
+std::vector<std::string> VectorizerTFIDF::get_tokens() {
+    return tokens_;
+}

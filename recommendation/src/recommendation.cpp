@@ -22,7 +22,18 @@ void Recommendation::forms_to_users() {
 }
 
 void Recommendation::users_to_forms() {
+
+    std::vector<Form> rec_forms;
+
+    for (UserForm& us : recommended_users_) {
+        for (Form& form : recommended_forms_) {
+            if (us.id_ == form.getId()) {
+                rec_forms.push_back(form);
+            }
+        }
+    }
     
+    recommended_forms_ = rec_forms;
 }
 
 void Recommendation::vectorize_profile_text() {
@@ -36,7 +47,14 @@ void Recommendation::vectorize_profile_text() {
     vectorizer.set_text(user_.text_);
     vectorizer.vectorize(tokenizer, stemmer);
     user_.text_vect_ = vectorizer.get_vect();
-    form_.setPreworkedText("some_text"); //?
+
+    std::vector<std::string> tokens = vectorizer.get_tokens();
+    std::string preproc_text;
+    for (std::string str : tokens) {
+        preproc_text += (str + " ");
+    }
+
+    form_.setPreworkedText(preproc_text); //?
     form_.setVectorisedText(user_.text_vect_); //?
 }
 
