@@ -11,3 +11,4 @@ add_library(filtering ${SOURCES} ${HEADERS})
 target_link_libraries(filtering vectorization)
 
 include_directories(src include ${vect_HEADERS})
+ы
