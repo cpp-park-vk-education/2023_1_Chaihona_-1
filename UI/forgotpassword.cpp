@@ -6,6 +6,7 @@ ForgotPassword::ForgotPassword(QWidget *parent) :
     ui(new Ui::ForgotPassword)
 {
     ui->setupUi(this);
+    this->setStyleSheet("background-color: moccasin;");
 }
 
 ForgotPassword::~ForgotPassword()

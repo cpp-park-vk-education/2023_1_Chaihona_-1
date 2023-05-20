@@ -6,6 +6,7 @@ ListOfMathes::ListOfMathes(QWidget *parent) :
     ui(new Ui::ListOfMathes)
 {
     ui->setupUi(this);
+    this->setStyleSheet("background-color: moccasin;");
 }
 
 ListOfMathes::~ListOfMathes()

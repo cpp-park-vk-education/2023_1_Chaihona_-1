@@ -2,6 +2,7 @@
 #define MYACCOUNT_H
 
 #include <QDialog>
+#include "client_manager.hpp"
 
 namespace Ui {
 class MyAccount;
@@ -12,7 +13,7 @@ class MyAccount : public QDialog
     Q_OBJECT
 
 public:
-    explicit MyAccount(QWidget *parent = nullptr);
+    explicit MyAccount(QWidget *parent, ClientManager&&);
     ~MyAccount();
 
 private slots:
@@ -26,6 +27,7 @@ private slots:
 
 private:
     Ui::MyAccount *ui;
+    ClientManager clientManager;
 };
 
 #endif // MYACCOUNT_H

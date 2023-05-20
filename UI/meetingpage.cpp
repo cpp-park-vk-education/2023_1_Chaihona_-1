@@ -2,11 +2,13 @@
 #include "ui_meetingpage.h"
 #include "myaccount.h"
 
-MeetingPage::MeetingPage(QWidget *parent) :
+MeetingPage::MeetingPage(QWidget *parent, ClientManager&& _cm) :
     QDialog(parent),
-    ui(new Ui::MeetingPage)
+    ui(new Ui::MeetingPage),
+    clientManager(std::move(_cm))
 {
     ui->setupUi(this);
+    this->setStyleSheet("background-color: moccasin;");
 }
 
 MeetingPage::~MeetingPage()
@@ -17,7 +19,7 @@ MeetingPage::~MeetingPage()
 void MeetingPage::on_BactToAcc_clicked()
 {
     hide();
-    MyAccount window;
+    MyAccount window (nullptr, std::move(clientManager));
     window.setModal(true);
     window.exec();
 }

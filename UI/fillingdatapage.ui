@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
-    <height>664</height>
+    <width>650</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,16 +23,16 @@
     </rect>
    </property>
    <property name="text">
-    <string>RegistrationPage</string>
+    <string>Filling data page</string>
    </property>
   </widget>
   <widget class="QPushButton" name="BtnConfirm">
    <property name="geometry">
     <rect>
-     <x>260</x>
-     <y>570</y>
-     <width>80</width>
-     <height>31</height>
+     <x>270</x>
+     <y>630</y>
+     <width>111</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
@@ -42,10 +42,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>250</y>
+     <x>340</x>
+     <y>50</y>
      <width>251</width>
-     <height>131</height>
+     <height>141</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -58,31 +58,6 @@
     </item>
     <item>
      <widget class="QListWidget" name="interests">
-      <item>
-       <property name="text">
-        <string>Music</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Sport</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Traveling</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Theatre</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Books</string>
-       </property>
-      </item>
      </widget>
     </item>
    </layout>
@@ -90,9 +65,9 @@
   <widget class="QWidget" name="layoutWidget_7">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>50</x>
      <y>150</y>
-     <width>171</width>
+     <width>211</width>
      <height>41</height>
     </rect>
    </property>
@@ -112,9 +87,9 @@
   <widget class="QWidget" name="layoutWidget_4">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>50</x>
      <y>50</y>
-     <width>161</width>
+     <width>171</width>
      <height>41</height>
     </rect>
    </property>
@@ -134,32 +109,32 @@
   <widget class="QWidget" name="layoutWidget_6">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>50</x>
      <y>200</y>
-     <width>171</width>
+     <width>211</width>
      <height>41</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_7">
     <item>
-     <widget class="QLabel" name="Email">
+     <widget class="QLabel" name="Login">
       <property name="text">
-       <string>Email</string>
+       <string>Login</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="email"/>
+     <widget class="QLineEdit" name="login"/>
     </item>
    </layout>
   </widget>
   <widget class="QWidget" name="layoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>320</x>
-     <y>50</y>
-     <width>258</width>
-     <height>371</height>
+     <x>420</x>
+     <y>340</y>
+     <width>171</width>
+     <height>211</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -178,10 +153,10 @@
   <widget class="QWidget" name="layoutWidget_3">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>400</y>
+     <x>340</x>
+     <y>210</y>
      <width>251</width>
-     <height>131</height>
+     <height>111</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -200,20 +175,20 @@
   <widget class="QPushButton" name="BtnToLoadThePhoto">
    <property name="geometry">
     <rect>
-     <x>410</x>
-     <y>460</y>
-     <width>80</width>
-     <height>22</height>
+     <x>460</x>
+     <y>570</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Load</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>50</x>
      <y>100</y>
      <width>211</width>
      <height>41</height>
@@ -229,6 +204,225 @@
     </item>
     <item>
      <widget class="QDateEdit" name="dateofbirth"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_8">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>340</y>
+     <width>211</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_9">
+    <item>
+     <widget class="QLabel" name="Career">
+      <property name="text">
+       <string>Career</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="career"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_9">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>250</y>
+     <width>211</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <item>
+     <widget class="QLabel" name="PhoneNumber">
+      <property name="text">
+       <string>Phone Number</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="phonenumber"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>510</y>
+     <width>331</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_6">
+    <item>
+     <widget class="QLabel" name="AgeOStrangers_2">
+      <property name="text">
+       <string>Age of strangers  </string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSlider" name="ageofstrangers_2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="tabletTracking">
+       <bool>true</bool>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="minimum">
+       <number>18</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedControls">
+       <bool>false</bool>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::NoTicks</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_10">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>570</y>
+     <width>331</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <item>
+     <widget class="QLabel" name="FoundRadius_2">
+      <property name="text">
+       <string>Foundation radius</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QSlider" name="foundationradius_2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="tabletTracking">
+       <bool>true</bool>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="minimum">
+       <number>18</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedControls">
+       <bool>false</bool>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::NoTicks</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>400</y>
+     <width>261</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Your preferences</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_11">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>450</y>
+     <width>361</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_12">
+    <item>
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Gender</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="radioButton_4">
+      <property name="text">
+       <string>Male</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="radioButton_5">
+      <property name="text">
+       <string>Female</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QRadioButton" name="radioButton_6">
+      <property name="text">
+       <string>Doesn't matter</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_12">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>300</y>
+     <width>211</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_13">
+    <item>
+     <widget class="QLabel" name="Career_2">
+      <property name="text">
+       <string>Studying</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="career_2"/>
     </item>
    </layout>
   </widget>

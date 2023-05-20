@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>650</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -181,6 +181,19 @@
      <string>Age</string>
     </property>
    </widget>
+  </widget>
+  <widget class="QPushButton" name="BtnBackToAcc">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>350</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back to my account</string>
+   </property>
   </widget>
  </widget>
  <resources/>

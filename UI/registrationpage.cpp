@@ -4,14 +4,15 @@
 #include "fillingdatapage.h"
 #include <QDebug>
 #include <iostream>
-//#include "client_manager.hpp"
+#include <QMessageBox>
+// #include "client_manager.hpp"
 
-
-RegistrationPage::RegistrationPage(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::RegistrationPage)
+RegistrationPage::RegistrationPage(QWidget *parent, ClientManager &&_cm) : QDialog(parent),
+                                                                           ui(new Ui::RegistrationPage),
+                                                                           clientManager(std::move(_cm))
 {
     ui->setupUi(this);
+    this->setStyleSheet("background-color: moccasin;");
 }
 
 RegistrationPage::~RegistrationPage()
@@ -21,19 +22,34 @@ RegistrationPage::~RegistrationPage()
 
 void RegistrationPage::on_BtnRegister_clicked()
 {
-    hide();
-    //clientManager.registration(ui->login->text().toStdString(), ui->password->text().toStdString());
-    FillingDataPage window;
-    window.setModal(true);
-    window.exec();
+    if (clientManager.login_check(ui->login->text().toStdString())) {
+        QMessageBox loginBusy (this);
+        loginBusy.setGeometry(860,600, 300, 100);
+        loginBusy.critical(0,"Error","This login is busy!");
+        loginBusy.setGeometry(860,600, 300, 100);
+        loginBusy.show();
+        loginBusy.setGeometry(860,600, 300, 100);
+    }
+    else {
+        clientManager.registration(ui->login->text().toStdString(), ui->password->text().toStdString());
+        hide();
+        // clientManager.registration(ui->login->text().toStdString(), ui->password->text().toStdString());
+        FillingDataPage window(nullptr, std::move(clientManager));
+        window.setModal(true);
+        window.exec();
+    }
 }
 
-void RegistrationPage::on_email_editingFinished()
+void RegistrationPage::on_login_editingFinished()
 {
-        qDebug() << ui->email->text();
+    qDebug() << ui->login->text();
 }
 
 void RegistrationPage::on_password_editingFinished()
 {
-        qDebug() << ui->password->text();
+
+    QString pass = ui->password->text();
+    QByteArray arrpass = pass.toUtf8();
+    QString hashpass = QString(QCryptographicHash::hash((arrpass), QCryptographicHash::Md5).toHex());
+    qDebug() << hashpass;
 }

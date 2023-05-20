@@ -4,8 +4,9 @@
 #include <QMainWindow>
 #include <QDialog>
 #include <QLabel>
-
+#include <QCryptographicHash>
 #include <QLineEdit>
+#include "client_manager.hpp"
 QT_BEGIN_NAMESPACE
 namespace Ui { class GreetingPage; }
 QT_END_NAMESPACE
@@ -15,7 +16,7 @@ class GreetingPage : public QMainWindow
     Q_OBJECT
 
 public:
-    GreetingPage(QWidget *parent = nullptr);
+    GreetingPage(QWidget *parent, ClientManager&&);
     ~GreetingPage();
      QLineEdit *GetPass();
      QLineEdit *GetLog();
@@ -37,5 +38,6 @@ private slots:
 
 private:
     Ui::GreetingPage *ui;
+    ClientManager clientManager;
 };
 #endif // GREETINGPAGE_H

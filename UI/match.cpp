@@ -6,6 +6,7 @@ match::match(QWidget *parent) :
     ui(new Ui::match)
 {
     ui->setupUi(this);
+    this->setStyleSheet("background-color: moccasin;");
 }
 
 match::~match()

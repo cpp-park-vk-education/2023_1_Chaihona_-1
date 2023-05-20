@@ -22,7 +22,7 @@ public:
   void AddForm(unsigned author_id, Form form);
   std::vector<Interest> GetPossibleInterest();
   std::vector<Lifestyle> GetPossibleLifestyle();
-  Profile log_in(std::string email, std::string password);
+  Profile* log_in(std::string email, std::string password);
   void react(unsigned author_id, unsigned target_id, bool is_like);
   Form getNextProfile(unsigned author_id);
   Form GetUserForm(unsigned author_id);
@@ -43,7 +43,7 @@ private:
   bool email_check_response(std::string json);
   bool login_check_response(std::string json);
   unsigned registration_response(std::string json);
-  Profile log_in_response(std::string json);
+  Profile* log_in_response(std::string json);
   Form getNextProfile_response(std::string json);
   std::vector<Form> get_match_table_response(std::string json);
   

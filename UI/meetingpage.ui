@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>416</width>
-    <height>553</height>
+    <width>650</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QLabel" name="MeetingPeople">
    <property name="geometry">
     <rect>
-     <x>170</x>
+     <x>290</x>
      <y>10</y>
      <width>151</width>
      <height>51</height>
@@ -29,33 +29,33 @@
   <widget class="QPushButton" name="BactToAcc">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>470</y>
-     <width>131</width>
-     <height>21</height>
+     <x>250</x>
+     <y>600</y>
+     <width>151</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>BackToMyAcc</string>
+    <string>Back to my account</string>
    </property>
   </widget>
   <widget class="QGraphicsView" name="PhotoOfStranger">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>40</x>
      <y>70</y>
-     <width>241</width>
-     <height>301</height>
+     <width>281</width>
+     <height>361</height>
     </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="Dislike">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>390</y>
-     <width>80</width>
-     <height>22</height>
+     <x>160</x>
+     <y>510</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
@@ -65,22 +65,22 @@
   <widget class="QPushButton" name="Like">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>390</y>
-     <width>80</width>
-     <height>22</height>
+     <x>280</x>
+     <y>510</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>Like</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>179</y>
-     <width>131</width>
+     <x>410</x>
+     <y>190</y>
+     <width>151</width>
      <height>81</height>
     </rect>
    </property>
@@ -104,9 +104,9 @@
   <widget class="QWidget" name="layoutWidget_2">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>110</y>
-     <width>131</width>
+     <x>410</x>
+     <y>150</y>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -130,22 +130,22 @@
   <widget class="QPushButton" name="MoreInfo">
    <property name="geometry">
     <rect>
-     <x>270</x>
-     <y>390</y>
-     <width>80</width>
-     <height>22</height>
+     <x>400</x>
+     <y>510</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
     <string>MoreInfo</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>410</x>
      <y>70</y>
-     <width>131</width>
+     <width>151</width>
      <height>31</height>
     </rect>
    </property>
@@ -166,13 +166,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>270</x>
+     <x>410</x>
      <y>280</y>
-     <width>131</width>
-     <height>91</height>
+     <width>151</width>
+     <height>121</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -187,6 +187,32 @@
      <widget class="QLabel" name="interests">
       <property name="text">
        <string>&lt;interests&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>110</y>
+     <width>151</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QLabel" name="City_2">
+      <property name="text">
+       <string>Age</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="age">
+      <property name="text">
+       <string>&lt;age&gt;</string>
       </property>
      </widget>
     </item>

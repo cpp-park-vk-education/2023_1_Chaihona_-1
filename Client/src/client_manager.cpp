@@ -2,7 +2,7 @@
 
 namespace json = boost::json;
 
-Profile ClientManager::log_in(std::string email, std::string password) {
+Profile* ClientManager::log_in(std::string email, std::string password) {
   User user{email, password};
   json::object request;
   request[kRequestField] = kLogInRequest;
@@ -12,15 +12,18 @@ Profile ClientManager::log_in(std::string email, std::string password) {
   return log_in_response(response);
 }
 
-Profile ClientManager::log_in_response(std::string json) { 
-  if (json == kNoResponse) return Profile();
+Profile* ClientManager::log_in_response(std::string json) { 
+  if (json == kNoResponse) return nullptr;
   json::error_code ec;
   json::value response = json::parse(json, ec);
-  if (ec) return Profile();
+  if (response.as_object()[kContextField] == "Error: no such object!") {
+    std::cerr << "no profile!" << std::endl;
+    return nullptr;
+  } 
 
   Profile profile = json::value_to<Profile>(response.as_object()[kContextField]);
   profile_ = profile;
-  return profile;
+  return  &profile_;
 }
 
 std::vector<Interest> ClientManager::GetPossibleInterest() {

@@ -12,8 +12,8 @@ void RequestMaker::MakeRequest(std::string json) {
 }
 
 std::string RequestMaker::getResponse(std::string request_type) {
-  std::queue<std::string> responses = client_ptr_->getResponses();
   for (int i = 0; i < 10; std::this_thread::sleep_for(std::chrono::seconds(1)), ++i) {
+    std::queue<std::string> responses = client_ptr_->getResponses();
     if (!responses.empty()) {
       std::string response = responses.back();
       if (response.find(request_type) != -1){

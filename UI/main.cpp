@@ -1,22 +1,25 @@
-#include <QApplication>
-#include <QTest>
-#include <iostream>
-#include <cstdlib>
-#include <QDialog>
-
-#include <cstdio>
-#include "tests.h"
-#include "greetingpage.h"
+// #include <QApplication>
+// #include <iostream>
+// #include <cstdlib>
+// #include <QDialog>
+// #include "connection.h"
+// #include <cstdio>
+// #include "greetingpage.h"
 
 
 
-int main(int argc, char *argv[])
-{
+// int main(int argc, char *argv[])
+// {
 
-    QApplication a(argc, argv); //запуск приложения
-    GreetingPage w;
-    w.show();
-    return a.exec();
+//     QApplication a(argc, argv); //запуск приложения
+//     GreetingPage w;
 
-}
+//     if (!createConnection())
+//         return 1;
+
+
+//     w.show();
+//     return a.exec();
+
+// }
 

@@ -1,10 +1,11 @@
-QT       += core gui
-
+TEMPLATE = app
+TARGET = QT_PSQL
+QT       += core gui sql
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++20
-CONFIG+=qtestlib
-QT += network
+
+
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
 # depend on your compiler). Please consult the documentation of the
@@ -17,7 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    editmydata.cpp \
+    connection.cpp \
     fillingdatapage.cpp \
     forgotpassword.cpp \
     listofmathes.cpp \
@@ -26,11 +27,10 @@ SOURCES += \
     match.cpp \
     meetingpage.cpp \
     myaccount.cpp \
-    registrationpage.cpp \
-    tests.cpp
+    registrationpage.cpp
 
 HEADERS += \
-    editmydata.h \
+    connection.h \
     fillingdatapage.h \
     forgotpassword.h \
     greetingpage.h \
@@ -38,11 +38,9 @@ HEADERS += \
     match.h \
     meetingpage.h \
     myaccount.h \
-    registrationpage.h \
-    tests.h
+    registrationpage.h
 
 FORMS += \
-    editmydata.ui \
     fillingdatapage.ui \
     forgotpassword.ui \
     greetingpage.ui \

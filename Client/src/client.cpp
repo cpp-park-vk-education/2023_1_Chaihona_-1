@@ -133,6 +133,7 @@ void Client::on_read(beast::error_code ec, std::size_t bytes_transferred) {
         return fail(ec, "read");
     res_.push(beast::buffers_to_string(buffer_.data()));
     std::cout << beast::buffers_to_string(buffer_.data()) << std::endl;
+    buffer_.consume(buffer_.size());
     net::dispatch(ws_.get_executor(), beast::bind_front_handler(&Client::wait_request, shared_from_this()));
 }
 

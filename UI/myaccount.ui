@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>381</height>
+    <width>650</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="MyAcc">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>20</y>
+     <x>300</x>
+     <y>30</y>
      <width>91</width>
      <height>16</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="BtnToMeetingPage">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>190</y>
+     <x>250</x>
+     <y>260</y>
      <width>151</width>
      <height>41</height>
     </rect>
@@ -42,8 +42,8 @@
   <widget class="QPushButton" name="LogOut">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>310</y>
+     <x>280</x>
+     <y>410</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -55,9 +55,9 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>80</y>
-     <width>171</width>
+     <x>210</x>
+     <y>110</y>
+     <width>223</width>
      <height>31</height>
     </rect>
    </property>
@@ -65,7 +65,7 @@
     <item>
      <widget class="QLabel" name="EditMyData">
       <property name="text">
-       <string>EditMyData</string>
+       <string>Edit my data or preferences</string>
       </property>
      </widget>
     </item>
@@ -81,8 +81,8 @@
   <widget class="QPushButton" name="BtnToMyMatches">
    <property name="geometry">
     <rect>
-     <x>120</x>
-     <y>130</y>
+     <x>250</x>
+     <y>180</y>
      <width>151</width>
      <height>41</height>
     </rect>
@@ -94,8 +94,8 @@
   <widget class="QPushButton" name="ToSettings">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>250</y>
+     <x>270</x>
+     <y>340</y>
      <width>111</width>
      <height>31</height>
     </rect>

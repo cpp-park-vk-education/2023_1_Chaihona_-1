@@ -52,22 +52,22 @@ int main(int argc, char *argv[])
     ClientManager client_manager(std::move(request_maker_ptr));
 
 
-    Interest interest(1, "a", "a");
-    Lifestyle lifestyle (1, "a", "a", std::vector<std::string>());
-    UserInterest ui (0, interest,10,0);
-    UserLifestyle ulf(0, lifestyle, "aquarius");
-    std::vector<UserInterest> uivec; uivec.push_back(ui);
-    std::vector<UserLifestyle> ulfvec; ulfvec.push_back(ulf);
-    Preference pref(18,40,10,'M');
-    Form form(0, uivec, ulfvec, "a", "b", "c", "d",0, 'M', "2002-02-02", pref);
-    //client_manager.AddForm(1, form);
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    //client_manager.react(1, 18, true);
-    std::this_thread::sleep_for(std::chrono::seconds(1));
-    client_manager.GetMatchTable(1);
+    // Interest interest(1, "a", "a");
+    // Lifestyle lifestyle (1, "a", "a", std::vector<std::string>());
+    // UserInterest ui (0, interest,10,0);
+    // UserLifestyle ulf(0, lifestyle, "aquarius");
+    // std::vector<UserInterest> uivec; uivec.push_back(ui);
+    // std::vector<UserLifestyle> ulfvec; ulfvec.push_back(ulf);
+    // Preference pref(18,40,10,'M');
+    // Form form(0, uivec, ulfvec, "a", "b", "c", "d",0, 'M', "2002-02-02", pref);
+    // //client_manager.AddForm(1, form);
+    // std::this_thread::sleep_for(std::chrono::seconds(1));
+    // //client_manager.react(1, 18, true);
+    // std::this_thread::sleep_for(std::chrono::seconds(1));
+    // client_manager.GetMatchTable(1);
 
-    // QApplication a(argc, argv); // запуск приложения
-    // GreetingPage w (nullptr, std::move(client_manager));
-    // w.show();
-    // return a.exec();
+    QApplication a(argc, argv); // запуск приложения
+    GreetingPage w (nullptr, std::move(client_manager));
+    w.show();
+    return a.exec();
 }
