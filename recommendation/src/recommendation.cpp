@@ -1,5 +1,7 @@
 #include "recommendation.hpp"
 
+const std::string Recommendation::DOCS_FILE = "preprocessed_texts.txt";
+
 void Recommendation::forms_to_users() {
     user_.id_ =  form_.getId();
     user_.text_vect_ = form_.getVectorisedText();
@@ -22,7 +24,6 @@ void Recommendation::forms_to_users() {
 }
 
 void Recommendation::users_to_forms() {
-
     std::vector<Form> rec_forms;
 
     for (UserForm& us : recommended_users_) {
@@ -41,9 +42,14 @@ void Recommendation::vectorize_profile_text() {
     if(!docs.is_open()) {
         std::cerr << DOCS_FILE << " could not be opened for reading!" << std::endl;
     }
+
+    user_.id_ =  form_.getId();
+    user_.text_ = form_.getDescription();
+
     CleanTokenizer tokenizer;
     PortersStemmer stemmer;
     VectorizerTFIDF vectorizer(docs);
+
     vectorizer.set_text(user_.text_);
     vectorizer.vectorize(tokenizer, stemmer);
     user_.text_vect_ = vectorizer.get_vect();
@@ -54,16 +60,19 @@ void Recommendation::vectorize_profile_text() {
         preproc_text += (str + " ");
     }
 
-    form_.setPreworkedText(preproc_text); //?
-    form_.setVectorisedText(user_.text_vect_); //?
+    form_.setPreworkedText(preproc_text);
+    form_.setVectorisedText(user_.text_vect_);
 }
 
 void Recommendation::recommend() {
     forms_to_users();
+
     Filter filter(user_, recommended_users_);
     CosSimilarityCalculator calculator;
+
     filter.calculate_users_similiarity(calculator);
     recommended_users_ = filter.get_recommended_users();
+    
     std::sort(recommended_users_.begin(), recommended_users_.end(), std::greater<UserForm>());
     users_to_forms();
 }

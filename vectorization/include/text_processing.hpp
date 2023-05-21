@@ -12,11 +12,9 @@
 #include <locale>  
 #include <codecvt>
 
-#define STOPWORDS_FILENAME "stopwords_ru.txt"
-
 class ITokenizer {
  public:
-    virtual ~ITokenizer() = 0;
+    virtual ~ITokenizer() {};
     virtual void tokenize() = 0;
     virtual void set_text(const std::string& text) = 0;
     virtual std::vector<std::string> get_tokens() = 0;
@@ -28,6 +26,7 @@ class CleanTokenizer : public ITokenizer {
     std::vector<std::string> tokens_;
     std::vector<std::string> stop_words_;
     std::string stopwords_filename_;
+    static const std::string STOPWORDS_FILENAME;
 
     void text_split();
     void delete_punctuation();
@@ -36,7 +35,6 @@ class CleanTokenizer : public ITokenizer {
     void delete_stopwords();
 
  public:
-    CleanTokenizer() = default;
     CleanTokenizer() : stopwords_filename_(STOPWORDS_FILENAME) {}
     CleanTokenizer(const std::string& text) : 
       text_(text), 
@@ -49,7 +47,7 @@ class CleanTokenizer : public ITokenizer {
 
 class IStemmer {
  public:
-    virtual ~IStemmer() = 0;
+    virtual ~IStemmer() {};
     virtual void set_tokens(const std::vector<std::string>& tokens_vect) = 0;
     virtual void stemmize() = 0;
     virtual std::vector<std::string> get_stems() = 0;
@@ -78,7 +76,6 @@ class PortersStemmer : public IStemmer {
 	static const std::wregex PUNCTUATION;
  
  public:
-   ~PortersStemmer() = default;
    PortersStemmer() {
       setlocale(LC_CTYPE, "ru_RU.UTF-8");
    }

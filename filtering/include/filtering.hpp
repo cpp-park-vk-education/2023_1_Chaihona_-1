@@ -10,8 +10,8 @@
 #include "tfidf_vectorization.hpp"
 
 class SimilarityCalculator {
- private:
  public:
+  virtual ~SimilarityCalculator() {};
   virtual void set_vectors(std::vector<double>& first, std::vector<double>& second) = 0;
   virtual void calculate() = 0;
   virtual double get_similarity() = 0;

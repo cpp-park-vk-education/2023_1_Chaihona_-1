@@ -7,7 +7,6 @@
 #include <string>
 
 #include "text_processing.hpp"
-// #include "../../text_processing/src/text_processing.cpp"
 
 class VectorizerTFIDF {
  private:

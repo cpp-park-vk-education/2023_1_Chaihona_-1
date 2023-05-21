@@ -20,6 +20,8 @@ const std::wregex PortersStemmer::DER = std::wregex(L"ОСТЬ?$");
 const std::wregex PortersStemmer::SUPERLATIVE = std::wregex(L"(ЕЙШЕ|ЕЙШ)$");
 const std::wregex PortersStemmer::PUNCTUATION = std::wregex(L"[^\\w\\s]$");
 
+const std::string CleanTokenizer::STOPWORDS_FILENAME = "stopwords_ru.txt";
+
 void CleanTokenizer::text_split() {
     std::string tmp_str;
     std::stringstream str_stream(text_);
