@@ -29,8 +29,8 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>80</y>
+     <x>0</x>
+     <y>100</y>
      <width>391</width>
      <height>528</height>
     </rect>
@@ -168,6 +168,21 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>40</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Zodiac sign</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

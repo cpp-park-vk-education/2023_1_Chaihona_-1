@@ -23,6 +23,7 @@ SOURCES += \
     fillingdatapage.cpp \
     forgotpassword.cpp \
     lifestyle.cpp \
+    lifestylechoices.cpp \
     listofmathes.cpp \
     main.cpp \
     greetingpage.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
     match.cpp \
     meetingpage.cpp \
     myaccount.cpp \
+    rating.cpp \
     registrationpage.cpp
 
 HEADERS += \
@@ -39,11 +41,13 @@ HEADERS += \
     forgotpassword.h \
     greetingpage.h \
     lifestyle.h \
+    lifestylechoices.h \
     listofmathes.h \
     mappage.h \
     match.h \
     meetingpage.h \
     myaccount.h \
+    rating.h \
     registrationpage.h
 
 FORMS += \
@@ -53,11 +57,13 @@ FORMS += \
     forgotpassword.ui \
     greetingpage.ui \
     lifestyle.ui \
+    lifestylechoices.ui \
     listofmathes.ui \
     mappage.ui \
     match.ui \
     meetingpage.ui \
     myaccount.ui \
+    rating.ui \
     registrationpage.ui \
     testpage.ui
 

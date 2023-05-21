@@ -5,6 +5,8 @@
 #include "mappage.h"
 #include "lifestyle.h"
 #include "fillcontacts.h"
+#include "rating.h"
+#include "lifestylechoices.h"
 
 FillingDataPage::FillingDataPage(QWidget *parent) :
     QDialog(parent),
@@ -48,7 +50,9 @@ void FillingDataPage::on_login_editingFinished()
 
 void FillingDataPage::on_interests_itemDoubleClicked(QListWidgetItem *item)
 {
-
+    Rating window;
+    window.setModal(true);
+    window.exec();
 }
 
 void FillingDataPage::on_BtnChooseLocation_clicked()
@@ -59,16 +63,16 @@ void FillingDataPage::on_BtnChooseLocation_clicked()
 }
 
 
-void FillingDataPage::on_BtnChooseLifestyle_clicked()
+void FillingDataPage::on_BtnFillContacts_clicked()
 {
-    Lifestyle window;
+    FillContacts window;
     window.setModal(true);
     window.exec();
 }
 
-void FillingDataPage::on_BtnFillContacts_clicked()
+void FillingDataPage::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
 {
-    FillContacts window;
+    LifeStyleChoices window;
     window.setModal(true);
     window.exec();
 }

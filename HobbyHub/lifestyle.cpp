@@ -1,5 +1,6 @@
 #include "lifestyle.h"
 #include "ui_lifestyle.h"
+#include "rating.h"
 
 Lifestyle::Lifestyle(QWidget *parent) :
     QDialog(parent),
@@ -12,4 +13,11 @@ Lifestyle::Lifestyle(QWidget *parent) :
 Lifestyle::~Lifestyle()
 {
     delete ui;
+}
+
+void Lifestyle::on_listWidget_itemDoubleClicked(QListWidgetItem *item)
+{
+    Rating window;
+    window.setModal(true);
+    window.exec();
 }

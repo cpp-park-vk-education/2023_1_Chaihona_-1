@@ -30,9 +30,9 @@ private slots:
 
     void on_BtnChooseLocation_clicked();
 
-    void on_BtnChooseLifestyle_clicked();
-
     void on_BtnFillContacts_clicked();
+
+    void on_listWidget_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::FillingDataPage *ui;
