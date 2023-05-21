@@ -8,6 +8,9 @@
 #include "meetingpage.h"
 #include "forgotpassword.h"
 
+#include <QSpinBox>
+#include <QVBoxLayout>
+
 #include "ui_meetingpage.h"
 
 
@@ -17,7 +20,8 @@ GreetingPage::GreetingPage(QWidget *parent)
 {
     ui->setupUi(this);
 
-     this->setStyleSheet("background-color: moccasin;");
+    this->setStyleSheet("background-color: moccasin;");
+
 }
 
 GreetingPage::~GreetingPage()

@@ -5,17 +5,26 @@
 #include "connection.h"
 #include <cstdio>
 #include "greetingpage.h"
+#include "testpage.h"
+
+
+
+
+
+
 
 
 
 int main(int argc, char *argv[])
 {
 
+
+
     QApplication a(argc, argv); //запуск приложения
     GreetingPage w;
 
-    if (!createConnection())
-        return 1;
+    //if (!createConnection())
+    //  return 1;
 
 
     w.show();

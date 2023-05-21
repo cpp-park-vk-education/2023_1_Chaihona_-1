@@ -32,6 +32,7 @@ void RegistrationPage::on_BtnRegister_clicked()
 void RegistrationPage::on_login_editingFinished()
 {
         qDebug() << ui->login->text();
+        qDebug() << " as" ;
 }
 
 void RegistrationPage::on_password_editingFinished()

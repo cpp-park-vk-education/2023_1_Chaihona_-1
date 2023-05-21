@@ -28,6 +28,12 @@ private slots:
 
     void on_interests_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_BtnChooseLocation_clicked();
+
+    void on_BtnChooseLifestyle_clicked();
+
+    void on_BtnFillContacts_clicked();
+
 private:
     Ui::FillingDataPage *ui;
 };

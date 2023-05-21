@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Lifestyle</class>
+ <widget class="QDialog" name="Lifestyle">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>40</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Your lifestyle</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>80</y>
+     <width>391</width>
+     <height>528</height>
+    </rect>
+   </property>
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0">
+     <widget class="QLabel" name="LabelPolitics">
+      <property name="text">
+       <string>Attitude to politics:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="LabelWorldview">
+      <property name="text">
+       <string>Worldview:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="LabelMainInLife">
+      <property name="text">
+       <string>The main things in life:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="LabelMainInHuman">
+      <property name="text">
+       <string>The main things in human:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="LabelSmoking">
+      <property name="text">
+       <string>Attitude to smoking:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="LabelAlco">
+      <property name="text">
+       <string>Attitude to alcohol:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0">
+     <widget class="QLabel" name="LabeZodiac">
+      <property name="text">
+       <string>Zodiac sign:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QListWidget" name="listpolitics"/>
+    </item>
+    <item row="1" column="1">
+     <widget class="QListWidget" name="listworldview"/>
+    </item>
+    <item row="2" column="1">
+     <widget class="QListWidget" name="listmaininlife"/>
+    </item>
+    <item row="3" column="1">
+     <widget class="QListWidget" name="listmaininhuman"/>
+    </item>
+    <item row="4" column="1">
+     <widget class="QListWidget" name="listsmoking"/>
+    </item>
+    <item row="5" column="1">
+     <widget class="QListWidget" name="listalco"/>
+    </item>
+    <item row="6" column="1">
+     <widget class="QListWidget" name="listzodiac">
+      <item>
+       <property name="text">
+        <string>Aries</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Taurus</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Gemini</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Cancer</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Leo</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Virgo</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Libra</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Scorpio</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Sagittarius</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Capricorn</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Aquarius</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Pisces</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

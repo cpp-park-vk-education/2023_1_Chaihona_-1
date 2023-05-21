@@ -1,7 +1,7 @@
 #include "meetingpage.h"
 #include "ui_meetingpage.h"
 #include "myaccount.h"
-
+#
 MeetingPage::MeetingPage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MeetingPage)
@@ -18,6 +18,7 @@ MeetingPage::~MeetingPage()
 void MeetingPage::on_BactToAcc_clicked()
 {
     hide();
+
     MyAccount window;
     window.setModal(true);
     window.exec();
