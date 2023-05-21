@@ -104,6 +104,19 @@
     <string>Settings</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="BtnImitateMatch">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>480</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ImitateMatch</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CheckProfile</class>
+ <widget class="QDialog" name="CheckProfile">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>650</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="layoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>320</y>
+     <width>201</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_9">
+    <item>
+     <widget class="QLabel" name="Info_2">
+      <property name="text">
+       <string>Info</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="info_2">
+      <property name="text">
+       <string>&lt;info&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="BactToAcc">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>630</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Back to my account</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_4">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>180</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_10">
+    <item>
+     <widget class="QLabel" name="City_6">
+      <property name="text">
+       <string>Gender</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="city_5">
+      <property name="text">
+       <string>&lt;gender&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="MeetingPeople">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>10</y>
+     <width>151</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Match Page</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_11">
+    <item>
+     <widget class="QLabel" name="Name_2">
+      <property name="text">
+       <string>Name</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="name_2">
+      <property name="text">
+       <string>George</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_7">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>320</y>
+     <width>341</width>
+     <height>278</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="6" column="0">
+     <widget class="QLabel" name="LabeZodiac_2">
+      <property name="text">
+       <string>Zodiac sign:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="LabelMainInLife_2">
+      <property name="text">
+       <string>The main things in life:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLabel" name="label_10">
+      <property name="text">
+       <string>good</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="LabelSmoking_2">
+      <property name="text">
+       <string>Attitude to smoking:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
+     <widget class="QLabel" name="label_9">
+      <property name="text">
+       <string>good</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="label_11">
+      <property name="text">
+       <string>money</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_14">
+      <property name="text">
+       <string>communism</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="LabelPolitics_2">
+      <property name="text">
+       <string>Attitude to politics:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="label_8">
+      <property name="text">
+       <string>bad</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="LabelWorldview_2">
+      <property name="text">
+       <string>Worldview:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="LabelMainInHuman_2">
+      <property name="text">
+       <string>The main things in human:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="label_12">
+      <property name="text">
+       <string>money</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="QLabel" name="label_13">
+      <property name="text">
+       <string>taurus</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QLabel" name="LabelAlco_2">
+      <property name="text">
+       <string>Attitude to alcohol:</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_5">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>220</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_12">
+    <item>
+     <widget class="QLabel" name="City_7">
+      <property name="text">
+       <string>Studying</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="city_6">
+      <property name="text">
+       <string>&lt;studying&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_6">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_13">
+    <item>
+     <widget class="QLabel" name="City_8">
+      <property name="text">
+       <string>Career</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="city_7">
+      <property name="text">
+       <string>&lt;career&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>100</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_14">
+    <item>
+     <widget class="QLabel" name="City_9">
+      <property name="text">
+       <string>Age</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="age_2">
+      <property name="text">
+       <string>20</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QGraphicsView" name="PhotoOfStranger">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>60</y>
+     <width>191</width>
+     <height>231</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_8">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>140</y>
+     <width>181</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_15">
+    <item>
+     <widget class="QLabel" name="City_10">
+      <property name="text">
+       <string>City</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="city_8">
+      <property name="text">
+       <string>&lt;city&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_9">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>420</y>
+     <width>201</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_16">
+    <item>
+     <widget class="QLabel" name="Interests_2">
+      <property name="text">
+       <string>Interests</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="interests_2">
+      <property name="text">
+       <string>&lt;interests&gt;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_11">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>230</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_37">
+    <item>
+     <widget class="QLabel" name="labelSC_3">
+      <property name="text">
+       <string>SC</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_21">
+      <property name="text">
+       <string>Empty</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>80</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_32">
+    <item>
+     <widget class="QLabel" name="labeTG_3">
+      <property name="text">
+       <string>TG</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_16">
+      <property name="text">
+       <string>http/tg/George</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>110</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_33">
+    <item>
+     <widget class="QLabel" name="labelIg_3">
+      <property name="text">
+       <string>IG</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_17">
+      <property name="text">
+       <string>http/ig/George</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>55</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_31">
+    <item>
+     <widget class="QLabel" name="labelVK_3">
+      <property name="text">
+       <string>VK</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_15">
+      <property name="text">
+       <string>http/vk/George</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>140</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_34">
+    <item>
+     <widget class="QLabel" name="labelDS_3">
+      <property name="text">
+       <string>DS</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_18">
+      <property name="text">
+       <string>http/ds/George</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>200</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_36">
+    <item>
+     <widget class="QLabel" name="label_20">
+      <property name="text">
+       <string>YT</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_57">
+      <property name="text">
+       <string>Empty</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>170</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_38">
+    <item>
+     <widget class="QLabel" name="labelTT_3">
+      <property name="text">
+       <string>TT</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="label_19">
+      <property name="text">
+       <string>http/tt/George</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

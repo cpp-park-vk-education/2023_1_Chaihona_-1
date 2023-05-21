@@ -4,7 +4,7 @@
 #include "greetingpage.h"
 #include "QDebug"
 #include "listofmathes.h"
-
+#include "match.h"
 #include "fillingdatapage.h"
 
 
@@ -49,6 +49,13 @@ void MyAccount::on_BtnToMyMatches_clicked()
 void MyAccount::on_BtnEdit_clicked()
 {
     FillingDataPage window;
+    window.setModal(true);
+    window.exec();
+}
+
+void MyAccount::on_BtnImitateMatch_clicked()
+{
+    match window;
     window.setModal(true);
     window.exec();
 }

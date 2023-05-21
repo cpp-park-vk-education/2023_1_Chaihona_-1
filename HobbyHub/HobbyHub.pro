@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    checkprofile.cpp \
     fillcontacts.cpp \
     fillingdatapage.cpp \
     forgotpassword.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     registrationpage.cpp
 
 HEADERS += \
+    checkprofile.h \
     fillcontacts.h \
     fillingdatapage.h \
     forgotpassword.h \
@@ -45,6 +47,7 @@ HEADERS += \
     registrationpage.h
 
 FORMS += \
+    checkprofile.ui \
     fillcontacts.ui \
     fillingdatapage.ui \
     forgotpassword.ui \

@@ -15,6 +15,9 @@ public:
     explicit match(QWidget *parent = nullptr);
     ~match();
 
+private slots:
+    void on_BtnCheckProfile_clicked();
+
 private:
     Ui::match *ui;
 };

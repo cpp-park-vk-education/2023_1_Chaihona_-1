@@ -24,6 +24,8 @@ private slots:
 
     void on_BtnEdit_clicked();
 
+    void on_BtnImitateMatch_clicked();
+
 private:
     Ui::MyAccount *ui;
 };

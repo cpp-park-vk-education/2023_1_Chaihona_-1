@@ -15,6 +15,11 @@ public:
     explicit ListOfMathes(QWidget *parent = nullptr);
     ~ListOfMathes();
 
+private slots:
+    void on_BtnBackToAcc_clicked();
+
+    void on_BtnCheckProfile_clicked();
+
 private:
     Ui::ListOfMathes *ui;
 };
