@@ -101,6 +101,7 @@ void FormRequests::insertVectorisedData() {
     DBWork dbWork(dbConn);
     SQLProvider sqlprov("../SQLTemplates/");
     auto vecArray = arrayIntoString(vectorisedText);
+    std::cout << preworkedText << std::endl;
     std::cout << vecArray << std::endl;
     auto request = sqlprov.getRequest("insert_vec_text", std::make_format_args(vecArray, preworkedText, userId));
     dbWork.update(request);

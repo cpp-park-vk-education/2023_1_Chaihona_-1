@@ -9,6 +9,7 @@ set(filt_HEADERS ../filtering/include)
 
 add_library(recommendation ${SOURCES} ${HEADERS})
 
+target_include_directories(${PROJECT_NAME} PUBLIC src include)
 target_link_libraries(recommendation vectorization filtering DATAMODEL)
 
-target_include_directories(recommendation PUBLIC include ${vect_HEADERS} ${filt_HEADERS})
+include_directories(src include ${vect_HEADERS} ${filt_HEADERS})

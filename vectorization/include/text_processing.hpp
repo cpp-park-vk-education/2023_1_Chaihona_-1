@@ -15,7 +15,6 @@
 #define STOPWORDS_FILENAME "stopwords_ru.txt"
 
 class ITokenizer {
- private:
  public:
     virtual void tokenize() = 0;
     virtual void set_text(const std::string& text) = 0;
@@ -36,18 +35,18 @@ class CleanTokenizer : public ITokenizer {
     void delete_stopwords();
 
  public:
+    ~CleanTokenizer() = default;
     CleanTokenizer() : stopwords_filename_(STOPWORDS_FILENAME) {}
     CleanTokenizer(const std::string& text) : 
       text_(text), 
       stopwords_filename_(STOPWORDS_FILENAME) {}
 
-    void set_text(const std::string& text);
-    void tokenize();
-    std::vector<std::string> get_tokens();
+    void set_text(const std::string& text) override;
+    void tokenize() override;
+    std::vector<std::string> get_tokens() override;
 };
 
 class IStemmer {
- private:
  public:
     virtual void set_tokens(const std::vector<std::string>& tokens_vect) = 0;
     virtual void stemmize() = 0;
@@ -57,7 +56,6 @@ class IStemmer {
 class PortersStemmer : public IStemmer {
  private:
    std::vector<std::string> tokens_;
-
    static const std::wstring EMPTY;
 	static const std::wstring S1;
 	static const std::wstring S13;
@@ -78,6 +76,7 @@ class PortersStemmer : public IStemmer {
 	static const std::wregex PUNCTUATION;
  
  public:
+   ~PortersStemmer() = default;
    PortersStemmer() {
       setlocale(LC_CTYPE, "ru_RU.UTF-8");
    }

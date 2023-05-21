@@ -1,1 +1,1 @@
-SELECT email, first_name, last_name from chaihona."Profile" where user_id = {}
+SELECT email, first_name, last_name, profile_id from chaihona."Profile" where user_id = {}

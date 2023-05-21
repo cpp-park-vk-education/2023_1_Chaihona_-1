@@ -42,6 +42,10 @@ public:
     std::string getBdate() const {return bdate;}
     char getGender() const {return gender;}
     Preference getPreference() const {return preference;}
+    std::string getPreworkedText() const {return preworkedText;}
+    std::vector<double> getVectorisedText() const {return vectorisedText;}
+    void setPreworkedText (std::string pt) {preworkedText = pt;}
+    void setVectorisedText (std::vector<double> vt) {vectorisedText = vt;}
 };
 
 void tag_invoke(const boost::json::value_from_tag&, boost::json::value& jv, Form const& form);

@@ -4,16 +4,14 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include "form.hpp"
-#include "interest.hpp"
 
 #include "text_processing.hpp"
 #include "tfidf_vectorization.hpp"
 #include "filtering.hpp"
-// #include "" // <- файлик с Form и UserInterest
+#include "form.hpp"
+#include "interest.hpp"
 
-#define DOCS_FILE "...txt"
-
+#define DOCS_FILE "savedrecs.txt"
 
 class Recommendation {  
  private:
@@ -25,16 +23,16 @@ class Recommendation {
   void users_to_forms();
 
  public:
-  void vectorize_profile_text();
   Recommendation() = delete;
   Recommendation(Form& form, const std::vector<Form>& recommended_forms) 
     : form_(form),
       recommended_forms_(recommended_forms) {}
   void recommend();
+  void vectorize_profile_text();
   Form get_form() {
     return form_;
   }
-  std::vector<Form> get_recommended_forms() {
+  std::vector<Form>& get_recommended_forms() {
     return recommended_forms_;
   }
 };

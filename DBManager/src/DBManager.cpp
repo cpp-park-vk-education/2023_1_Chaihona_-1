@@ -41,7 +41,10 @@ unsigned DBManager::addProfile(User user, Profile profile) {
 
 unsigned DBManager::addForm(unsigned profileId, Form form) {
     FormRequests freq(form.getInterests(), form.getLifestyle(), form.getDescription(), form.getUniversity(), form.getCareer(), form.getLocation(), form.getBdate(), form.getPreference(), profileId, form.getGender());
-    return freq.insert();
+    auto fid = freq.insert();
+    FormRequests fvec(fid, form.getPreworkedText(), form.getVectorisedText());
+    fvec.insertVectorisedData();
+    return fid;
 }
 
 std::vector<Form> DBManager::getRecommendForms(Form form) {

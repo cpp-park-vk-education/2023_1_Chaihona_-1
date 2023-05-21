@@ -24,7 +24,7 @@ std::shared_ptr<Profile> ProfileRequests::selectUserProfile() {
     if (result.size()!=0) {
         std::cout << "Got result!" << std::endl;
         auto profileValues = result[0];
-        return std::shared_ptr<Profile> (new Profile(profileValues[0], profileValues[1], profileValues[2]));
+        return std::shared_ptr<Profile> (new Profile(std::stoi(profileValues[3]),profileValues[0], profileValues[1], profileValues[2]));
     } else {
         std::cout << "No result!" << std::endl;
         return nullptr;

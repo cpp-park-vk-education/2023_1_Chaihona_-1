@@ -3,6 +3,7 @@
 build:
 	mkdir build
 	mkdir log
+	touch build/savedrecs.txt
 	
 run:
 	@echo "RUN"

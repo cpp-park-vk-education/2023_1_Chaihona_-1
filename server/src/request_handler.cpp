@@ -79,9 +79,9 @@ std::string RequestHandler::ReadRequest(std::string json) {
     if (recommended_forms_.empty()) {
       Form author_form = database_manager_ptr_->getUserForm(author_id); 
       auto recommended_forms = database_manager_ptr_->getRecommendForms(form);
-     //Recommendation recommendation(author_form, recommended_forms);
-     //recommendation.recommend();
-      SaveRecommendation(recommended_forms);
+      Recommendation recommendation(author_form, recommended_forms);
+      recommendation.recommend();
+      SaveRecommendation(recommendation.get_recommended_forms());
     }
     return GetNextProfileResponse();
   }
@@ -104,9 +104,9 @@ std::string RequestHandler::ReadRequest(std::string json) {
   if (request_type == kAddFormReqeust) {
     Form form = json::value_to<Form>(request.as_object()[kContextField].as_object()[kFormField]);
     unsigned author_id = json::value_to<unsigned>(request.as_object()[kContextField].as_object()[kAuthorIdField]);
-    //Recommendation recommendation(form, std::vector<Form>());
-    //recommendation.vectorize_profile_text();
-    database_manager_ptr_->addForm(author_id, form);
+    Recommendation recommendation(form, std::vector<Form>());
+    recommendation.vectorize_profile_text();
+    database_manager_ptr_->addForm(author_id, recommendation.get_form());
     return AddFormResponse();
   }
 
