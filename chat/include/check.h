@@ -31,20 +31,15 @@ private:
     std::string model = "gpt-3.5-turbo";
     RequestGPT gpt(key, model, Content + Responce);
     gpt.RunRequest();
-    // PercentOfUnacceptable = std::stoi(gpt.GetResponce());
-    std::cout << gpt.GetResponce() << std::endl;
+    isUnacceptable = std::stoi(gpt.GetResponce());
   }
 public:
   ContentCheck(std::string content) : Content(content) {};
   std::string Content;
-  int PercentOfUnacceptable;
+  int isUnacceptable;
   const std::string Responce = " - содержит ли этот текст в себе слова 18+. Напиши 1, если да или 0, если нет без знаков препинания";
   bool isUnacceptable() {
     Check();
-    if (PercentOfUnacceptable >= 5) {
-      return true;
-    } else {
-      return false;
-    }
+    return isUnacceptable;
   }
 };
