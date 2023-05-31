@@ -27,7 +27,7 @@ public:
 class ContentCheck {
 private:
   void Check() {
-    std::string key = "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";
+    std::string key = "";
     std::string model = "gpt-3.5-turbo";
     RequestGPT gpt(key, model, Content + Responce);
     gpt.RunRequest();
